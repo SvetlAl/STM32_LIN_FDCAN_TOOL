@@ -16,7 +16,7 @@ CAN-injection function allows to make a CAN message trace and play it into netwo
 **Hardware requirements.**
 The hardware implementation is based on STM32F105205 + 2 CAN trancievers + USB FS + SPI Memory chip (MX25L323 or similar).
 
-The code already has 6 hardware configuration. Their pinout explanation and clocking can be found in Doc directory.
+The code already has **6 hardware configuration**. Their pinout explanation and clocking can be found in Doc directory.
 
 The bus terminators are optionally installed if needed.
 
