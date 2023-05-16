@@ -1,0 +1,8 @@
+module QtQuick.VirtualKeyboard.Settings
+linktarget Qt6::qtquickvirtualkeyboardsettingsplugin
+plugin qtquickvirtualkeyboardsettingsplugin
+classname QtQuickVirtualKeyboardSettingsPlugin
+typeinfo plugins.qmltypes
+depends QtQuick 2.0
+prefer :/qt-project.org/imports/QtQuick/VirtualKeyboard/Settings/
+

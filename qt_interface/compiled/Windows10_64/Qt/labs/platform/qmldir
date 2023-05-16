@@ -1,0 +1,7 @@
+module Qt.labs.platform
+linktarget Qt6::qtlabsplatformplugin
+plugin qtlabsplatformplugin
+classname QtLabsPlatformPlugin
+typeinfo plugins.qmltypes
+prefer :/qt-project.org/imports/Qt/labs/platform/
+
