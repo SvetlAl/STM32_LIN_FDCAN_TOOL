@@ -1,6 +1,6 @@
 # STM32F105_205_2CAN_gateway_scanner_filter
 CAN bus Scanner/Gateway/filter/data_override based on STM32, Qt. Works with Starline 2CAN, Sigma and similar
-![2 way Scanner](Docs/can_monitor.png)
+
 
 **Work explanation.**
 This firmware and interface template is designed to handle a CAN bus gateway installed in between two ECU's or a CAN network split into two networks.
@@ -31,21 +31,21 @@ Edit *device_model.h* CommentUncomment  the hardware preset and Environment (**M
 If **MDK_ARM**, open 105_template.uvprojx or 205_template.uvprojx.
 
 If **GCC**, use a makefile script
-
+```
 make all -j 8
 
 (make boot_bin) only for bootloader
 
-(make flash)  see programmer conf in the makefile.
+(make flash)  *see programmer conf in the makefile.
 
 make clean
-
+```
 
 **User Interface.**
 Implemented in Qt 6.50. The sources and compiled versions can be found in qt_interface folder.
 
 Android USB implementation is forked from https://github.com/VanThanBK/QtAndroid-UsbSerial
-
+![2 way Scanner](Docs/can_monitor.png)
 ![can_trace](Docs/can_trace.png)
 ![device_modes](Docs/device_modes.png)
 ![can_data_override](Docs/can_data_override.png)
