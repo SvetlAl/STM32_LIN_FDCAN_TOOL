@@ -149,7 +149,7 @@ can_btr_setting calculate_baudrate(uint32_t baudRate){
 			_val.bs2 = 0x07;
 		}
 	}
-	else if(APB1_FREQ_MHZ == 60000){
+	else if(APB1_FREQ_MHZ == 30000){
 		if(baudRate == CAN_BAUDRATE_500KB){
 			_val.psc = 0x0002;
 			_val.bs1 = 0x0D;

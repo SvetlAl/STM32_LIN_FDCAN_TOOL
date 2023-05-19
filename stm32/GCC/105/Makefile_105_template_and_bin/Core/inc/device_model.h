@@ -12,7 +12,7 @@
 #define LOBYTE(x) (uint8_t)(x & ~0xFF00)
 #define HIBYTE(x) (uint8_t)((x >> 8) & ~0xFF00)
 
-//#define DEBUG_UNI
+#define DEBUG_UNI
 
 /**********************************************************************************************************/
 /**********************************************************************************************************/
@@ -22,16 +22,16 @@
 
 //=========================================================================================================
 //=====================================       Environment      ============================================
-//#define MDK_ARM_ENV
+#define MDK_ARM_ENV
 
 //=========================================================================================================
 //=====================================           Model        ============================================
 //#define ALLIGATOR
-//#define TEC_MODULE
+#define TEC_MODULE
 
 //#define DEVICE_2CAN
 //#define DEVICE_2CAN_TJA1042
-#define DEVICE_2CAN_BOXED
+//#define DEVICE_2CAN_BOXED
 //#define DEVICE_SIGMA
 
 // If a new model is added, check spi init in spi.h and spi.c
@@ -47,7 +47,7 @@
 #define STM32F205
 #define DEV_FREQ	120000
 #define DEV_FREQ_120MHZ
-#define APB1_FREQ_60MHZ
+#define APB1_FREQ_30MHZ
 #define TIM1_FREQ_60MHZ 	// used for scanner timestamp and watchdog
 #define TIM2_FREQ_30MHZ 	// used for trace injection
 #endif
@@ -63,8 +63,8 @@
 #endif
 
 
-#ifdef APB1_FREQ_60MHZ
-#define APB1_FREQ_MHZ	60000	// used for CAN1/CAN2
+#ifdef APB1_FREQ_30MHZ
+#define APB1_FREQ_MHZ	30000	// used for CAN1/CAN2
 #elif defined(APB1_FREQ_36MHZ)
 #define APB1_FREQ_MHZ	36000	// used for CAN1/CAN2
 #elif defined(APB1_FREQ_24MHZ)

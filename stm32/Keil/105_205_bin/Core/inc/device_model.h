@@ -47,7 +47,7 @@
 #define STM32F205
 #define DEV_FREQ	120000
 #define DEV_FREQ_120MHZ
-#define APB1_FREQ_60MHZ
+#define APB1_FREQ_30MHZ
 #define TIM1_FREQ_60MHZ 	// used for scanner timestamp and watchdog
 #define TIM2_FREQ_30MHZ 	// used for trace injection
 #endif
@@ -63,8 +63,8 @@
 #endif
 
 
-#ifdef APB1_FREQ_60MHZ
-#define APB1_FREQ_MHZ	60000	// used for CAN1/CAN2
+#ifdef APB1_FREQ_30MHZ
+#define APB1_FREQ_MHZ	30000	// used for CAN1/CAN2
 #elif defined(APB1_FREQ_36MHZ)
 #define APB1_FREQ_MHZ	36000	// used for CAN1/CAN2
 #elif defined(APB1_FREQ_24MHZ)

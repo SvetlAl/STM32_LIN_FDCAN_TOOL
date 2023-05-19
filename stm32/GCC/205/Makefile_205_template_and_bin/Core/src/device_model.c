@@ -20,7 +20,7 @@ static uint8_t deviceSoftwareVersion[DEVICE_INFO_STRING_SZ] = {
 	'1',
 	'.',
 	'1',
-	'4',
+	'2',
 	'.',
 	'0',
 	'5',

@@ -202,9 +202,9 @@ class AppDesign{
         145,
         150};
     static inline const int default_Base_Width_ButtonBorder[] = {
-        1, /* Sp_S */
-        1, /* Sp_M */
-        1, /* Sp_L */
+        2, /* Sp_S */
+        2, /* Sp_M */
+        2, /* Sp_L */
         2, /* Sp_XL */
         2,
         2};
