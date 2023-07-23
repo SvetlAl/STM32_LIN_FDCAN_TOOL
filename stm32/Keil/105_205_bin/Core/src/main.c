@@ -77,20 +77,27 @@ void CAN1_RX0_IRQHandler(void) {
 		}
 		
 		//============ Gateway Mode ====================
-		if(CAN_GATEWAY_MODE != DEVICE_OPERATION_MODE_ON) return;
+		if(CAN_GATEWAY_MODE != DEVICE_OPERATION_MODE_ON){
+			CAN1->RF0R |= CAN_RF0R_RFOM0;
+			return;
+		}
 		
 		//============ Calibrator Mode ====================
 		if(CALIBRATOR_FILTER_MODE == DEVICE_OPERATION_MODE_ON){
 			process_calibrator_procedure(newMessage);
 			//============ Override Mode ====================
 			if(CAN_OVERRIDE_MODE == DEVICE_OPERATION_MODE_ON){
-				if(process_override_procedure(newMessage, 1) == DISCARD_MSG) return;
+				if(process_override_procedure(newMessage, 1) == DISCARD_MSG){
+					CAN1->RF0R |= CAN_RF0R_RFOM0;
+					return;
+				}
 			}
 		}
 		
 		if(Can_Transmit_Message(CAN2, newMessage) != ERR_CAN_NO_EMPTY_MAILBOX){
 			IWDG_reset();			 
 		}
+		
 		#endif
 		
 		#ifdef TEST_SPEED_RESPONDER
@@ -101,12 +108,10 @@ void CAN1_RX0_IRQHandler(void) {
 		Can_Transmit_Message(CAN1, newMessage);
 		#endif
 	}
-	
-	CAN1->RF0R |= CAN_RF0R_RFOM0; //release
-	
 	#if defined (TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
 	SIGNAL_LED_A_OFF;
 	#endif
+	CAN1->RF0R |= CAN_RF0R_RFOM0; //release
 }
 
 /********************************************************************************************/
@@ -138,7 +143,10 @@ void CAN2_RX0_IRQHandler(void){
 		if(CALIBRATOR_FILTER_MODE == DEVICE_OPERATION_MODE_ON){
 			//============ Override Mode ====================
 			if(CAN_OVERRIDE_MODE == DEVICE_OPERATION_MODE_ON){
-				if(process_override_procedure(newMessage, 2) == DISCARD_MSG) return;
+				if(process_override_procedure(newMessage, 2) == DISCARD_MSG) {
+					CAN2->RF0R |= CAN_RF0R_RFOM0;
+					return;
+				}
 			}
 		}
 
@@ -213,19 +221,33 @@ int main(void){
 	
 	__enable_irq ();
 	while(1){
+		#ifndef CAN_TX_BUFFER_ENABLED
+		timeout = 0xFFF;
+		while(timeout-- > 0){
+		}
+		#endif
+		
+		#ifdef CAN_TX_BUFFER_ENABLED
 		timeout = 0xFF;
 		while(timeout-- > 0){
-			#ifdef TEST_SPEED_TRANSMITTER
-			volatile uint32_t extra_tx_timeout = 0;
-			while (extra_tx_timeout++ < EXTRA_TRANSMISSION_TIMEOUT){}
-			#endif
 				
-			#ifndef TEST_SPEED_TRANSMITTER	
-			process_buffered_can_tx();	
+			/*******************************************************************
+			******************** buffered transmission procedure ***************
+			*******************************************************************/
+			
+			#if !defined(TEST_SPEED_TRANSMITTER) & defined(CAN_TX_BUFFER_ENABLED)
+			process_buffered_can_tx();
+			findAndProcess_cmd();
 			#endif	
 				
+			/*******************************************************************
+			******************** Network test presets **************************
+			*******************************************************************/
+			
 			#if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
-					
+			volatile uint32_t extra_tx_timeout = 0;
+			while (extra_tx_timeout++ < EXTRA_TRANSMISSION_TIMEOUT){}
+			
 			uint32_t processed_msgs  = process_buffered_can_tx();	
 			if(!processed_msgs){
 				SIGNAL_LED_B_ON;
@@ -241,6 +263,7 @@ int main(void){
 			SIGNAL_LED_B_OFF;
 			#endif
 		}
+		#endif
 			
 		/*********** LED blinking **************/
 		#if defined(ALLIGATOR) | defined(TEC_MODULE)
@@ -248,7 +271,7 @@ int main(void){
 		#endif
 		
 		/*********** Process pending command **************/
-		#if !defined(TEST_SPEED_TRANSMITTER) | !defined(TEST_SPEED_RESPONDER)
+		#if (!defined(TEST_SPEED_TRANSMITTER) | !defined(TEST_SPEED_RESPONDER)) & !defined(CAN_TX_BUFFER_ENABLED)
 		findAndProcess_cmd();	
 		#endif
 	}

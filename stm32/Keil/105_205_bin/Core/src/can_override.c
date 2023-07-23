@@ -256,6 +256,7 @@ void injectPresetMessage(can_injection_status *_status, eDeviceFunctionMode _can
 * param  
 * retval 
 */
+	
 void calculate_tim_settings(can_injection_status *_status){
 	uint32_t sec_residue; // = _status->seconds == _status->tim_val.ref_seconds ? ;
 	uint16_t msec_residue; // = _status->seconds - _status->tim_val.ref_seconds;
@@ -283,5 +284,6 @@ void calculate_tim_settings(can_injection_status *_status){
 	_status->tim_val.prescaler = CAN_INJ_TIM_PSC;
 	_status->tim_val.reloadValue = (uint16_t)((uint16_t)(sec_residue*10000) + msec_residue);
 	
-	if(_status->tim_val.reloadValue == 0) _status->tim_val.reloadValue = 5;
+	//if(_status->tim_val.reloadValue == 0) _status->tim_val.reloadValue = 5;
+	if(_status->tim_val.reloadValue < CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD) _status->tim_val.reloadValue = (uint16_t)CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD;
 }

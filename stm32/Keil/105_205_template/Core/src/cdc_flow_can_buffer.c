@@ -46,10 +46,10 @@ uint32_t fill_single_cc_buf(cdc_flow_can_buffer *buf, uint8_t *data, uint32_t le
 	uint32_t data_sz = length <= freespace ? length : freespace;
 	
 	if(data_sz!= 0){
-		__disable_irq();
+		// __disable_irq();
 		memcpy(&buf->data[buf->write_pos], data, data_sz);
 		buf->write_pos += data_sz;
-		__enable_irq();
+		// __enable_irq();
 	}
 	return data_sz;
 }
@@ -179,7 +179,7 @@ uint32_t pop_single_cc_buf_item(can_message_info_raw *msg, cdc_flow_can_buffer *
 
 uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual_buf){
 	uint32_t result = 0x00;
-	__disable_irq();
+	// __disable_irq();
 	//==================== reading from A ===============================
 	if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_A_READ_B_WRITE)){
 		result = pop_single_cc_buf_item(msg, &dual_buf->buffer_A);
@@ -188,7 +188,7 @@ uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual
 			dual_buf->buffer_A.write_pos = 0x00;
 			RST_CDC_CAN_BUF_FLAG(&dual_buf->status, DUAL_CCB_A_READ_B_WRITE);
 			SET_CDC_CAN_BUF_FLAG(&dual_buf->status, DUAL_CCB_B_READ_A_WRITE);
-			__enable_irq();
+			// __enable_irq();
 			return get_ccb_freespace(&dual_buf->buffer_A);
 		}
 	}
@@ -200,12 +200,12 @@ uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual
 			dual_buf->buffer_B.write_pos = 0x00;
 			RST_CDC_CAN_BUF_FLAG(&dual_buf->status, DUAL_CCB_B_READ_A_WRITE);
 			SET_CDC_CAN_BUF_FLAG(&dual_buf->status, DUAL_CCB_A_READ_B_WRITE);
-			__enable_irq();
+			// __enable_irq();
 			return get_ccb_freespace(&dual_buf->buffer_B);
 		}
 	}
 	if(result == 0xFFFFFFFF){
-		__enable_irq();
+		// __enable_irq();
 		if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_A_READ_B_WRITE)){
 			return get_ccb_freespace(&dual_buf->buffer_A);
 		}
@@ -213,7 +213,7 @@ uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual
 			return get_ccb_freespace(&dual_buf->buffer_B);
 		}
 	}
-	__enable_irq();
+	// __enable_irq();
 	return 0x00;
 }
 

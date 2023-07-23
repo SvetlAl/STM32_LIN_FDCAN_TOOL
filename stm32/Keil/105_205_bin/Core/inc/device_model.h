@@ -27,9 +27,9 @@
 //=========================================================================================================
 //=====================================           Model        ============================================
 //#define ALLIGATOR
-//#define TEC_MODULE
+#define TEC_MODULE
 
-#define DEVICE_2CAN
+//#define DEVICE_2CAN
 //#define DEVICE_2CAN_TJA1042
 //#define DEVICE_2CAN_BOXED
 //#define DEVICE_SIGMA
@@ -72,6 +72,18 @@
 #elif defined(APB1_FREQ_24MHZ)
 #define APB1_FREQ_MHZ	24000	// used for CAN1/CAN2
 #endif
+
+//=========================================================================================================
+//============================ Timer settings of CAN message trace-player =================================
+
+// Since it's not possible to send a big real trace to a network at maximum supported CAN speed, it's needed to set minimum milsec timeout to slow down transmission.
+// For example, the app can't keep sending messages with so little as 0.1 msec timeout between them,
+// So we set CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD as 50, and minimum timeout between messages is 5 msec.
+
+#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)0x0D // real-time timing with max 4 messages with 10 msec period
+//#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)50 // slowed down timing to play the whole trace
+
+
 
 //=========================================================================================================
 //=====================================       BOR Settings     ============================================
@@ -175,7 +187,7 @@
 #if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
 #define USB_CDC_CIRC_BUFFER_SIZE 0x100 // 0x800UL*2
 #else 
-#define USB_CDC_CIRC_BUFFER_SIZE 0x800UL*2
+#define USB_CDC_CIRC_BUFFER_SIZE 0x400UL*2
 #endif
 
 
@@ -188,7 +200,7 @@
 #if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
 #define CDC_CAN_INJECTION_BUFFER_ITEMS 16 //256
 #else 
-#define CDC_CAN_INJECTION_BUFFER_ITEMS 256
+#define CDC_CAN_INJECTION_BUFFER_ITEMS 512
 #endif
 
 
