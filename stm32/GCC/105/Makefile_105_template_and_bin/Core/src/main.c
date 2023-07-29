@@ -84,7 +84,7 @@ void CAN1_RX0_IRQHandler(void) {
 		
 		//============ Calibrator Mode ====================
 		if(CALIBRATOR_FILTER_MODE == DEVICE_OPERATION_MODE_ON){
-			process_calibrator_procedure(newMessage);
+			
 			//============ Override Mode ====================
 			if(CAN_OVERRIDE_MODE == DEVICE_OPERATION_MODE_ON){
 				if(process_override_procedure(newMessage, 1) == DISCARD_MSG){
@@ -92,6 +92,7 @@ void CAN1_RX0_IRQHandler(void) {
 					return;
 				}
 			}
+			process_calibrator_procedure(newMessage);
 		}
 		
 		if(Can_Transmit_Message(CAN2, newMessage) != ERR_CAN_NO_EMPTY_MAILBOX){
@@ -237,7 +238,6 @@ int main(void){
 			
 			#if !defined(TEST_SPEED_TRANSMITTER) & defined(CAN_TX_BUFFER_ENABLED)
 			process_buffered_can_tx();
-			findAndProcess_cmd();
 			#endif	
 				
 			/*******************************************************************
@@ -263,6 +263,7 @@ int main(void){
 			SIGNAL_LED_B_OFF;
 			#endif
 		}
+		findAndProcess_cmd();
 		#endif
 			
 		/*********** LED blinking **************/
@@ -293,8 +294,9 @@ void TIM1_UP_TIM10_IRQHandler(void){
 		secs++;
 		__enable_irq();
 		
-		if((CAN2SCANNER_MODE != DEVICE_OPERATION_MODE_ON) & ((CAN_INJECTION_MODE == DEVICE_OPERATION_MODE_OFF) | (CAN_INJECTION_MODE == DEVICE_OPERATION_MODE_DEFAULT)))
-		runWatchdogProcedure();
+		if((CAN2SCANNER_MODE != DEVICE_OPERATION_MODE_ON) & ((CAN_INJECTION_MODE != DEVICE_OPERATION_MODE_ON)))
+			runWatchdogProcedure();
+		else if(CAN2SCANNER_MODE == DEVICE_OPERATION_MODE_ON) IWDG_reset();
 	}
 }
 #elif defined(STM32F105)
@@ -307,8 +309,9 @@ void TIM1_UP_IRQHandler(void){
 		secs++;
 		__enable_irq();
 		
-		if((CAN2SCANNER_MODE != DEVICE_OPERATION_MODE_ON) & (CAN_INJECTION_MODE != DEVICE_OPERATION_MODE_OFF))
-		runWatchdogProcedure();
+		if((CAN2SCANNER_MODE != DEVICE_OPERATION_MODE_ON) & ((CAN_INJECTION_MODE != DEVICE_OPERATION_MODE_ON)))
+			runWatchdogProcedure();
+		else if(CAN2SCANNER_MODE == DEVICE_OPERATION_MODE_ON) IWDG_reset();
 	}
 }
 #endif

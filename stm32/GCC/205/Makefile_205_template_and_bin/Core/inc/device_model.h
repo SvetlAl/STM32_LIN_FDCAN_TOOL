@@ -6,6 +6,11 @@
 *
 * Alex Svetlichnyy 2021 svetlal@outlook.com
 *
+*
+*
+* It's recommended to perform full memory chip erase before first usage.
+* 
+* Connect to device using any COM-Port terminal and send @S00000007@E command. Then wait about 30 seconds.
 *****************************************************************/
 // #define  __GNUC__ 
 
@@ -80,8 +85,8 @@
 // For example, the app can't keep sending messages with so little as 0.1 msec timeout between them,
 // So we set CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD as 50, and minimum timeout between messages is 5 msec.
 
-#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)0x0D // real-time timing with max 4 messages with 10 msec period
-//#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)50 // slowed down timing to play the whole trace
+//#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)0x0D // real-time timing with max 4 messages with 10 msec period
+#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)50 // slowed down timing to play the whole trace
 
 
 
@@ -200,7 +205,7 @@
 #if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
 #define CDC_CAN_INJECTION_BUFFER_ITEMS 16 //256
 #else 
-#define CDC_CAN_INJECTION_BUFFER_ITEMS 512
+#define CDC_CAN_INJECTION_BUFFER_ITEMS 384
 #endif
 
 
