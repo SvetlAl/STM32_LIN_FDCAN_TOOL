@@ -53,3 +53,22 @@ Android USB implementation is forked from https://github.com/VanThanBK/QtAndroid
 ![SPI memory chip monitor](Docs/memory_monitor.png)
 ![play_trace](Docs/play_trace.png)
 ![settings](Docs/settings.png)
+
+**Important!!!**
+Before you start, make sure the memory chip is completely erased. (Connect to device using a COM-port terminal, then send @S00000007@E command).
+It's recommended to set max. transmission chunks for RX and TX to 256 in the app settings.
+Some device modes (like gateway and cdc injection) may be conflicting, so use only the necessary modes.
+If CAN override filter is not working, check if calibrator mode is on. 
+
+**CAN injection limitations**
+There are two trace injection modes: 
+- from the memory chip (not tested, )
+
+- from the data coming via COM-Port:
+a trace is supposed to be played according to the timestamps, but maximum real-time load is 4 massages with 10.0 msec period at once.
+If you want to play the whole trace data, but slowed down, increase **#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)10** value.
+
+**Credits**
+The Android com-port implementation made by VanThanBK: https://github.com/VanThanBK/QtAndroid-UsbSerial
+
+
