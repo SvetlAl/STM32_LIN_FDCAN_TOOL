@@ -1,6 +1,11 @@
 # STM32F105_205_2CAN_gateway_scanner_filter
 CAN bus Scanner/Gateway/filter/data_override based on STM32, Qt. Works with Starline 2CAN, Sigma and similar
 
+**Current status.**
+Usage example here:
+https://www.youtube.com/watch?v=TV64RHSr5Tw&lc=
+Now I'm fixing minor bugs and preparing LIN bus support. 
+
 
 **Work explanation.**
 This firmware and interface template is designed to handle a CAN bus gateway installed in between two ECU's or a CAN network split into two networks.
