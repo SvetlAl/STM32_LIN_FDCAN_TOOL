@@ -1,0 +1,37 @@
+[version]
+[interface]
+v1.05.08.23.0000
+[description]
+[Russian]
+Пример Версии
+[English]
+Version Example
+[errata]
+[Russian]
+Пример описания ошибок
+[English]
+Errata template
+[extra]
+[Russian]
+
+[English]
+
+
+[version]
+[device]
+v1.05.08.23.0001
+[description]
+[Russian]
+Пример Версии
+[English]
+Version Example
+[errata]
+[Russian]
+
+[English]
+
+[extra]
+[Russian]
+Светодиод быстро моргает при обновлении, гаснет после завершения обновления. Медленное моргание после записи параметров в память. При подключённом USB светодиод должен гореть. Зажатая кнопка при подключении питания восстанавливает прошивку по умолчанию.
+[English]
+Device LED is blinking quickly while update reprogramming. Slow blinking starts after memory write operation. When reprogramming is finished the LED turns off. LED is always on while USB device is detected by host. Pressed button while powering up starts firmware recovery.
