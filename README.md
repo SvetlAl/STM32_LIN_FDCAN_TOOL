@@ -1,20 +1,24 @@
 # STM32F105_205_2CAN_gateway_scanner_filter
-CAN bus Scanner/Gateway/filter/data_override based on STM32, Qt. Works with Starline 2CAN, Sigma and similar
+CAN bus Scanner/Gateway/filter/data_override/trace editor/multitool based on STM32, Qt. Works with Starline 2CAN, Sigma and similar
 
 **Current status.**
 Usage example here:
 https://www.youtube.com/watch?v=TV64RHSr5Tw&lc=
-Now I'm fixing minor bugs and preparing LIN bus support. 
+
+Interface overview:
+https://youtu.be/wPPCQm3Kelo
+
+Now I'm fixing minor bugs and preparing LIN bus support.
 
 
 **Work explanation.**
-This firmware and interface template is designed to handle a CAN bus gateway installed in between two ECU's or a CAN network split into two networks.
+This firmware and interface template is designed to handle a CAN bus gateway installed in between two ECU's.
 
 USB CDC interface (implemented on PC or Android) allows to override and filter data coming BOTH ways.
 
-CAN-Scanner function allows to split a CAN network and display all the data along with affiliation to CAN1 or CAN2. So when two ECU's are exchanging data, this can be seen for sure, what data and what direction is coming.
+CAN-Scanner function allows to split a CAN network and display all the data along with affiliation to CAN1 or CAN2. So when two ECU's are exchanging data, both data and direction are displayed.
 
-CAN-injection function allows to make a CAN message trace and play it into network. this feature is still to be developed. The data is injected at max speed, no additional configuration provided.
+CAN-injection function allows to make a CAN message trace and play it into network.
 
 ![Work_explanation](Docs/Work_explanation.png)
 
@@ -61,17 +65,31 @@ Android USB implementation is forked from https://github.com/VanThanBK/QtAndroid
 
 **Important!!!**
 Before you start, make sure the memory chip is completely erased. (Connect to device using a COM-port terminal, then send @S00000007@E command).
+
 It's recommended to set max. transmission chunks for RX and TX to 256 in the app settings.
+
 Some device modes (like gateway and cdc injection) may be conflicting, so use only the necessary modes.
+
 If CAN override filter is not working, check if calibrator mode is on. 
+
+**CAN Scanner limitations**
+In Android version (USB OTG CDC) dataflow capability may be not enough to handle an excessive CAN-traffic. In this case use a hardware filter to set a monitored range on a firmware side.
+![hw_filter](Docs/hw_filter.png)
 
 **CAN injection limitations**
 There are two trace injection modes: 
-- from the memory chip (not tested, )
+- from the memory chip (not tested, not included by default)
 
 - from the data coming via COM-Port:
-a trace is supposed to be played according to the timestamps, but maximum real-time load is 4 massages with 10.0 msec period at once.
-If you want to play the whole trace data, but slowed down, increase **#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)10** value.
+a trace is supposed to be played according to the timestamps, but maximum real-time payload is 4 messages with 10.0 msec period at once. This is due to USB CDC flowrate limitation.
+
+If "auto adjust" was set, a trace play would be automaticaly slowed down to be able to play all trace data.
+Alternatively, a fixed threshold can be set.
+This function is not recommended for use with Android.
+![hw_filter](Docs/inj_threshold.png)
+
+**General Android limitations**
+Android support here is not native and should not be used with excessive USB data traffic. Slow down transmission or use hardware filters id needed.
 
 **Credits**
 The Android com-port implementation made by VanThanBK: https://github.com/VanThanBK/QtAndroid-UsbSerial
