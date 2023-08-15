@@ -1,6 +1,18 @@
 #ifndef QDISCARDID_MODELPROPERTY_H
 #define QDISCARDID_MODELPROPERTY_H
 
+/***********************************************************************
+ * QDiscardId_ModelItem ==> QDiscardId_ModelProperty ==>
+ *
+ *
+ *
+ * QDiscardId_ModelProperty is a model list, that incapsulates discard id filters
+ *
+ *
+ *
+ *
+ ************************************************************************/
+
 #include "../../../app_settings.h"
 #include <QDebug>
 #include <stdio.h>
@@ -14,13 +26,6 @@
 #include <QRegExp>
 #include "../OverrideStatus.h"
 
-/*****************************************************************************************/
-/*****************************************************************************************/
-/* QDiscardId_ModelProperty is a model list, that incapsulates discard id filters        */
-/*****************************************************************************************/
-/*****************************************************************************************/
-
-
 class QDiscardId_ModelProperty: public Obj_List_Model<QDiscardId_ModelItem>{
     Q_OBJECT
     Q_PROPERTY( int length READ count NOTIFY changed )
@@ -31,18 +36,7 @@ public:
     };
     virtual ~QDiscardId_ModelProperty(){};
 
-
-    Q_INVOKABLE QVariant item( int i ) {
-        if ( i < 0 || i >= count() ) return QVariant();
-        auto obj = at( i ).data();
-        QQmlEngine::setObjectOwnership( obj, QQmlEngine::CppOwnership );
-        return QVariant::fromValue( obj );
-    }
-
-    Q_INVOKABLE void enable_filter(const int i, bool _value);
-    Q_INVOKABLE void set_filter_can_value(const int i, int can);
-    Q_INVOKABLE void set_filter_id_value(const int i, const QString &_new_val);
-
+    //==================================== init =======================================
     Q_INVOKABLE void init (){
         /* check connection */
         /* if connected, fill the components */
@@ -59,6 +53,20 @@ public:
 
     Q_INVOKABLE void fill_OverrideStatus(OverrideStatus* ovr_sts) const;
     Q_INVOKABLE void update_model_from_OverrideStatus(OverrideStatus* ovr_sts);
+
+
+    //================================ Setters/getters ================================
+    Q_INVOKABLE QVariant item( int i ) {
+        if ( i < 0 || i >= count() ) return QVariant();
+        auto obj = at( i ).data();
+        QQmlEngine::setObjectOwnership( obj, QQmlEngine::CppOwnership );
+        return QVariant::fromValue( obj );
+    }
+
+    Q_INVOKABLE void enable_filter(const int i, bool _value);
+    Q_INVOKABLE void set_filter_can_value(const int i, int can);
+    Q_INVOKABLE void set_filter_id_value(const int i, const QString &_new_val);
+
 
 Q_SIGNALS:
     void changed();

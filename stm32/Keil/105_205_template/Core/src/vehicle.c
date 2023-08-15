@@ -43,11 +43,12 @@ void initVehicleSettings(VehicleStructData *vhcl){
 	}
 	
 	if(vhcl->_vehicleStruct.startup_settings & STARTUP_SETTINGS_IWDG){
-	//	Init_IWDG(STARTUP_TIMEOUT);
+		#ifndef DEBUG_MODE
+		Init_IWDG(STARTUP_TIMEOUT);
+		#endif
 	}
 }
 
-	
 
 void initVehicle(VehicleStruct *vehicle, uint8_t mode){
 
@@ -61,288 +62,68 @@ void initVehicle(VehicleStruct *vehicle, uint8_t mode){
 	vehicle->id_cruise = 0xFFF;
 	
 	if(mode == VEHICLE_INIT_DEFAULT){
-		vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-		vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-		vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		vehicle->tyres_threshold = NO_CALIBRATION_RATIO;
+		vehicle->speedometer_mlt = 0x64;
+		vehicle->odometer_mlt = 0x64;
+		vehicle->cruise_mlt = 0x64;
+		vehicle->tyres_threshold = 0x64;
 	}
 	
 	vehicle->calibrate_extra = &dummy_Cruise;
 	
-	if(vehicle->model == MODEL_TOYOTA_LC300){																												/* MODEL_TOYOTA_LC300 */
+	if(vehicle->model == MODEL_EXTRA_I){																	/* MODEL_EXTRA_I */
 		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
+		vehicle->id_speedometer = 0x000;
+		vehicle->id_odometer = 0x000;
+		vehicle->id_cruise = 0x000;
 			
 		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
+			vehicle->speedometer_mlt = 0x064;
+			vehicle->odometer_mlt = 0x064;
+			vehicle->cruise_mlt = 0x64;
+			vehicle->tyres_threshold = 0x64;
 		}
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo;
-		vehicle->calibrate_odometer = &dummy_SpeedOdo; /* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;
-		}
-
-	else if(vehicle->model == MODEL_TOYOTA_LC150){																									/* MODEL_TOYOTA_LC150 */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo;
-		vehicle->calibrate_odometer = &dummy_SpeedOdo; /* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;
-		}
-		
-	else if(vehicle->model == MODEL_TOYOTA_HILUX){																									/* MODEL_TOYOTA_HILUX */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){	
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; /* dummy */
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;		/* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;
-		}
-		
-	else if(vehicle->model == MODEL_TOYOTA_TUNDRA_2008){																						/* MODEL_TOYOTA_TUNDRA_2008 */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-
-		if(mode == VEHICLE_INIT_DEFAULT){		
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;		/* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;
+		vehicle->calibrate_speedometer = &calibrateSpeedOdo_MODEL_EXTRA_I;
+		vehicle->calibrate_odometer = &calibrateSpeedOdo_MODEL_EXTRA_I; /* dummy */
+		vehicle->calibrate_cruise = &calibrateCruise_MODEL_EXTRA_I;
+		vehicle->calibrate_extra = &calibrateExtras_MODEL_EXTRA_I;
 		}		
-		
-	else if(vehicle->model == MODEL_GREAT_WALL_WINGLE7){																						/* MODEL_GREAT_WALL_WINGLE7 */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;		/* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;							/* dummy */
-		}
-		
-	else if(vehicle->model == MODEL_DODGE_RAM_2013){																						/* MODEL_DODGE_RAM_2013 */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;			/* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;							
-		}
-		
-	else if(vehicle->model == MODEL_ISUZU_DMAX_MUX){																				/* MODEL_ISUZU_DMAX_MUX */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;			/* dummy */
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-			vehicle->tyres_threshold = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;			/* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;
-		vehicle->calibrate_extra = &dummy_Extras;			
-		}
-		
-	else if(vehicle->model == MODEL_LAND_ROVER_DEFENDER_2022){																	/* MODEL_LAND_ROVER_DEFENDER_2022 */
-		vehicle->startup_settings = STARTUP_SETTINGS_DEFAULT;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;			/* dummy */
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;			/* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;		
-		}
-	
-	else if(vehicle->model == MODEL_MITSUBISHI_L200){																						/* MODEL_MITSUBISHI_L200 */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_speedometer_extra = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;			
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;    /* dummy */
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;					/* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;		/* dummy */
-		}
 
-	else if(vehicle->model == MODEL_MITSUBISHI_PAJERO_SPORT){									/* MODEL_MITSUBISHI_PAJERO_SPORT */
+		else if(vehicle->model == MODEL_EXTRA_II){																	/* MODEL_EXTRA_II */
 		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_speedometer_extra = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
+		vehicle->id_speedometer = 0x000;
+		vehicle->id_odometer = 0x000;
+		vehicle->id_cruise = 0x000;
 			
 		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;			
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;    /* dummy */
+			vehicle->speedometer_mlt = 0x064;
+			vehicle->odometer_mlt = 0x064;
+			vehicle->cruise_mlt = 0x64;
+			vehicle->tyres_threshold = 0x64;
 		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;			/* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;				/* dummy */	
-		}
-
-	else if(vehicle->model == MODEL_GREAT_WALL_POER){												/* MODEL_GREAT_WALL_POER */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-			vehicle->tyres_threshold = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;				
-		vehicle->calibrate_cruise = &dummy_Cruise;						
-		vehicle->calibrate_extra = &dummy_Extras;	
-		}
-
-	else if(vehicle->model == MODEL_TOYOTA_LC200){															/* MODEL_TOYOTA_LC200 */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo;
-		vehicle->calibrate_odometer = &dummy_SpeedOdo; /* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;
-		}
-	
-	else if(vehicle->model == MODEL_LEXUS_LX570){															/* MODEL_LEXUS_LX570 */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-		}
-			
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo;
-		vehicle->calibrate_odometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_cruise = &dummy_Cruise;
-		}			
-	
-		else if(vehicle->model == MODEL_TOYOTA_TUNDRA_2022){													/* MODEL_TOYOTA_LC300 */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
-			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-			vehicle->tyres_threshold = NO_CALIBRATION_RATIO;
-		}
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo;
-		vehicle->calibrate_odometer = &dummy_SpeedOdo; /* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;
-		vehicle->calibrate_extra = &dummy_Extras;
+		vehicle->calibrate_speedometer = &calibrateSpeedOdo_MODEL_EXTRA_II;
+		vehicle->calibrate_odometer = &calibrateSpeedOdo_MODEL_EXTRA_II; /* dummy */
+		vehicle->calibrate_cruise = &calibrateCruise_MODEL_EXTRA_II;
+		vehicle->calibrate_extra = &calibrateExtras_MODEL_EXTRA_II;
 		}
 		
-		else if(vehicle->model == MODEL_TANK_300){																/* MODEL_TANK_300 */
+	else if(vehicle->model == MODEL_EXTRA_III){																	/* MODEL_EXTRA_III */
 		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
+		vehicle->id_speedometer = 0x000;
+		vehicle->id_odometer = 0x000;
+		vehicle->id_cruise = 0x000;
 			
 		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-			vehicle->tyres_threshold = NO_CALIBRATION_RATIO;
+			vehicle->speedometer_mlt = 0x064;
+			vehicle->odometer_mlt = 0x064;
+			vehicle->cruise_mlt = 0x64;
+			vehicle->tyres_threshold = 0x64;
 		}
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo; 
-		vehicle->calibrate_odometer = &dummy_SpeedOdo;				
-		vehicle->calibrate_cruise = &dummy_Cruise;						
-		vehicle->calibrate_extra = &dummy_Extras;	
-		}
-		
-		else if(vehicle->model == MODEL_EXTRA){																	/* MODEL_EXTRA */
-		vehicle->startup_settings = STARTUP_SETTINGS_IWDG;
-		vehicle->id_speedometer = 0xFFF;
-		vehicle->id_odometer = 0xFFF;
-		vehicle->id_cruise = 0xFFF;
+		vehicle->calibrate_speedometer = &calibrateSpeedOdo_MODEL_EXTRA_III;
+		vehicle->calibrate_odometer = &calibrateSpeedOdo_MODEL_EXTRA_III; /* dummy */
+		vehicle->calibrate_cruise = &calibrateCruise_MODEL_EXTRA_III;
+		vehicle->calibrate_extra = &calibrateExtras_MODEL_EXTRA_III;
+		}		
 			
-		if(mode == VEHICLE_INIT_DEFAULT){
-			vehicle->speedometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->odometer_mlt = NO_CALIBRATION_RATIO;
-			vehicle->cruise_mlt = NO_CALIBRATION_RATIO;
-			vehicle->tyres_threshold = NO_CALIBRATION_RATIO;
-		}
-		vehicle->calibrate_speedometer = &dummy_SpeedOdo;
-		vehicle->calibrate_odometer = &dummy_SpeedOdo; /* dummy */
-		vehicle->calibrate_cruise = &dummy_Cruise;
-		vehicle->calibrate_extra = &dummy_Extras;
-		}
 }
 
 can_message dummy_SpeedOdo(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt){
@@ -365,3 +146,73 @@ can_message dummy_Extras(can_message *msg, uint8_t _mlt){
 }
 
 
+
+
+/***************************************************
+****************************************************
+**********					MODEL_EXTRA_I	    		 *********
+****************************************************
+***************************************************/
+
+can_message calibrateSpeedOdo_MODEL_EXTRA_I(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt){
+	return dummy_SpeedOdo(msg, _speedometer_mlt, _odometer_mlt);
+}
+can_message calibrateExtras_MODEL_EXTRA_I(can_message *msg, uint8_t _mlt){
+	return dummy_Extras(msg, _mlt);
+}
+can_message calibrateCruise_MODEL_EXTRA_I(can_message *msg, uint8_t _cruise_mlt){
+	return dummy_Extras(msg, _cruise_mlt);
+}
+
+/***************************************************
+****************************************************
+**********					MODEL_EXTRA_II    		 *********
+****************************************************
+***************************************************/
+can_message calibrateSpeedOdo_MODEL_EXTRA_II(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt){
+	return dummy_SpeedOdo(msg, _speedometer_mlt, _odometer_mlt);
+}
+can_message calibrateExtras_MODEL_EXTRA_II(can_message *msg, uint8_t _mlt){
+	return dummy_Extras(msg, _mlt);
+}
+can_message calibrateCruise_MODEL_EXTRA_II(can_message *msg, uint8_t _cruise_mlt){
+	return dummy_Extras(msg, _cruise_mlt);
+}
+
+/***************************************************
+****************************************************
+**********					MODEL_EXTRA_III    		 *********
+****************************************************
+***************************************************/
+can_message calibrateSpeedOdo_MODEL_EXTRA_III(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt){
+	return dummy_SpeedOdo(msg, _speedometer_mlt, _odometer_mlt);
+}
+can_message calibrateExtras_MODEL_EXTRA_III(can_message *msg, uint8_t _mlt){
+	return dummy_Extras(msg, _mlt);
+}
+can_message calibrateCruise_MODEL_EXTRA_III(can_message *msg, uint8_t _cruise_mlt){
+	return dummy_Extras(msg, _cruise_mlt);
+}	
+
+/***************************************************
+****************************************************
+*********    MODEL_NISSAN_PATROL_2020      *********
+****************************************************
+***************************************************/
+can_message calibrateSpeedOdo_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt){
+	uint16_t speed_reading = (uint16_t)((uint16_t)(msg->data[4] << 8) | (uint16_t)(msg->data[5] &~0xFF00));
+	uint16_t calibrated_speed_reading = (uint16_t)((speed_reading*_speedometer_mlt)/100);
+	msg->data[4] = (uint8_t)((calibrated_speed_reading &~0x00FF) >> 8);
+	msg->data[5] = (uint8_t)((calibrated_speed_reading &~0xFF00) >> 0);
+	UNUSED(_odometer_mlt);
+	
+	return *msg;
+}
+can_message calibrateExtras_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _mlt){
+	return dummy_Extras(msg, _mlt);
+}
+can_message calibrateCruise_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _cruise_mlt){
+	return dummy_Extras(msg, _cruise_mlt);
+}	
+	
+	

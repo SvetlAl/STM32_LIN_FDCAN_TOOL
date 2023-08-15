@@ -21,6 +21,7 @@ Item {
 
     /********* values ********/
     property string _anno: "annotation"
+    property bool value_display_offset: true
     /********* alias ********/
     property alias a_slider: i_slider
 
@@ -35,6 +36,7 @@ Item {
         height: st_height_slider
         width: root.width
         anchors.bottom: root.bottom
+        value_display_offset: root.value_display_offset
         function update_initial_value(){
             a_update_initial_value()
         }

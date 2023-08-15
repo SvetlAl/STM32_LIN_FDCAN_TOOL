@@ -2,6 +2,14 @@
 
 #ifdef ANDROID_V
 
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
+
 bool CDC_JNI_Driver::init(){
     if(m_pSerialPort == nullptr) return RESULT_FAIL;
     m_pSerialPort->setPortName(pSerialPortConfig()->get_portname());
@@ -13,6 +21,15 @@ bool CDC_JNI_Driver::init(){
     print_data(this->m_pSerialPort->portName());
     return RESULT_OK;
 }
+
+
+/********************************************************************
+ *
+ *
+ *                     COM-port connect/disconnect
+ *
+ *
+********************************************************************/
 
 bool CDC_JNI_Driver::connect(){
     if(this->m_pSerialPort->portName() == "No_Port"){
@@ -46,6 +63,14 @@ bool CDC_JNI_Driver::disconnect(){
     }
     else return RESULT_FAIL;
 }
+
+/********************************************************************
+ *
+ *
+ *                     Exchange data IO
+ *
+ *
+********************************************************************/
 
 QByteArray CDC_JNI_Driver::exchange_data(const QByteArray &cmd, int custom_timeout){
     int _timeout = (custom_timeout == 0) ? m_pSerialPortConfig->Cdc_read_timeout() : custom_timeout;
@@ -115,6 +140,14 @@ QByteArray CDC_JNI_Driver::readData(int timeout){
 }
 
 
+/********************************************************************
+ *
+ *
+ *                    Asynchronous mode
+ *
+ *
+********************************************************************/
+
 void CDC_JNI_Driver::startAsynchReading(int mode){
     if(m_asynch_read) return;
     setAsynch_read(true);
@@ -161,16 +194,6 @@ void CDC_JNI_Driver::stopAsynchReading(int mode){
     }
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 #endif

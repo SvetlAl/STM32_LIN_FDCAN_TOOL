@@ -86,4 +86,48 @@ void initDeviceGeneralPinout(void){
 	AFIO->MAPR  |= AFIO_MAPR_SPI3_REMAP;
 	SPI3_start(SPI_master_mode, SPI_polling_mode, SPI_b_mode, SPI_msb_mode, SPI_no_Dma);
 	#endif
+	#ifdef DEVICE_1CAN2LIN
+		// STB PIN
+	GPIOB->CRL	&= ~GPIO_CRL_CNF7;						
+	GPIOB->CRL 	|= GPIO_CRL_MODE7_0;					
+	GPIOB->CRL 	|= GPIO_CRL_MODE7_1;
+	GPIOB->BSRR |= GPIO_BSRR_BR7;						
+	
+	// EMERGENCY PIN	
+	GPIOA->CRH &= ~GPIO_CRH_CNF10;
+	GPIOA->CRH |= GPIO_CRH_CNF10_1;
+	GPIOA->ODR |= GPIO_ODR_ODR10;
+	
+	SPI1_init_pinout();
+	SPI1_start(SPI_master_mode, SPI_polling_mode, SPI_b_mode, SPI_msb_mode, SPI_no_Dma);
+	#endif
+	
+	#ifdef DEVICE_FCAN_V6
+	GPIOB->MODER &= ~GPIO_MODER_MODER7;
+	GPIOB->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED7;
+	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD7;
+	GPIOB->MODER |= GPIO_MODER_MODER7_0;
+	GPIOB->PUPDR |= GPIO_PUPDR_PUPD7_1;
+	GPIOB->AFR[0] |= GPIO_AFRL_AFSEL7_0;
+	GPIOB->AFR[0] |= GPIO_AFRL_AFSEL7_2;
+	
+		/* LED */
+	GPIOB->MODER &= ~GPIO_MODER_MODER0;
+	GPIOB->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED0;
+	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD0;
+	GPIOB->MODER |= (GPIO_MODER_MODER0_0) ;
+	GPIOB->BSRR |= GPIO_BSRR_BS_0;
+	
+	
+		/* PB1 RST */
+	GPIOB->MODER &= ~GPIO_MODER_MODER1;
+	GPIOB->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED1;
+	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD1;
+	GPIOB->OSPEEDR |= GPIO_OSPEEDR_OSPEED1;
+	
+	GPIOB->BSRR |= GPIO_BSRR_BR7;
+
+	SPI1_init_pinout();
+	SPI1_start(SPI_master_mode, SPI_polling_mode, SPI_b_mode, SPI_msb_mode, SPI_no_Dma);
+	#endif
 }

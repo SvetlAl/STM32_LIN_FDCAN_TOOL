@@ -1,5 +1,14 @@
 #include "Version.h"
 
+
+/********************************************************************
+ *
+ *
+ *                  Service data string functions
+ *
+ *
+********************************************************************/
+
 QString Version::version_string() const{
     if(isValid()){
         return QString("%1.%2.%3.%4")
@@ -11,6 +20,15 @@ QString Version::version_string() const{
     else return "";
 }
 
+QDate Version::getDate()const{
+    QString dateString = QString("%1-%2-%3").arg(year, 2, 10, QChar('0'))
+        .arg(month, 2, 10, QChar('0')).arg(day, 2, 10, QChar('0'));
+
+    QDate date = QDate::fromString(dateString, "yy-MM-dd");
+    return date;
+}
+
+
 void Version::print() const{
     qDebug() << "*** " << version_string() << " ***";
     if(isBeta()) qDebug() << "Beta";
@@ -20,15 +38,10 @@ void Version::print() const{
     if(isDescribed()) qDebug() << "Described";
     else  qDebug() << "not described";
     qDebug() << "series";
-    DEBUG_OUT_POD(series);
     qDebug() << "day";
-    DEBUG_OUT_POD(day);
     qDebug() << "month";
-    DEBUG_OUT_POD(month);
     qDebug() << "year";
-    DEBUG_OUT_POD(year);
     qDebug() << "code";
-    DEBUG_OUT_POD(code)
     qDebug() << "description";
     qDebug() << description;
     qDebug() << "errata";
@@ -46,6 +59,14 @@ void Version::print() const{
         qDebug() << "Interface";
     }
 }
+
+/********************************************************************
+ *
+ *
+ *                    Class setters/getters
+ *
+ *
+********************************************************************/
 
 const QString &Version::getDescription() const
 {
@@ -109,12 +130,4 @@ uint16_t Version::getCode() const
 
 Version::VerDesignCode Version::getDesign_code() const{
     return design_code;
-}
-
-QDate Version::getDate()const{
-    QString dateString = QString("%1-%2-%3").arg(year, 2, 10, QChar('0'))
-        .arg(month, 2, 10, QChar('0')).arg(day, 2, 10, QChar('0'));
-
-    QDate date = QDate::fromString(dateString, "yy-MM-dd");
-    return date;
 }

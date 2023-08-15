@@ -1,15 +1,34 @@
 #ifndef QDISCARDID_MODELITEM_H
 #define QDISCARDID_MODELITEM_H
 
+/***********************************************************************
+ * QDiscardId_ModelItem ==> QDiscardId_ModelProperty ==>
+ *
+ *
+ *
+ * QDiscardId_ModelItem represent a discard CAN filter of the firmware
+ *
+ * A discard filter contains:
+ *  Status: Enabled or disabled
+ *  Direction: CAN1 or CAN2
+ *  ID
+ *
+ *
+ * Example:
+ * If the discard filter
+ *  CAN2
+ *  ID 0x121
+ * is enabled, all messages with id 0x121 coming from CAN2 into CAN1 would not be passed through a gateway
+ *
+ *
+ *
+ *
+ ************************************************************************/
+
 #include "../../../app_settings.h"
 #include <QDebug>
 #include <stdio.h>
 
-/*****************************************************************************************/
-/*****************************************************************************************/
-/***********                     Discard ID filter                             ***********/
-/*****************************************************************************************/
-/*****************************************************************************************/
 
 class QDiscardId_ModelItem: public QObject{
     Q_OBJECT
@@ -31,8 +50,8 @@ public:
     }
 
 
-/*** setters and getters ***/
 
+    //=========================== Class setters/getters ===============================
     const QString str_id_value()const;
     void str_set_id_value(const QString &_id);
     int Id_value() const;
@@ -55,7 +74,6 @@ private:
     int m_Id_value = 0;
     bool m_enabled = false;
     bool m_editable;
-
 };
 
 

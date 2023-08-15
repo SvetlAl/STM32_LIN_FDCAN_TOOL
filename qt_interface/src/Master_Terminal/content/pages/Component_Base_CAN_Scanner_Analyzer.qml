@@ -66,7 +66,7 @@ Rectangle {
     property string st_add_delete_selected_anno: qsTr("Add/Delete selected items");
     property string st_add_anno: qsTr("Add");
     property string st_delete_anno: qsTr("Delete");
-    property string st_clear_anno: qsTr("Clear");
+    property string st_clear_anno: qsTr("Clear all");
     property string st_id_conversion_anno: qsTr("Change multiple messages with selected ID");
     property string st_id_conversion_set_can1_anno: qsTr("Set CAN1");
     property string st_id_conversion_set_can2_anno: qsTr("Set CAN2");
@@ -88,7 +88,7 @@ Rectangle {
         st_add_delete_selected_anno = qsTr("Add/Delete selected items");
         st_add_anno = qsTr("Add");
         st_delete_anno = qsTr("Delete");
-        st_clear_anno = qsTr("Clear");
+        st_clear_anno = qsTr("Clear all");
         st_id_conversion_anno = qsTr("Change multiple messages with selected ID");
         st_id_conversion_set_can1_anno = qsTr("Set CAN1");
         st_id_conversion_set_can2_anno = qsTr("Set CAN2");

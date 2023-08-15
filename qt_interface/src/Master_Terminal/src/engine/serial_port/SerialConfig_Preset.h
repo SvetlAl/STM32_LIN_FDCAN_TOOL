@@ -1,6 +1,19 @@
 #ifndef SERIALCONFIG_PRESET_H
 #define SERIALCONFIG_PRESET_H
 
+/***********************************************************************
+ *
+ * Serial Config Preset exposes:
+ *
+ *  Serial port settings
+ *  filenames (not used)
+ *
+ * for Serial Port Config initialization
+ *
+ *
+ ************************************************************************/
+
+
 #include <stdlib.h>
 #include <iostream>
 #include "../../app_settings.h"
@@ -10,7 +23,7 @@
 class SerialConfig_Preset{
 public:
     explicit SerialConfig_Preset() = default;
-     SerialConfig_Preset(QString _portname,
+    SerialConfig_Preset(QString _portname,
                          int _baudrate,
                          int _parity,
                          int _databits,
@@ -51,14 +64,16 @@ public:
          filename_to_send(_filename_to_send),
          filename_scan_recieved(_filename_scan_recieved),
          filename_script_to_send(_filename_script_to_send)
-
      {}
 
     ~SerialConfig_Preset() = default;
 
+    //================================ Operators ====================================
      friend QDataStream& operator >>( QDataStream& d, SerialConfig_Preset& scp);
      friend QDataStream& operator << (QDataStream& d, const SerialConfig_Preset& scp);
 
+
+    //=========================== Class setters/getters ===============================
 
     const QString &getPortname() const;
     int getBaudrate() const;
@@ -109,6 +124,16 @@ QDataStream& operator << (QDataStream& d, const SerialConfig_Preset& scp);
 QDataStream& operator >> (QDataStream& d, SerialConfig_Preset& scp);
 
 #endif
+
+
+
+
+
+
+
+
+
+// OBSOLETE
 #ifndef QT_IN_USE
 #include "../../engine/file_manager/SimpleSerializer.h"
 

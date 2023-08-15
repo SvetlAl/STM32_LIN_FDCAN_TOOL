@@ -1,5 +1,13 @@
 #include "QVehicle_ModelProperty.h"
 
+/********************************************************************
+ *
+ *
+ *                     Setters/Getters
+ *
+ *
+********************************************************************/
+
 QVariant QVehicle_ModelProperty::current_item() {
     return item(current_index);
 }
@@ -32,6 +40,13 @@ const void QVehicle_ModelProperty::set_property_value(const int _new_val, const 
 }
 
 
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
 
 void QVehicleNames_ModelProperty::init (){
     auto _item = QSharedPointer<QVehicle_ModelItem>
@@ -95,6 +110,33 @@ void QVehicleNames_ModelProperty::init (){
     this->append(_item);
 
     _item = QSharedPointer<QVehicle_ModelItem>
-        (new QVehicle_ModelItem(this, "Extra", MODEL_EXTRA, Vehicle::ModelBrand::Extra));
+        (new QVehicle_ModelItem(this, "Toyota Sequoia 22+", MODEL_TOYOTA_SEQUOIA_2022, Vehicle::ModelBrand::Toyota));
     this->append(_item);
+
+    _item = QSharedPointer<QVehicle_ModelItem>
+        (new QVehicle_ModelItem(this, "Honda CRV III", MODEL_HONDA_CRV_III, Vehicle::ModelBrand::Honda));
+    this->append(_item);
+
+    _item = QSharedPointer<QVehicle_ModelItem>
+        (new QVehicle_ModelItem(this, "Ford Transit 20+", MODEL_FORD_TRANSIT_2020, Vehicle::ModelBrand::Ford));
+    this->append(_item);
+
+    _item = QSharedPointer<QVehicle_ModelItem>
+        (new QVehicle_ModelItem(this, "Nissan Patrol 20+", MODEL_NISSAN_PATROL_2020, Vehicle::ModelBrand::Nissan));
+    this->append(_item);
+
+    _item = QSharedPointer<QVehicle_ModelItem>
+        (new QVehicle_ModelItem(this, "Extra I", MODEL_EXTRA_I, Vehicle::ModelBrand::Extra));
+    this->append(_item);
+
+    _item = QSharedPointer<QVehicle_ModelItem>
+        (new QVehicle_ModelItem(this, "Extra II", MODEL_EXTRA_II, Vehicle::ModelBrand::Extra));
+    this->append(_item);
+
+    _item = QSharedPointer<QVehicle_ModelItem>
+        (new QVehicle_ModelItem(this, "Extra III", MODEL_EXTRA_III, Vehicle::ModelBrand::Extra));
+    this->append(_item);
+
+
+
 }

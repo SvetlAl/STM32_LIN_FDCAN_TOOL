@@ -13,6 +13,7 @@ Rectangle {
 
     /********* colors settings ********/
     color: "transparent"
+    property string st_font_color: CoreImport._Base_Color_BaseFont
 
     /********* values ********/
     property int width_grid_sz: (width * st_side_crop) / 10
@@ -52,6 +53,8 @@ Rectangle {
     property string st_edit_anno: qsTr("Edit");
     property string st_crop_time_anno: qsTr("CropTime");
 
+    property string st_hardware_filter_anno: qsTr("*see hardware id filter\n in DeviceModes");
+
     function retranslateUi(){
         st_id_range_anno = qsTr("id range");
         st_delete_range_anno = qsTr("Delete range");
@@ -73,6 +76,7 @@ Rectangle {
         st_edit_anno = qsTr("Edit");
         st_crop_rng_anno = qsTr("Crop rng");
         st_crop_time_anno = qsTr("CropTime");
+        st_hardware_filter_anno = qsTr("*see hardware id filter\n in DeviceModes");
     }
 
     signal sendHeight(int msg)
@@ -315,55 +319,11 @@ Rectangle {
         }
     }
 
-    MltButton{
-        id: i_can1_button
-        x: i_clear_button.x //i_start_button.x - i_clear_button.width - buttonX_gap
-        y: i_monitor_trace_button.y - i_monitor_trace_button.height - vertical_gap
-        //y: i_add_button.y
-        height: st_initial_item_height
-        width: width_grid_sz * buttons_width_mlt
-
-        visible: options_mode
-        st_button_mode: true
-        st_text: st_can1_anno
-        st_normal_color: can1_mode ? st_G_color :st_N_color
-
-        function cmd(){
-            root.forceActiveFocus();
-            if(can1_mode && can2_mode){
-                setCanMode(false, can2_mode);
-            }
-            else{
-                setCanMode(true, can2_mode);
-            }
-        }
-    }
-
-    MltButton{
-        id: i_can2_button
-        x: i_start_button.x
-        y: i_can1_button.y
-        height: st_initial_item_height
-        width: width_grid_sz * buttons_width_mlt
-        st_button_mode: true
-        visible: options_mode
-        st_text: st_can2_anno
-        st_normal_color: can2_mode ? st_G_color : st_N_color
-        function cmd(){
-            root.forceActiveFocus();
-            if(can2_mode && can1_mode){
-                setCanMode(can1_mode, false);
-            }
-            else{
-                setCanMode(can1_mode, true);
-            }
-        }
-    }
-
     RoundedTextInput{
         id: i_filename
         x: composition_side_crop
-        y: i_can1_button.y - i_can1_button.height - vertical_gap
+        y: i_monitor_trace_button.y - i_monitor_trace_button.height - vertical_gap
+
         //height: file_operation ? i_filename.st_height_total : 0
         width: (root.width * st_side_crop)/2
         _anno: st_filename_anno
@@ -410,6 +370,65 @@ Rectangle {
         }
     }
 
+    Text{
+        id: i_custom_cdc_threshold_label
+        y: i_can1_button.y
+        x: i_filename.x
+        visible: options_mode
+        width: i_can1_button.x -  composition_side_crop
+        color: st_font_color
+        text: st_hardware_filter_anno
+        font.pixelSize: st_initial_item_height/2
+    }
+
+
+    MltButton{
+        id: i_can1_button
+        x: i_clear_button.x //i_start_button.x - i_clear_button.width - buttonX_gap
+        y: i_filename.y - i_filename.height - vertical_gap*2
+        //y: i_add_button.y
+        height: st_initial_item_height
+        width: width_grid_sz * buttons_width_mlt
+
+        visible: options_mode
+        st_button_mode: true
+        st_text: st_can1_anno
+        st_normal_color: can1_mode ? st_G_color :st_N_color
+
+        function cmd(){
+            root.forceActiveFocus();
+            if(can1_mode && can2_mode){
+                setCanMode(false, can2_mode);
+            }
+            else{
+                setCanMode(true, can2_mode);
+            }
+        }
+    }
+
+    MltButton{
+        id: i_can2_button
+        x: i_start_button.x
+        y: i_can1_button.y
+        height: st_initial_item_height
+        width: width_grid_sz * buttons_width_mlt
+        st_button_mode: true
+        visible: options_mode
+        st_text: st_can2_anno
+        st_normal_color: can2_mode ? st_G_color : st_N_color
+        function cmd(){
+            root.forceActiveFocus();
+            if(can2_mode && can1_mode){
+                setCanMode(can1_mode, false);
+            }
+            else{
+                setCanMode(can1_mode, true);
+            }
+        }
+    }
+
+
+
     function set_id_range(val, start){
         if(start) start_id = val;
         else end_id = val;
@@ -424,8 +443,8 @@ Rectangle {
     RoundedTextInput{
         id: i_id_start
         x: i_monitor_trace_button.x
-        y: i_filename.y - i_filename.height - vertical_gap
-        width: ((root.width * st_side_crop)/2.5) - composition_side_crop
+        y: i_can1_button.y - i_can1_button.height - vertical_gap
+        width: ((root.width * st_side_crop)/2.8) - composition_side_crop
         _anno: "start id"
         _enabled: true
         _value: "0x00000000"
@@ -448,7 +467,7 @@ Rectangle {
         id: i_id_end
         y: i_id_start.y
         x: i_id_start.x + i_id_start.width + composition_side_crop
-        width: ((root.width * st_side_crop)/2.5) - composition_side_crop
+        width: ((root.width * st_side_crop)/2.8) - composition_side_crop
         _anno: "end id"
         _enabled: true
         _value: "0x1FFFFFFF"

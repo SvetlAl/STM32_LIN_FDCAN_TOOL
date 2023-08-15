@@ -20,6 +20,13 @@ UserProfile::UserProfile(){
 UserProfile::~UserProfile(){
 }
 
+/********************************************************************
+ *
+ *
+ *                    Debug and print
+ *
+ *
+********************************************************************/
 void UserProfile::print(){
 #ifdef QT_IN_USE
     QDEBUG_OUT("********* " + m_name + " *********");
@@ -36,27 +43,16 @@ void UserProfile::print(){
 }
 
 
-#ifdef QT_IN_USE
-const QString &UserProfile::name() const
-{
-    return m_name;
-}
 
-const QString &UserProfile::language() const
-{
-    return m_language;
-}
 
-const QString &UserProfile::email() const
-{
-    return m_email;
-}
 
-const PhoneNumber &UserProfile::phone_number() const
-{
-    return m_phone_number;
-}
-
+/********************************************************************
+ *
+ *
+ *                    Setters/getters
+ *
+ *
+********************************************************************/
 
 QString UserProfile::getValue(int _val) const{
     switch(_val){
@@ -92,6 +88,16 @@ void UserProfile::setValue(int _val, QString _str){
     }
 }
 
+/********************************************************************
+ *
+ *
+ *                    Operators
+ *
+ *
+********************************************************************/
+
+
+
 QDataStream& operator << (QDataStream& d, const UserProfile& up){
     d << up.name() << up.email() << up.language() << up.phone_number();
     return d;
@@ -107,8 +113,52 @@ QDebug operator << (QDebug d, const UserProfile& up){
     return d;
 }
 
-#endif
 
+
+
+/********************************************************************
+ *
+ *
+ *                    Class setters/getters
+ *
+ *
+********************************************************************/
+
+
+const QString &UserProfile::name() const
+{
+    return m_name;
+}
+
+const QString &UserProfile::language() const
+{
+    return m_language;
+}
+
+const QString &UserProfile::email() const
+{
+    return m_email;
+}
+
+const PhoneNumber &UserProfile::phone_number() const
+{
+    return m_phone_number;
+}
+
+
+
+
+
+
+
+
+/********************************************************************
+ *
+ *
+ *                    OBSOLETE
+ *
+ *
+********************************************************************/
 #ifndef QT_IN_USE
 string UserProfile::getValue(int _val) const{
     switch(_val){

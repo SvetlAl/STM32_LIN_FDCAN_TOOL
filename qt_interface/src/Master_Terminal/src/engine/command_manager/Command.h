@@ -52,9 +52,9 @@ public:
 private:
     uint32_t cmd = 0;						/* actually command itself */
     uint32_t string_siz = 0;				/* string length (if a command provides a char string) */
-    el_quadro_buffer string_buffer = {0};		/* char string itself. If data length is 4-byte divisible, an application can work faster */
+    el_quadro_buffer string_buffer = {0};	/* char string itself. If data length is 4-byte divisible, an application can work faster */
     uint32_t param_counter = 0;				/* how many parameters are in a command (if a command provides any parameters)  */
-    uint8_t param[ELP_MAX_CMD_PARAMS] = {0};	/* parameters array (if a command provides any parameters) */
+    uint8_t param[ELP_MAX_CMD_PARAMS] = {0};/* parameters array (if a command provides any parameters) */
 
     bool bigEndian = false;
 };

@@ -1,5 +1,13 @@
 #include "CDC_PC_Driver.h"
 
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
+
 bool CDC_PC_Driver::init(){
     if(m_pSerialPort == nullptr) return RESULT_FAIL;
     m_pSerialPort->setPortName(pSerialPortConfig()->get_portname());
@@ -12,6 +20,14 @@ bool CDC_PC_Driver::init(){
     print_data(this->m_pSerialPort->portName());
     return RESULT_OK;
 }
+
+/********************************************************************
+ *
+ *
+ *                     COM-port connect/disconnect
+ *
+ *
+********************************************************************/
 
 bool CDC_PC_Driver::connect(){
     if(this->m_pSerialPort->portName() == ""){
@@ -46,6 +62,14 @@ bool CDC_PC_Driver::disconnect(){
     }
     else return RESULT_FAIL;
 }
+
+/********************************************************************
+ *
+ *
+ *                     Exchange data IO
+ *
+ *
+********************************************************************/
 
 QByteArray CDC_PC_Driver::exchange_data(const QByteArray &cmd, int custom_timeout){
     int _timeout = (custom_timeout == 0) ? m_pSerialPortConfig->Cdc_read_timeout() : custom_timeout;
@@ -85,21 +109,29 @@ QByteArray CDC_PC_Driver::readData(int timeout){
     else return QByteArray();
 }
 
+/********************************************************************
+ *
+ *
+ *                    Asynchronous mode
+ *
+ *
+********************************************************************/
+
 void CDC_PC_Driver::startAsynchReading(int mode){
     if(m_asynch_read) return;
     setAsynch_read(true);
     switch (mode){
     case AsynchReadToConsole:{
         m_pConsole->setPCdc_driver(this);
-        QObject::connect(m_pSerialPort, &QSerialPort::readyRead, m_pConsole, &Console::read_serialport_and_append_data);
+        conn = QObject::connect(m_pSerialPort, &QSerialPort::readyRead, m_pConsole, &Console::read_serialport_and_append_data);
         return;
-        }
+    }
     case AsynchReadToScanner:{
         conn = QObject::connect(m_pSerialPort,&QSerialPort::readyRead,this,[this](){
             if (m_pSerialPort->bytesAvailable()) {
                 const QByteArray recv_data = m_pSerialPort->readAll();
                 emit async_data_passover(recv_data);} });
-        return ;
+        return;
     }
     case AsynchReadInjectionMode:{
         conn = QObject::connect(m_pSerialPort,&QSerialPort::readyRead,this,[this](){
@@ -118,7 +150,7 @@ void CDC_PC_Driver::stopAsynchReading(int mode){
     switch (mode)
     {
     case AsynchReadToConsole:
-        QObject::disconnect(m_pSerialPort, &QSerialPort::readyRead, m_pConsole, &Console::read_serialport_and_append_data);
+        QObject::disconnect(conn);
         return;
     case AsynchReadToScanner:
         QObject::disconnect(conn);

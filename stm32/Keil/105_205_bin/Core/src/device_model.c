@@ -19,11 +19,11 @@ static uint8_t deviceSoftwareVersion[DEVICE_INFO_STRING_SZ] = {
 	'v',
 	'1',
 	'.',
-	'1',
-	'9',
+	'0',
+	'5',
 	'.',
 	'0',
-	'7',
+	'8',
 	'.',
 	'2',
 	'3',
@@ -167,6 +167,47 @@ static uint8_t hardwareVersion[DEVICE_INFO_STRING_SZ] = {
 };
 #endif
 
+#ifdef DEVICE_1CAN2LIN
+static uint8_t hardwareVersion[DEVICE_INFO_STRING_SZ] = {
+	'S',
+	't',
+	'r',
+	'l',
+	'n',
+	'1',
+	'C',
+	'A',
+	'N',
+	'2',
+	'L',
+	'I',
+	'N',
+	'_',
+	'_',
+	DEVICE_1CAN2LIN_MCODE
+};
+#endif
+
+#ifdef DEVICE_FCAN_V6
+static uint8_t hardwareVersion[DEVICE_INFO_STRING_SZ] = {
+	'F',
+	'_',
+	'C',
+	'A',
+	'N',
+	'_',
+	'V',
+	'6',
+	'_',
+	'_',
+	'_',
+	'_',
+	'_',
+	'_',
+	'_',
+	DEVICE_FCAN_V6_MCODE
+};
+#endif
 
 
 void initDeviceModelDefaults(uDeviceModel *p_deviceModel){
@@ -220,13 +261,19 @@ void initCANSettings(uint16_t vehicle_model, uDeviceModel *p_deviceModel){
 	else{
 		//========== default BTR preset =============
 		settings_can1 = calculate_baudrate(CAN_BAUDRATE_500KB);
+		#ifndef DEVICE_1CAN2LIN
 		settings_can2 = calculate_baudrate(CAN_BAUDRATE_500KB);
+		#endif
 	}
 	#ifdef TEC_MODULE
 	Can1_Init(REMAP_CAN1, settings_can1);  
 	Can2_Init(NO_REMAP_CAN2, settings_can2);
 	#endif
 	#ifdef ALLIGATOR
+	Can1_Init(REMAP_CAN1, settings_can1);  
+	Can2_Init(REMAP_CAN2, settings_can2);
+	#endif
+	#ifdef DEVICE_FCAN_V6
 	Can1_Init(REMAP_CAN1, settings_can1);  
 	Can2_Init(REMAP_CAN2, settings_can2);
 	#endif
@@ -245,6 +292,9 @@ void initCANSettings(uint16_t vehicle_model, uDeviceModel *p_deviceModel){
 	#ifdef DEVICE_SIGMA 
 	Can1_Init(REMAP_CAN1, settings_can1);  
 	Can2_Init(NO_REMAP_CAN2, settings_can2);
+	#endif
+	#ifdef DEVICE_1CAN2LIN
+	Can1_Init(REMAP_CAN1, settings_can1);  
 	#endif
 }
 
@@ -410,6 +460,51 @@ void initDeviceGeneralPinout(void){
 	AFIO->MAPR  |= AFIO_MAPR_SPI3_REMAP;
 	SPI3_start(SPI_master_mode, SPI_polling_mode, SPI_b_mode, SPI_msb_mode, SPI_no_Dma);
 	#endif
+	
+	#ifdef DEVICE_1CAN2LIN
+		// STB PIN
+	GPIOB->CRL	&= ~GPIO_CRL_CNF7;						
+	GPIOB->CRL 	|= GPIO_CRL_MODE7_0;					
+	GPIOB->CRL 	|= GPIO_CRL_MODE7_1;
+	GPIOB->BSRR |= GPIO_BSRR_BR7;						
+	
+	// EMERGENCY PIN	
+	GPIOA->CRH &= ~GPIO_CRH_CNF10;
+	GPIOA->CRH |= GPIO_CRH_CNF10_1;
+	GPIOA->ODR |= GPIO_ODR_ODR10;
+	
+	SPI1_init_pinout();
+	SPI1_start(SPI_master_mode, SPI_polling_mode, SPI_b_mode, SPI_msb_mode, SPI_no_Dma);
+	#endif
+	
+	#ifdef DEVICE_FCAN_V6
+	GPIOB->MODER &= ~GPIO_MODER_MODER7;
+	GPIOB->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED7;
+	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD7;
+	GPIOB->MODER |= GPIO_MODER_MODER7_0;
+	GPIOB->PUPDR |= GPIO_PUPDR_PUPD7_1;
+	GPIOB->AFR[0] |= GPIO_AFRL_AFSEL7_0;
+	GPIOB->AFR[0] |= GPIO_AFRL_AFSEL7_2;
+	
+		/* LED */
+	GPIOB->MODER &= ~GPIO_MODER_MODER0;
+	GPIOB->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED0;
+	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD0;
+	GPIOB->MODER |= (GPIO_MODER_MODER0_0) ;
+	GPIOB->BSRR |= GPIO_BSRR_BS_0;
+	
+	
+		/* PB1 RST */
+	GPIOB->MODER &= ~GPIO_MODER_MODER1;
+	GPIOB->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED1;
+	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD1;
+	GPIOB->OSPEEDR |= GPIO_OSPEEDR_OSPEED1;
+	
+	GPIOB->BSRR |= GPIO_BSRR_BR7;
+
+	SPI1_init_pinout();
+	SPI1_start(SPI_master_mode, SPI_polling_mode, SPI_b_mode, SPI_msb_mode, SPI_no_Dma);
+	#endif
 }
 
 void initModelSettings(){
@@ -440,6 +535,17 @@ void initModelSettings(){
 		SET_CAN_INJECTION_MODE(DEVICE_OPERATION_MODE_OFF);
 	}
 	
+	// if not inited, set cdc threshold mode to auto
+	if((CAN_INJECTION_CDC_THRESHOLD_MODE != DEVICE_OPERATION_MODE_CDC_TRACE_AUTO_THRESHOLD) ||
+		(CAN_INJECTION_CDC_THRESHOLD_MODE != DEVICE_OPERATION_MODE_CDC_TRACE_FIXED_THRESHOLD)){
+			SET_CAN_INJECTION_CDC_THRESHOLD_MODE(DEVICE_OPERATION_MODE_CDC_TRACE_AUTO_THRESHOLD);
+	}
+	
+	if((CAN_INJECTION_CDC_THRESHOLD_VALUE < CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD) || (CAN_INJECTION_CDC_THRESHOLD_VALUE == 0xFF))
+		SET_CAN_INJECTION_CDC_THRESHOLD_VALUE(CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD);
+	
+	// hardware filter is off from the start
+	if(CAN_SCANNER_HARDWARE_FILTER == DEVICE_OPERATION_MODE_DEFAULT) SET_CAN_SCANNER_HARDWARE_FILTER(DEVICE_OPERATION_MODE_OFF);
 	
 	uint8_t *ovr_set_addr = get_override_settings_data();
 	memory_chip_status.memchip_state = DEVICE_OVERRIDE_FILTER_SETTINGS_LENGTH;

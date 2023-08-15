@@ -7,7 +7,7 @@
 
 #include "runtime.h"
 
-#if defined(ALLIGATOR) | defined(TEC_MODULE)
+#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 uint8_t volatile blink_timeout = 0x00;
 uint8_t volatile blink_switch = 0x00;
 #endif
@@ -22,24 +22,24 @@ void runWatchdogProcedure(){
 	
 	/*** LED blinking ***/
 	if(_link_status == LINK_STATE_DEFAULT){
-		#if defined(ALLIGATOR) | defined(TEC_MODULE)
+		#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 		if(!blink_switch)SIGNAL_LED_OFF;
 		#endif
 		}
 	else if(_link_status == LINK_STATE_DISCONNECTED){
 		IWDG_reset();
-		#if defined(ALLIGATOR) | defined(TEC_MODULE)
+		#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 		if(!blink_switch)SIGNAL_LED_OFF;
 		#endif
 		}
 	else{ /* connected */
 		IWDG_reset();
-		#if defined(ALLIGATOR) | defined(TEC_MODULE)
+		#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 		if(!blink_switch)SIGNAL_LED_ON;
 		#endif
 		}
 	/*** Reset button ***/
-		#if defined(ALLIGATOR) | defined(TEC_MODULE)
+		#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 		if(EMERGENCY_PIN_SET){
 			NVIC_SystemReset();
 		}
@@ -126,7 +126,7 @@ void findAndProcess_cmd(){
 						
 			/*** Blinking LED indicates, that restart is needed ***/
 			if(parse_result ==  ELP_ERROR){
-				#ifdef TEC_MODULE
+				#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 				blink_switch = 0x10;
 				#endif
 				el_reset_state();
@@ -134,19 +134,17 @@ void findAndProcess_cmd(){
 			
 			/*** Blinking LED indicates, that memory write is done.  ***/	
 			else if(global_el_command.cmd == ELP_VEHICLE_SAVE_STATUS){
-				#ifdef TEC_MODULE
+				#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 				blink_switch = 0x80;
 				#endif
 				
 				if(CAN_GATEWAY_MODE == DEVICE_OPERATION_MODE_ON){
 					SET_CAN_GATEWAY_MODE(DEVICE_OPERATION_MODE_OFF);
-					SET_CAN2_GATEWAY_MODE(DEVICE_OPERATION_MODE_OFF);
 					SET_CALIBRATOR_FILTER_MODE(DEVICE_OPERATION_MODE_OFF);		
 						
 					process_protocol_cmd(&global_el_command);
 					
 					SET_CAN_GATEWAY_MODE(DEVICE_OPERATION_MODE_ON);
-					SET_CAN2_GATEWAY_MODE(DEVICE_OPERATION_MODE_ON);
 					SET_CALIBRATOR_FILTER_MODE(DEVICE_OPERATION_MODE_ON);
 				}
 				else process_protocol_cmd(&global_el_command);

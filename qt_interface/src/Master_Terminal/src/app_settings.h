@@ -23,11 +23,16 @@
 
 /*********************************************************************************/
 /*                                                                               */
-/*                       Imported defs from firmware                             */
+/*                       Imported defs from the firmware                         */
 /*                                                                               */
 /*     CanBusItem.h     <== can_override.h                                       */
 /*     Vehicle.h        <== vehicle.h                                            */
-/*     DeviceManager.h  <== device_model.h                                       */
+/*     QVehicle_ModelItem.h                                                      */
+/*     Component_Base_SelectModel_Modellist.qml                                  */
+/*                                                                               */
+/*     DeviceManager.h  <== device_model.h  Base_Device_Modes.qml                */
+/*     CommandConstructor.h                                                      */
+/*     Command.h                                                                 */
 /*                                                                               */
 /*     QVehicle_ModelProperty.cpp - supported Vehicle models                     */
 /*                                                                               */
@@ -68,7 +73,7 @@ public:
 //==============================================================================
 //================================= App info ===================================
 //==============================================================================
-    static inline const QString INTERFACE_VERSION = "v1.15.07.23.0000";
+    static inline const QString INTERFACE_VERSION = "v1.05.08.23.0000";
 
 //==============================================================================
 //=========================== Firmware settings ================================
@@ -87,24 +92,30 @@ public:
 //==============================================================================
 
 #ifndef ANDROID_V
-    int CDC_WRITE_TIMEOUT = 20; /* ms */
-    int CDC_READ_TIMEOUT = 20; /* ms */
-    int m_Cdc_cmd_process_timeout = 20; /* ms */
-    int m_Cdc_Jni_drv_timeout = 100; /* ms */
-    int m_Cdc_busy_cmd_trials = 5; /* count */
+    constexpr static inline const int CDC_WRITE_TIMEOUT = 20; /* ms */
+    constexpr static inline const int CDC_READ_TIMEOUT = 20; /* ms */
+    constexpr static inline const int m_Cdc_cmd_process_timeout = 20; /* ms */
+    constexpr static inline const int m_Cdc_Jni_drv_timeout = 100; /* ms */
+    constexpr static inline const int m_Cdc_busy_cmd_trials = 1; /* count */
 
-    int m_max_recieve_data_per_request = 64; /* bytes */
-    int m_max_transmit_data_per_request = 64; /* bytes */
+    constexpr static inline const int m_max_recieve_data_per_request = 256; /* bytes */
+    constexpr static inline const int m_max_transmit_data_per_request = 256; /* bytes */
+
+    constexpr static inline const int m_45pe16_memchip_save_timeout = 360; /* bytes */
 #endif
 #ifdef ANDROID_V
-    int m_Cdc_write_timeout = 50; /* ms */
-    int m_Cdc_read_timeout = 50; /* ms */
-    int m_Cdc_cmd_process_timeout = 75; /* ms */
-    int m_Cdc_Jni_drv_timeout = 100; /* ms */
-    int m_Cdc_busy_cmd_trials = 5; /* count */
+    constexpr static inline const int CDC_WRITE_TIMEOUT = 50; /* ms */
+    constexpr static inline const int CDC_READ_TIMEOUT = 50; /* ms */
+//    constexpr static inline const int m_Cdc_write_timeout = 50; /* ms */
+//    constexpr static inline const int m_Cdc_read_timeout = 50; /* ms */
+    constexpr static inline const int m_Cdc_cmd_process_timeout = 75; /* ms */
+    constexpr static inline const int m_Cdc_Jni_drv_timeout = 100; /* ms */
+    constexpr static inline const int m_Cdc_busy_cmd_trials = 1; /* count */
 
-    int m_max_recieve_data_per_request = 64; /* bytes */
-    int m_max_transmit_data_per_request = 64; /* bytes */
+    constexpr static inline const int m_max_recieve_data_per_request = 64; /* bytes */
+    constexpr static inline const int m_max_transmit_data_per_request = 64; /* bytes */
+
+    constexpr static inline const int m_45pe16_memchip_save_timeout = 360; /* bytes */
 #endif
 
 
@@ -113,11 +124,11 @@ public:
 //=========================== Interface presets ================================
 //==============================================================================
 
-    static inline const QString DEFAULT_VERSION_INFO_ADDRESS = "https://raw.githubusercontent.com/SvetlAl/";
-    static inline const QString DEFAULT_UPDATE_ADDRESS = "https://raw.githubusercontent.com/SvetlAl/";
-    static inline const QString DEFAULT_CODE_OVERRIDE_ADDRESS = "https://raw.githubusercontent.com/SvetlAl/";
+    static inline const QString DEFAULT_VERSION_INFO_ADDRESS = "https://raw.githubusercontent.com/SvetlAl/STM32F105_205_2CAN_gateway_scanner_filter/master/version.txt";
+    static inline const QString DEFAULT_UPDATE_ADDRESS = "https://your_address.com/bin/can_gateway";
+    static inline const QString DEFAULT_CODE_OVERRIDE_ADDRESS = "https://your_address.com/bin/can_gateway";
 
-    static inline const QString VERSION_INFO_CACHE_PATH = "vinfo.cache";
+    static inline const QString VERSION_INFO_CACHE_PATH = "vinfo.cache"; // This file contains information about new application versions
     static inline const QString UPDATE_CACHE_PATH = "update_app.bin";
     static inline const QString CODE_OVERRIDE_CACHE_PATH = "code_override.cache";
 
@@ -194,16 +205,15 @@ public:
 /*********************************************************************************/
 /*                       device_model.h import                                   */
 /*********************************************************************************/
-
-#define NULL_MCODE					'0'
-#define ALLIGATOR_MCODE             '1'
-#define TEC_MODULE_MCODE			'2'
-#define DEVICE_2CAN_MCODE			'3'
-#define DEVICE_2CAN_TJA1042_MCODE	'4'
-#define DEVICE_2CAN_BOXED_MCODE		'5'
-#define DEVICE_SIGMA_MCODE			'6'
-
-
+#define NULL_MCODE                    '0'
+#define ALLIGATOR_MCODE               '1'
+#define TEC_MODULE_MCODE              '2'
+#define DEVICE_2CAN_MCODE             '3'
+#define DEVICE_2CAN_TJA1042_MCODE     '4'
+#define DEVICE_2CAN_BOXED_MCODE       '5'
+#define DEVICE_SIGMA_MCODE            '6'
+#define DEVICE_1CAN2LIN_MCODE         '7'
+#define DEVICE_FCAN_V6_MCODE          '8'
 
 /*********************************************************************************/
 /*                       vehicle.h import                                        */
@@ -230,10 +240,16 @@ public:
 #define MODEL_TOYOTA_LC200              0x000B
 #define MODEL_LEXUS_LX570               0x000C
 #define MODEL_TOYOTA_TUNDRA_2022        0x000D
-#define MODEL_TANK_300        			0x000E
-#define MODEL_EXTRA        				0x000F
+#define MODEL_TANK_300                  0x000E
+#define MODEL_TOYOTA_SEQUOIA_2022       0x000F
+#define MODEL_HONDA_CRV_III             0x0010
+#define MODEL_FORD_TRANSIT_2020         0x0011
+#define MODEL_NISSAN_PATROL_2020        0x0012
+#define MODEL_EXTRA_I                   0x0013
+#define MODEL_EXTRA_II                  0x0014
+#define MODEL_EXTRA_III                 0x0015
 
-#define MODEL_COUNT						0x0010
+#define MODEL_COUNT                     0x0016
 
 
 
@@ -329,7 +345,7 @@ public:
 #define INVALID_MEMCHIP_ADDRESS                                 (uint32_t)0xFFFFFFFF
 
 /*********************************************************************************/
-/*                           can_override.h import                                   */
+/*                           can_override.h import                               */
 /*********************************************************************************/
 
 

@@ -1,6 +1,18 @@
 #ifndef QVEHICLE_MODELITEM_H
 #define QVEHICLE_MODELITEM_H
 
+/***********************************************************************
+ *
+ *
+ * Vehicle Model Item describes a vehicle:
+ *
+ * model code (from vehicle.h of the firmware)
+ * name
+ * brand code (Toyota, Mitsubishi, Isuzu etc)
+ *
+ *
+ ************************************************************************/
+
 #include "../../../app_settings.h"
 #ifdef QT_IN_USE
 #include <QDebug>
@@ -8,11 +20,6 @@
 #include <stdio.h>
 #include "../Vehicle.h"
 
-/*****************************************************************************************/
-/*****************************************************************************************/
-/***********         Vehicle model description                                 ***********/
-/*****************************************************************************************/
-/*****************************************************************************************/
 
 class QVehicle_ModelItem: public QObject{
     Q_OBJECT
@@ -21,16 +28,13 @@ class QVehicle_ModelItem: public QObject{
     Q_PROPERTY(int brand_code READ getBrand_code WRITE setBrand_code NOTIFY changed )
 
 public:
-
     explicit QVehicle_ModelItem(QObject *parent = nullptr, QString a = "", int n = 0xFFFF, int b = Vehicle::ModelBrand::Default) :
         QObject(parent), m_name(a), m_hex_value(n), brand_code(b)  {};
 
     ~QVehicle_ModelItem( ){
-       // qDebug() << " ~QVehicle_ModelItem( )";
     }
 
-
-/*** setters and getters ***/
+    //================================ Setters/Getters =============================
     const QString &name() const;
     void setName(const QString &newName);
     int value() const;

@@ -1,6 +1,18 @@
 #ifndef CANBUSITEM_H
 #define CANBUSITEM_H
 
+/***********************************************************************
+ * BusManager <== CanBusTraceProperty     <==  CanBusItem
+ *            <== CanBusMonitorProperty   <==  CanBusItemMonitor
+ *
+ * Can Bus Item describes a CAN bus message for a trace model
+ *
+ * Can Bus Item Monitor describes a CAN bus message for a monitor model
+ *
+ *
+ *
+ ************************************************************************/
+
 #include "../../app_settings.h"
 #include <QDebug>
 #include <stdio.h>
@@ -50,7 +62,7 @@ typedef union can_message_info_raw{
 
 /*****************************************************************************************/
 /***********                                                                   ***********/
-/***********        CAN bus Item represents a CAN message Trace                ***********/
+/***********                           CAN bus Item                            ***********/
 /***********                                                                   ***********/
 /*****************************************************************************************/
 /*****************************************************************************************/
@@ -63,7 +75,6 @@ class CanBusItem: public QObject{
     Q_PROPERTY(QString ID READ id WRITE setId NOTIFY idChanged)
     Q_PROPERTY(QString DLC READ dlc WRITE setDlc NOTIFY dlcChanged)
     Q_PROPERTY(QString Data READ data WRITE setData NOTIFY dataChanged)
-
 
     Q_PROPERTY(bool isSelected READ isSelected WRITE setIsSelected NOTIFY isSelectedChanged)
 
@@ -82,12 +93,14 @@ public:
     ~CanBusItem( ){
     }
 
+    //==================================== init =====================================
     static can_message_info_raw byteArrayToCanMsg(const QByteArray data){
         can_message_info_raw m_can_msg;
         memcpy(&m_can_msg.raw_msg_data, data.data(), sizeof(can_message_info));
         return m_can_msg;
     }
 
+    //=============================== Operators =====================================
     CanBusItem& operator=(const CanBusItem& t){
         can_message_info_raw* oldCanMsg = &this->m_can_msg;
         this->m_can_msg = *oldCanMsg;
@@ -96,7 +109,7 @@ public:
         return *this;
     }
 
-    //================= sort ======================
+    //================================= Sort ========================================
     static bool sortBySelection(const QSharedPointer<CanBusItem>& a, const QSharedPointer<CanBusItem>& b){
         if(a->isSelected() == true && b->isSelected() == false) return true;
         else return false;
@@ -107,36 +120,28 @@ public:
         else return false;
     }
 
-    //========= Int/bool functions for sort ==========
-    const int int_time() const {return (m_can_msg.info.seconds*10000 + m_can_msg.info.msec);}
-    const int int_dlc() const {return (m_can_msg.info.msg.dlc);}
-
-    void setIntTime(int _time){
-        m_can_msg.info.seconds = _time >= 10000 ? _time/10000 : 0;
-        m_can_msg.info.msec = _time - (m_can_msg.info.seconds*10000);
-        initTime();
-    }
-
-    int intCan(){return m_can_msg.info.can_number;}
-
+    //======================= Bool and Int Setters/Getters ===========================
+    const int int_time() const;
+    const int int_dlc() const;
+    void setIntTime(int _time);
+    const int intCan() const;
     void setIntCan(int dir);
-
-    int int_id() const{return (CAN_ID(m_can_msg.info.msg));}
-    bool bool_ext_ide() const;
+    const int int_id() const;
+    bool bool_ext_ide() const; // is a msg id extended?
 
     bool isSelected() const;
     void setIsSelected(bool newIsSelected);
 
-    const QByteArray getByteArray() const{
-        return QByteArray::fromRawData(reinterpret_cast<const char*>(m_can_msg.raw_msg_data), sizeof(can_message_info_raw));
-    }
+    const QByteArray getByteArray() const;
 
     static const QByteArray makeInvalidByteArray(){
         const QByteArray byteArray(sizeof(can_message_info_raw), char(0xFF));
         return byteArray;
     }
+    //=============================== Debug and print ================================
     void print() const;
 
+    //========================== Class Setters/Getters ===============================
     const QString &time() const;
     void setTime(const QString &newTime);
     void initTime();
@@ -170,7 +175,7 @@ signals:
 protected:
     bool m_isSelected;
     QString m_time;
-    QString m_can;
+    QString m_can; // CAN1 or CAN2
     QString m_id;
     QString m_dlc;
     QString m_data;
@@ -183,7 +188,7 @@ protected:
 
 /*****************************************************************************************/
 /***********                                                                   ***********/
-/*********** CAN bus Item represents a CAN message Monitor                     ***********/
+/***********                        CanBusItemMonitor                          ***********/
 /***********                                                                   ***********/
 /*****************************************************************************************/
 /*****************************************************************************************/
@@ -197,14 +202,23 @@ public:
 
     };
     ~CanBusItemMonitor( ){}
-
+    //==================================== init =====================================
     void set_can_msg_data(const can_message_info_raw &_can_msg_data);
     void initQStringValues();
 
-    //========= int actual values =============
-    const int int_id() const;
-    const int int_time() const {return (m_last_can_msg.info.seconds*10000 + m_last_can_msg.info.msec);}
+    //=============================== Operators =====================================
 
+    //================================= Sort ========================================
+
+    //=============================== Debug and print ================================
+
+
+    //======================= Bool and Int Setters/Getters ===========================
+    const int int_id() const;
+    const int int_time() const;
+
+
+    //========================== Class Setters/Getters ===============================
     const QString &can() const;
     void setCan(const QString &newCan);
     const QString &id() const;

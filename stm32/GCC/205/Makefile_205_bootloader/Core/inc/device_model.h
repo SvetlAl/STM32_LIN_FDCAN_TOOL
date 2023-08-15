@@ -20,21 +20,23 @@
 /**********************************************************************************************************/
 //=========================================================================================================
 //=====================================       Environment      ============================================
-//#define MDK_ARM_ENV
+#define MDK_ARM_ENV
 
 //=========================================================================================================
 //=====================================         Model          ============================================
 //#define ALLIGATOR
-#define TEC_MODULE
+//#define TEC_MODULE
 
 //#define DEVICE_2CAN
 //#define DEVICE_2CAN_TJA1042
 //#define DEVICE_2CAN_BOXED
 //#define DEVICE_SIGMA
+//#define DEVICE_1CAN2LIN
+#define DEVICE_FCAN_V6
 
 //=========================================================================================================
 //=======================================       Processor      ============================================
-#if defined(ALLIGATOR) | defined(TEC_MODULE)
+#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 #define STM32F205
 #define DEV_FREQ	120000
 #define DEV_FREQ_120MHZ
@@ -42,7 +44,7 @@
 #define TIM2_FREQ_30MHZ // used for trace injection
 #endif
 
-#if defined(DEVICE_2CAN) | defined(DEVICE_2CAN_TJA1042) | defined(DEVICE_2CAN_BOXED) | defined(DEVICE_SIGMA)
+#if defined(DEVICE_2CAN) | defined(DEVICE_2CAN_TJA1042) | defined(DEVICE_2CAN_BOXED) | defined(DEVICE_SIGMA) | defined(DEVICE_1CAN2LIN)
 #define STM32F105
 #define DEV_FREQ	72000
 #define DEV_FREQ_72MHZ
@@ -53,7 +55,7 @@
 //=========================================================================================================
 //===================================       Memory chip settings      =====================================
 
-#if defined(ALLIGATOR)
+#if defined(ALLIGATOR) | defined(DEVICE_FCAN_V6)
 #define MEMCHIP_M45PE16
 #define MEMCHIP_VOLUME	0x200000
 #endif
@@ -86,7 +88,14 @@
 		
 #define SIGNAL_LED_ON GPIOA->BSRR |= GPIO_BSRR_BS_8
 #define SIGNAL_LED_OFF GPIOA->BSRR |= GPIO_BSRR_BR_8
-	
+#elif defined(DEVICE_FCAN_V6)
+#define SIGNAL_LED_OFF GPIOB->BSRR |= GPIO_BSRR_BR_0
+#define SIGNAL_LED_ON GPIOB->BSRR |= GPIO_BSRR_BS_0
+
+#define TOGGLE_SIGNAL_LED if(GPIOB->ODR & GPIO_ODR_OD0)  \
+	SIGNAL_LED_OFF;	\
+	else SIGNAL_LED_ON
+		
 #else
 #define TOGGLE_SIGNAL_LED
 #define SIGNAL_LED_ON
@@ -114,7 +123,13 @@
 #ifdef DEVICE_SIGMA
 #define EMERGENCY_PIN_SET !(GPIOB->IDR & GPIO_IDR_IDR14)
 #endif
-	
+#ifdef DEVICE_1CAN2LIN
+#define EMERGENCY_PIN_SET (!(GPIOA->IDR & GPIO_IDR_IDR10))
+#endif
+#ifdef DEVICE_FCAN_V6
+#define EMERGENCY_PIN_SET (!(GPIOB->IDR & GPIO_IDR_ID1))
+#endif
+
 //=========================================================================================================
 //==========================================  Includes ====================================================
 	

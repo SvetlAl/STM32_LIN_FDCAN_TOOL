@@ -1,13 +1,28 @@
 #ifndef CONTAINERDESIGN_H
 #define CONTAINERDESIGN_H
-
+/***********************************************************************
+ *
+ *
+ * The design container holds design settings info:
+ *
+ *  a settings name
+ *  a setting vaue (<typename T>)
+ *
+ *
+ ************************************************************************/
 
 #include <iostream>
 #include <map>
 #include <QDebug>
-#include "../../app_settings.h"
 
-#ifdef QT_IN_USE
+
+/********************************************************************
+ *
+ *
+ *                     General template
+ *
+ *
+********************************************************************/
 
 template <typename T>
 class ContainerDesign{
@@ -19,7 +34,7 @@ public:
 
     friend class AppDesign;
 
-    /************ Functions ************/
+    //===================== Main edit and set/get functions =======================
     bool isKeyInited(const QString key){
         auto it = p_items.find(key);
         if (it == p_items.end()) return false;
@@ -52,6 +67,7 @@ public:
         else p_items.insert(key, value);
     }
 
+    //===================== Debug and print =======================
     void print(){
         qDebug() << m_name;
     }
@@ -60,6 +76,14 @@ protected:
     QMap<QString, T> p_items;
 };
 
+
+/********************************************************************
+ *
+ *
+ *                     Int
+ *
+ *
+********************************************************************/
 
 
 class ContainerDesignInt : public ContainerDesign<int>{
@@ -78,6 +102,14 @@ public:
 QDataStream& operator << (QDataStream& d, const ContainerDesignInt& cd);
 QDataStream& operator >> (QDataStream& d, ContainerDesignInt& cd);
 
+/********************************************************************
+ *
+ *
+ *                     Float
+ *
+ *
+********************************************************************/
+
 class ContainerDesignFloat : public ContainerDesign<float>{
 public:
     explicit ContainerDesignFloat(): ContainerDesign<float>(){
@@ -95,6 +127,14 @@ QDataStream& operator << (QDataStream& d, const ContainerDesignFloat& cd);
 QDataStream& operator >> (QDataStream& d, ContainerDesignFloat& cd);
 
 
+/********************************************************************
+ *
+ *
+ *                     String
+ *
+ *
+********************************************************************/
+
 class ContainerDesignQstring : public ContainerDesign<QString>{
 public:
     explicit ContainerDesignQstring(): ContainerDesign<QString>(){
@@ -111,6 +151,5 @@ public:
 QDataStream& operator << (QDataStream& d, const ContainerDesignQstring& cd);
 QDataStream& operator >> (QDataStream& d, ContainerDesignQstring& cd);
 
-#endif
 
 #endif // CONTAINERDESIGN_H

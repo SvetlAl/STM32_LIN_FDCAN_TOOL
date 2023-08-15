@@ -1,5 +1,21 @@
 #ifndef QSERIALPORTCONFIG_H
 #define QSERIALPORTCONFIG_H
+/***********************************************************************
+ * QSerialPortConfigItem ==> QSerialPortConfigProperties ==> Serial Port Config
+ *
+ *
+ *
+ * Serial Port Config contains
+ *           QSerialPortConfigProperties that contain
+ *                     QSerialPortConfigItem  that contain
+ *                                QString name
+ *                                int     value
+ * Also:
+ *  transmission timeout and chunk size settings
+ *  filenames (not used)
+ *
+ *
+ ************************************************************************/
 
 #include "../../app_settings.h"
 #ifdef QT_IN_USE
@@ -39,6 +55,7 @@ public:
     explicit QSerialPortConfig(QObject *parent = nullptr): QObject(parent){};
     ~QSerialPortConfig(){ }
 
+    //==================================== init =====================================
     virtual SerialConfig_Preset make_preset(){return SerialConfig_Preset{"",0,0,0,0,0,0,0,0,0,0,0,0,0,"","","",""};};
     virtual void set_preset(const SerialConfig_Preset& _preset){};
     virtual void refresh_ports(){};
@@ -47,17 +64,16 @@ public:
         refresh_ports();
     }
 
+
+    //=============================== Debug and print ===============================
     Q_INVOKABLE void print();
 
-    QSerialPortConfigProperty_PortNumber *portnames(){return &m_portnames;};
-    QSerialPortConfigProperty_BaudRate *baudrate(){return &m_baudrate;};
-    QSerialPortConfigProperty_Parity *parity(){return &m_parity;};
-    QSerialPortConfigProperty_DataBits *databits(){return &m_databits;};
-    QSerialPortConfigProperty_StopBits *stopbits(){return &m_stopbits;};
-    QSerialPortConfigProperty_FlowControl *flowcontrol(){return &m_flowcontrol;};
-
+    //=============================== Setters/Getters ===============================
+    // These return values types correspond to QSerialPort types
     const QString get_portname(){return m_portnames.get_current_name();};
+
     qint32 get_baudrate(){return m_baudrate.get_current_value();};
+
     QSerialPort::DataBits get_databits(){
         return qvariant_cast<QSerialPort::DataBits>(m_databits.current_item());
     };
@@ -69,7 +85,16 @@ public:
     };
     QSerialPort::FlowControl get_flowcontrol(){
         return qvariant_cast<QSerialPort::FlowControl>(m_flowcontrol.current_item());
-    };
+    }
+
+    //========================= Class Setters/Getters ===============================
+
+    QSerialPortConfigProperty_PortNumber *portnames(){return &m_portnames;};
+    QSerialPortConfigProperty_BaudRate *baudrate(){return &m_baudrate;};
+    QSerialPortConfigProperty_Parity *parity(){return &m_parity;};
+    QSerialPortConfigProperty_DataBits *databits(){return &m_databits;};
+    QSerialPortConfigProperty_StopBits *stopbits(){return &m_stopbits;};
+    QSerialPortConfigProperty_FlowControl *flowcontrol(){return &m_flowcontrol;};
 
     int Cdc_write_timeout() const;
     void setCdc_write_timeout(int newCdc_write_timeout);
@@ -119,32 +144,19 @@ protected:
     QSerialPortConfigProperty_StopBits m_stopbits;
     QSerialPortConfigProperty_FlowControl m_flowcontrol;
 
-#ifndef ANDROID_V
-    int m_Cdc_write_timeout = 20; /* ms */
-    int m_Cdc_read_timeout = 20; /* ms */
-    int m_Cdc_cmd_process_timeout = 20; /* ms */
-    int m_Cdc_Jni_drv_timeout = 100; /* ms */
-    int m_Cdc_busy_cmd_trials = 5; /* count */
+    int m_Cdc_write_timeout = App_settings::CDC_WRITE_TIMEOUT; /* ms */
+    int m_Cdc_read_timeout = App_settings::CDC_READ_TIMEOUT; /* ms */
+    int m_Cdc_cmd_process_timeout = App_settings::m_Cdc_cmd_process_timeout; /* ms */
+    int m_Cdc_Jni_drv_timeout = App_settings::m_Cdc_Jni_drv_timeout; /* ms */
+    int m_Cdc_busy_cmd_trials = App_settings::m_Cdc_busy_cmd_trials; /* count */
 
-    int m_max_recieve_data_per_request = 64; /* bytes */
-    int m_max_transmit_data_per_request = 64; /* bytes */
-#endif
-#ifdef ANDROID_V
-    int m_Cdc_write_timeout = 50; /* ms */
-    int m_Cdc_read_timeout = 50; /* ms */
-    int m_Cdc_cmd_process_timeout = 75; /* ms */
-    int m_Cdc_Jni_drv_timeout = 100; /* ms */
-    int m_Cdc_busy_cmd_trials = 5; /* count */
-
-    int m_max_recieve_data_per_request = 64; /* bytes */
-    int m_max_transmit_data_per_request = 64; /* bytes */
-#endif
+    int m_max_recieve_data_per_request = App_settings::m_max_recieve_data_per_request; /* bytes */
+    int m_max_transmit_data_per_request =App_settings::m_max_transmit_data_per_request; /* bytes */
 
     QString m_filename_recieved = "recieved.bin";
     QString m_filename_to_send = "to_send.bin";
     QString m_filename_scan_recieved = "scan.txt";
     QString m_filename_script_to_send = "script_to_send.txt";
-
 
 private:
 };

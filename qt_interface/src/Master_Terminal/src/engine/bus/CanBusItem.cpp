@@ -6,6 +6,87 @@
 //========================================================================
 
 
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
+
+/********************************************************************
+ *
+ *
+ *                     Bool and Int Setters/Getters
+ *
+ *
+********************************************************************/
+
+const int CanBusItem::int_time() const {
+    return (m_can_msg.info.seconds*10000 + m_can_msg.info.msec);
+}
+const int CanBusItem::int_dlc() const {
+    return (m_can_msg.info.msg.dlc);
+}
+
+void CanBusItem::setIntTime(int _time){
+    m_can_msg.info.seconds = _time >= 10000 ? _time/10000 : 0;
+    m_can_msg.info.msec = _time - (m_can_msg.info.seconds*10000);
+    initTime();
+}
+const int CanBusItem::intCan() const{
+    return m_can_msg.info.can_number;
+}
+
+void CanBusItem::setIntCan(int dir){
+    if(dir == 1){
+        m_can_msg.info.can_number = 1;
+    }
+    else if(dir == 2){
+        m_can_msg.info.can_number = 2;
+    }
+    else return;
+    initCan();
+}
+const int CanBusItem::int_id() const{
+    return (CAN_ID(m_can_msg.info.msg));
+}
+
+bool CanBusItem::isSelected() const{
+    return m_isSelected;
+}
+
+void CanBusItem::setIsSelected(bool newIsSelected){
+    if (m_isSelected == newIsSelected)
+        return;
+    m_isSelected = newIsSelected;
+    emit isSelectedChanged();
+}
+
+const QByteArray CanBusItem::getByteArray() const{
+    return QByteArray::fromRawData(reinterpret_cast<const char*>(m_can_msg.raw_msg_data), sizeof(can_message_info_raw));
+}
+
+/********************************************************************
+ *
+ *
+ *                     Debug and print
+ *
+ *
+********************************************************************/
+
+void CanBusItem::print() const{
+    qDebug() << "************** " << m_isSelected << " **************";
+    qDebug() << m_can_msg.raw_msg_data;
+}
+
+/********************************************************************
+ *
+ *
+ *                     Class Setters/Getters
+ *
+ *
+********************************************************************/
 //====================== Time ==================================
 const QString &CanBusItem::time() const{
     return m_time;
@@ -54,8 +135,6 @@ void CanBusItem::setTime(const QString& str_value){
     initTime();
 }
 
-
-//====================== CAN ==================================
 const QString &CanBusItem::can() const{
     return m_can;
 }
@@ -71,17 +150,12 @@ void CanBusItem::setCan(const QString &newCan){
     else return;
     initCan();
 }
-void CanBusItem::setIntCan(int dir){
-    if(dir == 1){
-        m_can_msg.info.can_number = 1;
-    }
-    else if(dir == 2){
-        m_can_msg.info.can_number = 2;
-    }
-    else return;
-    initCan();
-}
 
+// is a msg id extended?
+bool CanBusItem::bool_ext_ide() const{
+    if(m_can_msg.info.msg.ide == 1) return true;
+    else return false;
+}
 
 //====================== ID ==================================
 const QString &CanBusItem::id() const{
@@ -114,7 +188,6 @@ void CanBusItem::setId(const QString& value){
     }
 }
 
-
 //====================== DLC ==================================
 const QString &CanBusItem::dlc() const{
     return m_dlc;
@@ -133,7 +206,6 @@ void CanBusItem::setDlc(const QString& value){
         initDlc();
     }
 }
-
 
 //====================== Data ==================================
 const QString &CanBusItem::data() const{
@@ -183,30 +255,10 @@ void CanBusItem::setIde(const QString &new_ide){
 
 
 
-//====================== Misc ==================================
 
 
-bool CanBusItem::isSelected() const{
-    return m_isSelected;
-}
-
-void CanBusItem::setIsSelected(bool newIsSelected){
-    if (m_isSelected == newIsSelected)
-        return;
-    m_isSelected = newIsSelected;
-    emit isSelectedChanged();
-}
 
 
-bool CanBusItem::bool_ext_ide() const{
-    if(m_can_msg.info.msg.ide == 1) return true;
-    else return false;
-}
-
-void CanBusItem::print() const{
-    qDebug() << "************** " << m_isSelected << " **************";
-    qDebug() << m_can_msg.raw_msg_data;
-}
 
 
 
@@ -216,9 +268,75 @@ void CanBusItem::print() const{
 //========================================================================
 //======================== CanBusItemMonitor =============================
 //========================================================================
+
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
+void CanBusItemMonitor::set_can_msg_data(const can_message_info_raw &_can_msg_data){
+    m_last_can_msg = _can_msg_data;
+    if(_can_msg_data.info.msg.dlc > 8 ) return;
+  //  if(m_last_can_msg.info.can_number == 2) qDebug() << "*******";
+    int new_time = int_time();
+    m_iperiod = new_time - m_ilast_time;
+
+  //  if(m_last_can_msg.info.can_number == 2) qDebug() << QString::number((CAN_ID(m_last_can_msg.info.msg)), 16) << "  " << m_ilast_time << "  " << new_time << "  " << m_iperiod;
+    m_ilast_time = new_time;
+    m_icount++;
+    initQStringValues();
+    emit canChanged();
+    emit idChanged();
+    emit dlcChanged();
+    emit countChanged();
+    emit periodChanged();
+    emit dataChanged();
+}
+
+void CanBusItemMonitor::initQStringValues(){
+    m_can = (m_last_can_msg.info.can_number == 1) ? "CAN 1" : "CAN 2";
+    m_id = StringConvertor::uint32_t_to_QString_as_HEX(CAN_ID(m_last_can_msg.info.msg)).toUpper();
+    m_dlc = StringConvertor::uint16_t_to_QString_as_HEX(m_last_can_msg.info.msg.dlc).toUpper();
+    m_count = QString::number(m_icount, 10);
+
+    m_period = QString::number(m_iperiod, 10);
+    int len = m_period.length(); // Get length of string
+    m_period.insert(len-1, "."); // Insert '.' before last character
+
+
+    QString response = "";
+    for(size_t i = 0; i < m_last_can_msg.info.msg.dlc; i++){
+        response.append(StringConvertor::uint8_t_to_QString_as_HEX(m_last_can_msg.info.msg.data[i]));
+        if(i!= (m_last_can_msg.info.msg.dlc-1))response.append(" ");
+    }
+    m_data =  response.toUpper();
+}
+
+/********************************************************************
+ *
+ *
+ *                     Bool and Int Setters/Getters
+ *
+ *
+********************************************************************/
+
 const int CanBusItemMonitor::int_id() const{
     return CAN_ID(m_last_can_msg.info.msg);
 }
+
+const int CanBusItemMonitor::int_time() const {
+    return (m_last_can_msg.info.seconds*10000 + m_last_can_msg.info.msec);
+}
+
+/********************************************************************
+ *
+ *
+ *                     Class Setters/Getters
+ *
+ *
+********************************************************************/
 
 const QString &CanBusItemMonitor::can() const
 {
@@ -298,43 +416,7 @@ void CanBusItemMonitor::setData(const QString &newData)
 }
 
 
-void CanBusItemMonitor::set_can_msg_data(const can_message_info_raw &_can_msg_data){
-    m_last_can_msg = _can_msg_data;
-    if(_can_msg_data.info.msg.dlc > 8 ) return;
-  //  if(m_last_can_msg.info.can_number == 2) qDebug() << "*******";
-    int new_time = int_time();
-    m_iperiod = new_time - m_ilast_time;
 
-  //  if(m_last_can_msg.info.can_number == 2) qDebug() << QString::number((CAN_ID(m_last_can_msg.info.msg)), 16) << "  " << m_ilast_time << "  " << new_time << "  " << m_iperiod;
-    m_ilast_time = new_time;
-    m_icount++;
-    initQStringValues();
-    emit canChanged();
-    emit idChanged();
-    emit dlcChanged();
-    emit countChanged();
-    emit periodChanged();
-    emit dataChanged();
-}
-
-void CanBusItemMonitor::initQStringValues(){
-    m_can = (m_last_can_msg.info.can_number == 1) ? "CAN 1" : "CAN 2";
-    m_id = StringConvertor::uint32_t_to_QString_as_HEX(CAN_ID(m_last_can_msg.info.msg)).toUpper();
-    m_dlc = StringConvertor::uint16_t_to_QString_as_HEX(m_last_can_msg.info.msg.dlc).toUpper();
-    m_count = QString::number(m_icount, 10);
-
-    m_period = QString::number(m_iperiod, 10);
-    int len = m_period.length(); // Get length of string
-    m_period.insert(len-1, "."); // Insert '.' before last character
-
-
-    QString response = "";
-    for(size_t i = 0; i < m_last_can_msg.info.msg.dlc; i++){
-        response.append(StringConvertor::uint8_t_to_QString_as_HEX(m_last_can_msg.info.msg.data[i]));
-        if(i!= (m_last_can_msg.info.msg.dlc-1))response.append(" ");
-    }
-    m_data =  response.toUpper();
-}
 
 
 

@@ -27,8 +27,19 @@ Core::~Core(){
     delete m_pAappdesign;
     delete m_pUser_profile;
 }
+
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
+
+
+
 /********************************************************************/
-/************************* Initialization ***************************/
+/***                 General initialization                       ***/
 /********************************************************************/
 
 void Core::init(){
@@ -46,9 +57,12 @@ void Core::init(){
 
     initUserProfile();
     initAppDesign();
-
 };
 
+
+/********************************************************************/
+/***                 Sub-init: create the folders                 ***/
+/********************************************************************/
 
 void Core::init_folders(){
     QDir dir;
@@ -79,6 +93,10 @@ void Core::init_folders(){
     }
 }
 
+/********************************************************************/
+/***                 Sub-init: User profile                       ***/
+/********************************************************************/
+
 void Core::initUserProfile(){
     QClassLoader<UserProfile> loader;
     loader.setFilename(App_settings::USERPROFILES_DIR + m_core_status.last_used_profile() + App_settings::USERPROFILES_EXT);
@@ -89,6 +107,10 @@ void Core::initUserProfile(){
     }
     else *m_pUser_profile = loader.loadClassInstance();
 };
+
+/********************************************************************/
+/***                 Sub-init: Application Design                 ***/
+/********************************************************************/
 
 void Core::initAppDesign(){
     QClassLoader<AppDesign> loader;
@@ -110,14 +132,26 @@ void Core::initAppDesign(){
     }
 };
 
+/********************************************************************
+ *
+ *
+ *                     User Profile
+ *
+ *
+********************************************************************/
+
 /********************************************************************/
-/***********   QStringList functions   ******************************/
+/***            Sub-init: find all saved user profiles            ***/
 /********************************************************************/
 
 QStringList Core::makeUserList(){
     auto _list = FileManager<QString>::find_files_in_qdir(App_settings::USERPROFILES_DIR, App_settings::USERPROFILES_EXT, true);
     return _list;
 }
+
+/********************************************************************/
+/*** Sub-init: find corresponding language settings for all users ***/
+/********************************************************************/
 
 QStringList Core::makeUserLanguagesList(){
     auto _list = FileManager<QString>::find_files_in_qdir(App_settings::USERPROFILES_DIR, App_settings::USERPROFILES_EXT, true);
@@ -134,9 +168,8 @@ QStringList Core::makeUserLanguagesList(){
 }
 
 /********************************************************************/
-/******* Core members managing (UserProfile, AppDesign...) **********/
+/***     Load a user profile, set user configuration presets      ***/
 /********************************************************************/
-
 
 void Core::setUserProfile(QString _username){
     if(loadUserProfile(_username)){
@@ -151,6 +184,9 @@ bool Core::validateUserProfile(){
     return true;
 }
 
+/********************************************************************/
+/**************     Create a new user profile      ******************/
+/********************************************************************/
 /* Assuming, that m_user_profile is already set with a new profile data */
 void Core::createUserProfile(){
     QClassLoader<UserProfile> loader;
@@ -164,6 +200,9 @@ void Core::createUserProfile(){
     }
 }
 
+/********************************************************************/
+/**************   Delete an existing user profile   *****************/
+/********************************************************************/
 void Core::deleteUserProfile(QString _username){
     /* delete current user */
     if(m_pUser_profile->m_name == App_settings::DEFAULT_USERNAME) return;
@@ -180,8 +219,16 @@ void Core::deleteUserProfile(QString _username){
     FileManager<QString>::deleteFile(appdesign_path);
 }
 
+/********************************************************************
+ *
+ *
+ *                    Save/load functions
+ *
+ *
+********************************************************************/
+
 /********************************************************************/
-/*********************** Save/Load functions ************************/
+/**************             General save            *****************/
 /********************************************************************/
 
 void Core::saveSetting(int _mode){
@@ -199,6 +246,10 @@ void Core::saveSetting(int _mode){
         break;
     }
 }
+
+/********************************************************************/
+/**************             General load            *****************/
+/********************************************************************/
 
 bool Core::loadSetting(QString _username, int _mode){
     switch(_mode){
@@ -288,18 +339,6 @@ bool Core::loadCoreStatus(){
     }
 }
 
-
-void Core::setVersionManager(VersionManager *newPVersionManager){
-    m_pVersionManager = newPVersionManager;
-    m_pVersionManager->setCurrentLanguage(m_pUser_profile->m_language);
-}
-
-void Core::setWebConfig(WebConfig *newPWebConfig){
-    m_pWebConfig = newPWebConfig;
-}
-
-
-
 /********************************************************************/
 /*************** Save/Load Serial Port preset ***********************/
 /********************************************************************/
@@ -323,7 +362,6 @@ bool Core::loadSerialPortPreset(){
         return false;
     }
 }
-
 
 /********************************************************************/
 /***************** Save/Load Serial WebConfig ***********************/
@@ -349,9 +387,22 @@ bool Core::loadWebConfigPreset(){
     }
 }
 
-/********************************************************************/
-/************************* Setters/Getters **************************/
-/********************************************************************/
+
+/********************************************************************
+ *
+ *
+ *                    Class setters/getters
+ *
+ *
+********************************************************************/
+void Core::setVersionManager(VersionManager *newPVersionManager){
+    m_pVersionManager = newPVersionManager;
+    m_pVersionManager->setCurrentLanguage(m_pUser_profile->m_language);
+}
+
+void Core::setWebConfig(WebConfig *newPWebConfig){
+    m_pWebConfig = newPWebConfig;
+}
 
 QSerialPortConfig *Core::getSerialport_config() const{
     return m_pSerialport_config;
@@ -360,6 +411,7 @@ QSerialPortConfig *Core::getSerialport_config() const{
 void Core::setSerialport_config(QSerialPortConfig *newPtr_serialport_config){
     m_pSerialport_config = newPtr_serialport_config;
 }
+
 
 /********************************************************************/
 /*****************          Design preset     ***********************/
@@ -387,5 +439,8 @@ void Core::setUserProfileValue(int _val, QString _str){
     }
     emit userProfileChanged();
 }
+
+
+
 
 

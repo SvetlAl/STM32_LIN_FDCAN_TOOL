@@ -229,7 +229,6 @@ QString CommandManager::exchange_cmd_string(QString _output_cmd, bool print, boo
         }
         while(trials--);
     }
-
     else output_string =  QString::fromUtf8(m_pCDC_drv->exchange_data(_output_cmd.toUtf8()));
 
     if(print){
@@ -315,8 +314,8 @@ QByteArray CommandManager::exchange_cmd_string_HEX(const QByteArray& _cmd_2_send
 bool CommandManager::setAndSaveVehicleModel(uint16_t model_code){
     m_cmdConstructor.constructCmd(ELP_VEHICLE_SET_MODEL, (uint32_t)model_code);
     QString response = exchange_cmd_string(QString::fromUtf8(m_cmdConstructor.cmd_string()));
-    if(!CommandConstructor::isResponseOk(response)) return false;
 
+    if(!CommandConstructor::isResponseOk(response)) return false;
     return saveVehicleStatus(true);
 };
 
@@ -327,7 +326,6 @@ void CommandManager::updateVehicleStatus(){
     exchange_cmd_string_HEX(m_cmdConstructor.cmd_string(), &response);
 
     if(response.length() != RESPONSE_LENGTH_CURRENT_STATUS_STRING_HEX){
-        // qDebug() << "length() != RESPONSE_LENGTH_CURRENT_STATUS_STRING_HEX";
         return;
     }
     m_cmdConstructor.translateVehicleStatus(response, *m_pVehicle);
@@ -336,7 +334,15 @@ void CommandManager::updateVehicleStatus(){
 bool CommandManager::saveVehicleStatus(bool initNewModel){
     uint16_t model_code = m_pVehicle->model();
     m_cmdConstructor.constructCmd(ELP_VEHICLE_SAVE_STATUS);
+
+    const int custom_timeout = m_pCDC_drv->read_timeout();
+    if(m_pDeviceManager->memchip_code() == eMemChipModel::MEMCHIP_MODEL_M45PE16){
+        int temp_custom_timeout = App_settings::m_45pe16_memchip_save_timeout;
+        m_pCDC_drv->set_custom_read_timeout(temp_custom_timeout);
+    }
     QString response = exchange_cmd_string(QString::fromUtf8(m_cmdConstructor.cmd_string()));
+    m_pCDC_drv->set_custom_read_timeout(custom_timeout);
+
     if(!CommandConstructor::isResponseOk(response)){
         return false;
     }
@@ -353,6 +359,7 @@ bool CommandManager::saveVehicleStatus(bool initNewModel){
 void CommandManager::getAndInitCurrentVehicleStatus(){
     m_cmdConstructor.constructCmd(ELP_VEHICLE_GET_CURRENT_STATUS_STRING_ASCII);
     QString response = exchange_cmd_string(QString::fromUtf8(m_cmdConstructor.cmd_string()));
+
     if(response.length() != RESPONSE_LENGTH_CURRENT_STATUS_STRING_ASCII) return;
     m_cmdConstructor.translateVehicleStatus(response, *m_pVehicle);
 };
@@ -420,7 +427,7 @@ void CommandManager::updateDeviceStatus(){
 
     QByteArray response;
     exchange_cmd_string_HEX(m_cmdConstructor.cmd_string(), &response);
-    if(response.length() != DeviceManager::data_struct_size) return;
+    //if(response.length() != DeviceManager::data_struct_size) return;
     if(m_pDeviceManager != nullptr) m_pDeviceManager->init(response);
 };
 
@@ -451,6 +458,18 @@ bool CommandManager::setDeviceValue(uint32_t property, uint8_t value){
     return true;
 };
 
+void CommandManager::refresh_hardware_scanner_filters(bool isLowerThresh){
+    for(int bytecount = 0; bytecount < 4; bytecount++){
+        uint8_t value = (uint8_t)pDeviceManager()->get_harware_scanner_filter_value(bytecount, isLowerThresh);
+        int position = isLowerThresh ? DeviceModelProperties::Enm_lower_hw_filter_b0 + bytecount :
+                                       DeviceModelProperties::Enm_higher_hw_filter_b0 + bytecount;
+
+        m_cmdConstructor.constructCmd(ELP_DEVICE_SET_MODE, position, value);
+        exchange_cmd_string(QString::fromUtf8(m_cmdConstructor.cmd_string()));
+        //setDeviceValue(position, value);
+    }
+    updateDeviceStatus();
+}
 
 bool CommandManager::updateOverrideActiveFilters(){
     if(!isConnected()) return false;
@@ -925,9 +944,6 @@ bool CommandManager::CDC_Injection_data_send_procedure(uint32_t length){
     int max_tx_bytes = m_pCDC_drv->maxTxBytes_per_request();
     int temp_length = data_to_send.size();
     int bytes_pos = 0;
-
-   // qDebug() << "length  " << length;
-   // qDebug() << data_to_send.toHex();
 
     while(temp_length >= max_tx_bytes){
         sendRawData(data_to_send.mid(bytes_pos, max_tx_bytes));

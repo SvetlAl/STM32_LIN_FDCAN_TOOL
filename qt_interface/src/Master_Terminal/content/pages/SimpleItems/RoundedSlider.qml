@@ -22,6 +22,7 @@ Item {
     property string st_clr_disabled_frame: CoreImport._SimpleItems_Color_FrameDisabled
 
     /********* values ********/
+    property bool value_display_offset: true
     property string onclicked_txt: ""
     property string st_labelTxt: i_slider.value.toString()
     property int _value : 5
@@ -112,6 +113,7 @@ Item {
                     fontSizeMode: Text.Fit
 
                     function calculate_offset(slider_val){
+                        if(!value_display_offset) return 0;
                         if(slider_val < 10){
                             return parent.width*0.3
                         }

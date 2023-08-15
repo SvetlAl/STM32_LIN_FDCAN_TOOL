@@ -101,6 +101,19 @@ uint32_t fill_dual_cc_buf(dual_cdc_can_buff *dual_buf, uint8_t *data, uint32_t l
 	//	deinit_dual_cc_buf(dual_buf);
 		return 0;
 	}
+	// if a stop cmd has come 
+	/*
+	else if(*data == 0xFF){
+		uint32_t i = 0;
+		for(i = 0; i < length; i++){
+			if(data[i] != 0xFF) break;
+		}
+		if(data[i] == 0xFF){
+			SET_CDC_CAN_BUF_FLAG(&dual_buf->status, DUAL_CCB_STOP);
+			return 0;
+		}
+	}
+	*/
 	//==================== The dual buffer is not inited yet ============================
 	else if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_INIT_MODE)){
 		initial_fill_dual_buf(dual_buf, data, length);
@@ -150,7 +163,7 @@ uint32_t fill_dual_cc_buf(dual_cdc_can_buff *dual_buf, uint8_t *data, uint32_t l
 * retval
 */
 uint32_t get_ccb_freespace(cdc_flow_can_buffer *buf){
-	return (CDC_CAN_INJECTION_BUFFER_SIZE - buf->write_pos);
+	return (CDC_CAN_INJECTION_BUFFER_SIZE - buf->write_pos - sizeof(can_message_info_raw));
 }
 
 uint32_t get_available_ccb_bytes(cdc_flow_can_buffer *buf){
@@ -165,6 +178,8 @@ uint32_t get_available_ccb_bytes(cdc_flow_can_buffer *buf){
 */
 
 uint32_t pop_single_cc_buf_item(can_message_info_raw *msg, cdc_flow_can_buffer *buf){
+	
+	//====================== No new messages found ===============================
 	if(get_available_ccb_bytes(buf) < sizeof(can_message_info_raw)){
 		return 0xFFFFFFFF;
 	}
@@ -175,6 +190,43 @@ uint32_t pop_single_cc_buf_item(can_message_info_raw *msg, cdc_flow_can_buffer *
 	return get_available_ccb_bytes(buf);
 }
 
+/**
+* brief  
+* param
+* param
+* retval how many bytes of current READ buffer is already read
+*/
+uint32_t get_current_READ_buf_read_level(dual_cdc_can_buff *dual_buf){
+	if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_A_READ_B_WRITE)){
+		//return (uint32_t)(((uint32_t)(dual_buf->buffer_A.read_pos * CDC_CAN_INJECTION_BUFFER_SIZE))/100);
+		return (uint32_t)dual_buf->buffer_A.read_pos;
+	}
+		//==================== reading from B ===============================
+	else if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_B_READ_A_WRITE)){
+		return (uint32_t)dual_buf->buffer_B.read_pos;
+		//return (uint32_t)(((uint32_t)(dual_buf->buffer_B.read_pos * CDC_CAN_INJECTION_BUFFER_SIZE))/100);
+	}	
+	else return 0;
+}
+
+/**
+* brief  
+* param
+* param
+* retval  zero if full
+*/
+
+uint32_t get_current_WRITE_buf_fill_level(dual_cdc_can_buff *dual_buf){
+	if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_A_READ_B_WRITE)){
+		return get_ccb_freespace(&dual_buf->buffer_B);
+	}
+		//==================== reading from B ===============================
+	else if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_B_READ_A_WRITE)){
+		return get_ccb_freespace(&dual_buf->buffer_A);
+	}	
+	else return CDC_CAN_INJECTION_BUFFER_SIZE;
+}
+
 
 
 uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual_buf){
@@ -182,8 +234,11 @@ uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual
 	// __disable_irq();
 	//==================== reading from A ===============================
 	if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_A_READ_B_WRITE)){
+		
 		result = pop_single_cc_buf_item(msg, &dual_buf->buffer_A);
-		if(result == 0){
+		
+		// this was the last message in the buffer
+		if(result == 0){ 
 			dual_buf->buffer_A.read_pos = 0x00;
 			dual_buf->buffer_A.write_pos = 0x00;
 			RST_CDC_CAN_BUF_FLAG(&dual_buf->status, DUAL_CCB_A_READ_B_WRITE);
@@ -195,6 +250,7 @@ uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual
 	//==================== reading from B ===============================
 	else if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_B_READ_A_WRITE)){
 		result = pop_single_cc_buf_item(msg, &dual_buf->buffer_B);
+		// this was the last message in the buffer
 		if(result == 0){
 			dual_buf->buffer_B.read_pos = 0x00;
 			dual_buf->buffer_B.write_pos = 0x00;
@@ -204,16 +260,17 @@ uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual
 			return get_ccb_freespace(&dual_buf->buffer_B);
 		}
 	}
+	//====================== No new messages found ===============================
 	if(result == 0xFFFFFFFF){
-		// __enable_irq();
+		//==================== reading from A ===============================
 		if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_A_READ_B_WRITE)){
 			return get_ccb_freespace(&dual_buf->buffer_A);
 		}
+		//==================== reading from B ===============================
 		else if(GET_CDC_CAN_BUF_FLAG(dual_buf->status, DUAL_CCB_B_READ_A_WRITE)){
 			return get_ccb_freespace(&dual_buf->buffer_B);
 		}
 	}
-	// __enable_irq();
 	return 0x00;
 }
 

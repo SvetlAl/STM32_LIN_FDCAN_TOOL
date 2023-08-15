@@ -72,13 +72,13 @@
 #define STARTUP_SETTINGS_IWDG						0x01
 
 
-#define CALIBRATOR_DEFAULT_MODE				0x00
-#define CALIBRATOR_ODO_FREEZE_MODE			0x01
-#define CALIBRATOR_TEST_MODE				0x02
+#define CALIBRATOR_DEFAULT_MODE         0x00
+#define CALIBRATOR_ODO_FREEZE_MODE      0x01
+#define CALIBRATOR_TEST_MODE            0x02
 
-#define SPEEDOMETER_TEST_VALUE				0x2C
-#define SPEEDOMETER_TEST_VALUE_GW			0x2C // 0x9C
-#define SPEEDOMETER_TEST_VALUE_DR			0x9C
+#define SPEEDOMETER_TEST_VALUE          0x2C
+#define SPEEDOMETER_TEST_VALUE_GW       0x2C // 0x9C
+#define SPEEDOMETER_TEST_VALUE_DR       0x9C
 
 #define MODEL_TOYOTA_LC300              0x0000
 #define MODEL_TOYOTA_LC150              0x0001
@@ -94,11 +94,16 @@
 #define MODEL_TOYOTA_LC200              0x000B
 #define MODEL_LEXUS_LX570               0x000C
 #define MODEL_TOYOTA_TUNDRA_2022        0x000D
-#define MODEL_TANK_300        					0x000E
-#define MODEL_EXTRA        							0x000F
+#define MODEL_TANK_300                  0x000E
+#define MODEL_TOYOTA_SEQUOIA_2022       0x000F
+#define MODEL_HONDA_CRV_III             0x0010
+#define MODEL_FORD_TRANSIT_2020         0x0011
+#define MODEL_NISSAN_PATROL_2020        0x0012
+#define MODEL_EXTRA_I                   0x0013
+#define MODEL_EXTRA_II                  0x0014
+#define MODEL_EXTRA_III                 0x0015
 
-
-#define MODEL_COUNT											0x0010
+#define MODEL_COUNT                     0x0016
 
 /***************************************************
 ****************************************************
@@ -145,11 +150,30 @@ can_message dummy_Extras(can_message *msg, uint8_t _mlt);
 
 //=============================== Checksums =====================================
 
+
 /***************************************************
 ****************************************************
 ************* Standart format functions ************
 ****************************************************
 ***************************************************/
+
+
+can_message calibrateSpeedOdo_MODEL_EXTRA_I(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt);
+can_message calibrateExtras_MODEL_EXTRA_I(can_message *msg, uint8_t _mlt);
+can_message calibrateCruise_MODEL_EXTRA_I(can_message *msg, uint8_t _cruise_mlt);
+
+can_message calibrateSpeedOdo_MODEL_EXTRA_II(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt);
+can_message calibrateExtras_MODEL_EXTRA_II(can_message *msg, uint8_t _mlt);
+can_message calibrateCruise_MODEL_EXTRA_II(can_message *msg, uint8_t _cruise_mlt);
+
+can_message calibrateSpeedOdo_MODEL_EXTRA_III(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt);
+can_message calibrateExtras_MODEL_EXTRA_III(can_message *msg, uint8_t _mlt);
+can_message calibrateCruise_MODEL_EXTRA_III(can_message *msg, uint8_t _cruise_mlt);
+
+can_message calibrateSpeedOdo_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt);
+can_message calibrateExtras_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _mlt);
+can_message calibrateCruise_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _cruise_mlt);
+
 
 /***************************************************
 ****************************************************

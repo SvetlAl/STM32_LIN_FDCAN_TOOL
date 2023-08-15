@@ -5,8 +5,7 @@
 #include <QTranslator>
 
  
-class QmlTranslator : public QObject
-{
+class QmlTranslator : public QObject{
     Q_OBJECT
  
 public:

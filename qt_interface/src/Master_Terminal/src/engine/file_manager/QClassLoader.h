@@ -1,6 +1,16 @@
 #ifndef QCLASSLOADER_H
 #define QCLASSLOADER_H
 
+/***********************************************************************
+ *
+ *
+ * QClassLoader is a temporary instance for save/load operations on a custom class
+ *
+ *
+ *
+ *
+ ************************************************************************/
+
 #include <QObject>
 #include <QString>
 #include <QStringList>

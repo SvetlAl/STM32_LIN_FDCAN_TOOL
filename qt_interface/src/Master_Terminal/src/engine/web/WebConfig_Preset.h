@@ -1,6 +1,19 @@
 #ifndef WEBCONFIG_PRESET_H
 #define WEBCONFIG_PRESET_H
 
+/***********************************************************************
+ *
+ *
+ * Web Config Preset incapsulates main Web URLs:
+ *
+ *  General Update data
+ *  Update bin path
+ *  Override update path
+ *
+ * The class is used to save/load presets for WebConfig class
+ *
+ ************************************************************************/
+
 #include <stdlib.h>
 #include <iostream>
 #include "../../app_settings.h"
@@ -20,18 +33,21 @@ public:
 
     ~WebConfig_Preset() = default;
 
+     //===================== Operators =======================
      friend QDataStream& operator >>( QDataStream& d, WebConfig_Preset& wcp);
      friend QDataStream& operator << (QDataStream& d, const WebConfig_Preset& wcp);
 
-    const QString &getVersion_info_url() const;
-    const QString &getUpdate_url() const;
-    const QString &getCode_override_url() const;
+     //=============== Class Setters/Getters ==================
+     const QString &getVersion_info_url() const;
+     const QString &getUpdate_url() const;
+     const QString &getCode_override_url() const;
 
 private:
     QString version_info_url = App_settings::DEFAULT_VERSION_INFO_ADDRESS;
     QString update_url = App_settings::DEFAULT_UPDATE_ADDRESS;
     QString code_override_url = App_settings::DEFAULT_CODE_OVERRIDE_ADDRESS;
 };
+
 
 QDataStream& operator << (QDataStream& d, const WebConfig_Preset& wcp);
 QDataStream& operator >> (QDataStream& d, WebConfig_Preset& wcp);

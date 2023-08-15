@@ -191,7 +191,7 @@ void FLASH_ProgramWord(uint32_t Address, uint32_t Data){
 
 void FLASH_Erase_area(uint32_t start_address, uint32_t size){
 	#ifdef STM32F205
-	if((start_address < 0x08000000) | (start_address > 0x080FFFFF)){
+	if(start_address < 0x08000000 | start_address > 0x080FFFFF){
 		return;
 	}
 	uint32_t address_pos = start_address;

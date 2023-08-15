@@ -31,13 +31,16 @@ Rectangle {
         GradientStop { position: _gradient_end_pos; color: st_gradient_end}
     }
 
-    /********* values ********/
+    /*******************************************************************/
+    /*                                Modes                            */
+    /*******************************************************************/
+
     property bool st_editable: false
     property bool st_checkable: false
     property bool st_sortable: false
     property bool st_2can_trace_mode: false
 
-    property string st_secondary_color_mark_value: "CAN 2";
+    readonly property string st_secondary_color_mark_value: "CAN 2";
     /********* alias ********/
 
     id: root

@@ -13,7 +13,7 @@
 /************************************ 		Global vars			 **********************************/
 /********************************************************************************************/
 
-#if defined(ALLIGATOR) | defined(TEC_MODULE)
+#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 extern volatile uint8_t blink_timeout;
 extern volatile uint8_t blink_switch;
 #endif

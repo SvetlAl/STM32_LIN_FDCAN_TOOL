@@ -1,6 +1,17 @@
 #ifndef BUSDATAPROPERTY_H
 #define BUSDATAPROPERTY_H
 
+/***********************************************************************
+ * BusManager <== CanBusTraceProperty     <==  CanBusItem
+ *            <== CanBusMonitorProperty   <==  CanBusItemMonitor
+ *
+ * CanBusTraceProperty   represents a trace
+ *
+ * CanBusMonitorProperty represents a real-time CAN monitor
+ *
+ *
+ ************************************************************************/
+
 #include "../../app_settings.h"
 #include <QDebug>
 #include <stdio.h>
@@ -28,6 +39,8 @@ public:
 
     ~CanBusTraceProperty(){};
 
+    //=============================== Static preset =================================
+
     enum CollectionRole {
         BoolDataRole = (Qt::UserRole + 1)
     };
@@ -43,18 +56,22 @@ public:
         ColumnCount
     };
 
+    // Two extra roles added
     QHash<int, QByteArray> roleNames() const override {
         auto roles = QAbstractListModel::roleNames();
         roles[ItemDataRole] = ITEM_ROLE_NAME;
         roles[BoolDataRole] = BOOL_ROLE_NAME;
         return roles;
     }
+    //=================================== Init ======================================
+    void addItem(const QByteArray &data, bool validate = false);
+    void addItem(const QByteArray &data, const ParseFilter &filter, bool validate = false);
 
+    //================================ Data access ==================================
     int columnCount(const QModelIndex & = QModelIndex()) const override;
 
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const override;
-
 
     QVariant data( const QModelIndex& index, int role ) const override {
         if (!index.isValid())
@@ -159,26 +176,6 @@ public:
         return false;
     }
 
-
-
-    Q_INVOKABLE QVariant item( int i ) {
-        if ( i < 0 || i >= count() ) return QVariant();
-        auto obj = at( i ).data();
-        QQmlEngine::setObjectOwnership( obj, QQmlEngine::CppOwnership );
-        return QVariant::fromValue( obj );
-    }
-
-    void addItem(const QByteArray &data, bool validate = false);
-    void addItem(const QByteArray &data, const ParseFilter &filter, bool validate = false);
-
-    void sortColumn(const int col, bool fromTopToBottom = true);
-    void switchSortColumn(const int col);
-    void deleteSelected();
-    void deleteRange(int begin, int end);
-    void setAllMsgsDirection(int id, int dir);
-    void deductTimeStamp(uint32_t tmstmp);
-    void deleteTimeStampRange(int start, int end);
-
     //=========================================================
     //=========================================================
     QString getIsSelected(const int i) const{
@@ -264,40 +261,31 @@ public:
         return val_ptr->getByteArray();
     }
 
-    void debug() const{
-        uint32_t i = (count() - 1);
-        do{
-            dataPtr(i)->print();
-        }while(i--);
+    Q_INVOKABLE QVariant item( int i ) {
+        if ( i < 0 || i >= count() ) return QVariant();
+        auto obj = at( i ).data();
+        QQmlEngine::setObjectOwnership( obj, QQmlEngine::CppOwnership );
+        return QVariant::fromValue( obj );
     }
 
-    const QByteArray get_raw_data_for_cdc(int *start_pos, int msg_count, bool circular_mode) const{
-        QByteArray arr;
-        const int max_pos = count() - 1;
-        int pos = *start_pos;
-        int messages_to_send = msg_count;
-        while(messages_to_send--){
-            //qDebug() << "**************if(pos > max_pos)********************";
-            //qDebug() << "circular_mode  " << circular_mode;
-            // qDebug() << "******* pos **** " << pos << "   ******** max_pos *******  " << max_pos;
+    //================================= Edit model ==================================
+    void sortColumn(const int col, bool fromTopToBottom = true);
+    void switchSortColumn(const int col);
+    void deleteSelected();
+    void deleteRange(int begin, int end);
+    void setAllMsgsDirection(int id, int dir);
+    void deductTimeStamp(uint32_t tmstmp);
+    void deleteTimeStampRange(int start, int end);
 
 
-            if(pos > max_pos){// the end of a trace reached
-                if(circular_mode) pos = 0;
-                else{
-                    qDebug() << "Making invalid";
-                    arr.append(CanBusItem::makeInvalidByteArray());
-                }
-            }
 
-            if(pos <= max_pos){
-                arr.append(raw_data(pos++));
-            }
-        }
-        *start_pos = pos;
-        return arr;
-    }
+    //================================= Print and debug ===============================
+    void debug() const;
 
+    //================================= Class service ==================================
+    const QByteArray get_raw_data_for_cdc(int *start_pos, int msg_count, bool circular_mode) const;
+
+    //============================= Class setters/getters ==============================
     uint32_t max_items() const;
     void setMax_items(uint32_t newMax_items);
 
@@ -320,8 +308,11 @@ protected:
     QStringList m_columnNames; // << " " << "Time" << "CAN" << "IDE" << "ID" << "DLC" << "Data";
     uint32_t m_max_items = App_settings::DEFAULT_MAX_TRACE_ITEMS;
 
+    // how to call bool data role from QML
     constexpr static const char BOOL_ROLE_NAME[] = "boolData";
 };
+
+
 
 
 
@@ -350,6 +341,7 @@ public:
     };
     ~CanBusMonitorProperty(){};
 
+    //=============================== Static preset =================================
     enum CollectionRole {
      //   BoolDataRole = (Qt::UserRole + 1)
     };
@@ -367,23 +359,24 @@ public:
     QHash<int, QByteArray> roleNames() const override {
         auto roles = QAbstractListModel::roleNames();
         roles[ItemDataRole] = ITEM_ROLE_NAME;
-    //    roles[BoolDataRole] = BOOL_ROLE_NAME;
         return roles;
     }
-
     int columnCount(const QModelIndex & = QModelIndex()) const override;
 
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const override;
 
 
+    //=================================== Init =========================================
+    void addItem(const QByteArray &_can_msg_data, bool validate = false);
+    void addItem(const QByteArray &_can_msg_data, const ParseFilter &filter, bool validate = false);
+    void reset();
+
+    //================================ Data access =====================================
     QVariant data( const QModelIndex& index, int role ) const override {
         if (!index.isValid())
             return QVariant();
-
         auto row = index.row();
- //       auto col = index.column();
-
         if ( row < 0 || row >= count())
             return QVariant();
 
@@ -393,8 +386,6 @@ public:
         return QVariant();
     }
 
-
-
     Q_INVOKABLE QVariant item( int i ) {
         if ( i < 0 || i >= count() ) return QVariant();
         auto obj = at( i ).data();
@@ -402,26 +393,17 @@ public:
         return QVariant::fromValue( obj );
     }
 
-    void addItem(const QByteArray &_can_msg_data, bool validate = false);
-    void addItem(const QByteArray &_can_msg_data, const ParseFilter &filter, bool validate = false);
-
-
-    bool containsId(int id) const {
-        return m_idSet.contains(id);
-    }
-
-
-    void reset(){
-        m_idSet.clear();
-        clear();
-    }
+    //================================= Edit model =====================================
+    //================================= Print and debug ================================
+    //================================= Class service ==================================
+    //============================= Class setters/getters ==============================
+    bool containsId(int id) const;
 
 Q_SIGNALS:
     void changed();
     // void selectChanged();
 
 public slots:
-
 
 protected:
     void emitChanged() override{

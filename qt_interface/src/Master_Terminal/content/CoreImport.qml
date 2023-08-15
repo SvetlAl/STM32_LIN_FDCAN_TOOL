@@ -8,6 +8,7 @@ import Qt5Compat.GraphicalEffects
 Item {
     id: root
 
+
     readonly property string app_name: "CAN/LIN terminal"
     readonly property string app_author: "Alexander Svetlichnyy"
     readonly property string app_date: " "
@@ -155,41 +156,39 @@ Item {
     readonly property var base_items_filenames:
         [base_group + default_page,
         base_group + "SelectModel",
-        //base_group + "AdjustSpeedMlt",
-        //base_group + "AdjustOdoMlt",
-        //base_group + "AdjustCruiseMlt",
-        //base_group + "AdjustTyresThreshold",
-        //base_group + "TestVehicleConnection",
+        base_group + "AdjustSpeedMlt",
+        base_group + "AdjustOdoMlt",
+        base_group + "AdjustCruiseMlt",
+        base_group + "AdjustTyresThreshold",
+        base_group + "TestVehicleConnection",
         base_group + "ManualOverride",
         base_group + "MemoryMonitor",
         base_group + "MemoryWrite",
         base_group + "CAN_Override",
         base_group + "CAN_Scanner",
         base_group + "Device_Modes",
-        //base_group + "LIN_Override",
-        //base_group + "Update",
-        //base_group + "AndroidJNIDebug"
-    ];
+        base_group + "LIN_Override",
+        base_group + "Update",
+        base_group + "AndroidJNIDebug"];
 
     /*************** Base Items *******************/
     property var base_items:
         [qsTr("Main"),
         qsTr("SelectModel"),
-        //qsTr("Speedometer"),
-        //qsTr("Odometer"),
-        //qsTr("Cruise"),
-        //qsTr("Tyres threshold"),
-        //qsTr("Dashboard test"),
+        qsTr("Speedometer"),
+        qsTr("Odometer"),
+        qsTr("Cruise"),
+        qsTr("Tyres threshold"),
+        qsTr("Dashboard test"),
         qsTr("Manual Override"),
         qsTr("Memory Monitor"),      
         qsTr("Memory Write"),
         qsTr("CAN Override"),
         qsTr("CAN Scanner"),
-        qsTr("Device Modes")
-        //qsTr("LIN Override"),
-        //qsTr("Update"),
-        //qsTr("AndroidJNIDebug")
-    ];
+        qsTr("Device Modes"),
+        qsTr("LIN Override"),
+        qsTr("Update"),
+        qsTr("AndroidJNIDebug")];
 
     /*************** Drawer Items *******************/
     property var drawer_items:
@@ -251,22 +250,24 @@ Item {
         base_items =
                 [qsTr("Main"),
                  qsTr("SelectModel"),
-                 //qsTr("Speedometer"),
-                 //qsTr("Odometer"),
-                 //qsTr("Cruise"),
-                 //qsTr("Tyres threshold"),
-                 //qsTr("Dashboard test"),
+                 qsTr("Speedometer"),
+                 qsTr("Odometer"),
+                 qsTr("Cruise"),
+                 qsTr("Tyres threshold"),
+                 qsTr("Dashboard test"),
                  qsTr("Manual Override"),
                  qsTr("Memory Monitor"),
                  qsTr("Memory Write"),
                  qsTr("CAN Override"),
                  qsTr("CAN Scanner"),
-                 qsTr("Device Modes")
-                 //qsTr("LIN Override"),
-                 //qsTr("Update"),
-                 //qsTr("AndroidJNIDebug")
+                 qsTr("Device Modes"),
+                 qsTr("LIN Override"),
+                 qsTr("Update"),
+                 qsTr("AndroidJNIDebug")
                  ];
 
+        // Arctic Trucks
+        /*
         spd_clbr_available_description = qsTr("Speedometer calibration available.")
         spd_clbr_unavailable_description = qsTr("Speedometer calibration unavailable.")
         spd_clbr_pulse_available_description = qsTr("Speedometer calibration is available via pulse calibrator.")
@@ -281,6 +282,24 @@ Item {
         tyr_thr_unavailable_description = qsTr("Tyres pressure threshold customization unavailable.")
         test_available_description = qsTr("Press the button to check wires connection. When connected properly the speedometer dial would show a test value.")
         test_unavailable_description = qsTr("Connection test unavailable.")
+        */
+        // Public
+
+        spd_clbr_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        spd_clbr_unavailable_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        spd_clbr_pulse_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        odo_clbr_pulse_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        odo_clbr_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        odo_clbr_unavailable_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        crs_clbr_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        crs_clbr_unavailable_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+
+        tyr_thr_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        tyr_thr_lin_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        tyr_thr_unavailable_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        test_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+        test_unavailable_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")
+
     }
 
     /*************** View Scale ****************/

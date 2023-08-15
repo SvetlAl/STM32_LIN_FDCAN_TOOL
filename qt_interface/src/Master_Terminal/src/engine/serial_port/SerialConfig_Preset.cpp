@@ -1,6 +1,15 @@
 #include "SerialConfig_Preset.h"
 
 #ifdef QT_IN_USE
+
+/********************************************************************
+ *
+ *
+ *                    Class setters/getters
+ *
+ *
+********************************************************************/
+
 const QString &SerialConfig_Preset::getPortname() const{
     return portname;
 }
@@ -72,6 +81,14 @@ const QString &SerialConfig_Preset::getFilename_scan_recieved() const{
 const QString &SerialConfig_Preset::getFilename_script_to_send() const{
     return filename_script_to_send;
 }
+
+/********************************************************************
+ *
+ *
+ *                     Operators
+ *
+ *
+********************************************************************/
 
 QDataStream& operator << (QDataStream& d, const SerialConfig_Preset& scp){
     d << scp.portname;

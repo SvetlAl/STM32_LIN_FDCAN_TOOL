@@ -40,8 +40,11 @@ Rectangle{
         Isuzu = 5,
         Lexus = 6,
         Tank = 7,
-        Extra = 8,
-        Default = 9
+        Honda = 8,
+        Ford = 9,
+        Nissan = 10,
+        Extra = 11,
+        Default = 12
     }
 
     function getLogoPath(_brand_code){
@@ -55,8 +58,11 @@ Rectangle{
         case Component_Base_SelectModel_Modellist.ModelBrand.Isuzu:{  brand_name = "ISUZU"; break; }
         case Component_Base_SelectModel_Modellist.ModelBrand.Lexus:{  brand_name = "LEXUS"; break; }
         case Component_Base_SelectModel_Modellist.ModelBrand.Tank:{  brand_name = "TANK"; break; }
+        case Component_Base_SelectModel_Modellist.ModelBrand.Honda:{  brand_name = "HONDA"; break; }
+        case Component_Base_SelectModel_Modellist.ModelBrand.Ford:{  brand_name = "FORD"; break; }
+        case Component_Base_SelectModel_Modellist.ModelBrand.Nissan:{  brand_name = "NISSAN"; break; }
         case Component_Base_SelectModel_Modellist.ModelBrand.Extra:{  brand_name = "EXTRA"; break; }
-        default:{  brand_name = "TOYOTA"; break; }
+        default:{  brand_name = "EXTRA"; break; }
         }
         return CoreImport.brand_logos_path + brand_name + ".png";
     }

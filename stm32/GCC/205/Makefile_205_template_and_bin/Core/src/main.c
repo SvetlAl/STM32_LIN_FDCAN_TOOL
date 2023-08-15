@@ -24,7 +24,7 @@ extern volatile uint32_t cmd_fll;				/* cmd_buffer flag. If recieved data contai
 
 
 /* blink LED*/
-#if defined(ALLIGATOR) | defined(TEC_MODULE)
+#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 extern volatile uint8_t blink_timeout;
 extern volatile uint8_t blink_switch;
 #endif
@@ -195,8 +195,10 @@ int main(void){
 
 	NVIC_EnableIRQ(CAN1_RX0_IRQn);
 	NVIC_SetPriority(CAN1_RX0_IRQn, 7);
+	#ifndef DEVICE_1CAN2LIN
 	NVIC_EnableIRQ(CAN2_RX0_IRQn);
 	NVIC_SetPriority(CAN2_RX0_IRQn, 8);
+	#endif
 	
 	// watchdog
 	#ifdef STM32F205
@@ -231,7 +233,7 @@ int main(void){
 		#ifdef CAN_TX_BUFFER_ENABLED
 		timeout = 0xFF;
 		while(timeout-- > 0){
-				
+
 			/*******************************************************************
 			******************** buffered transmission procedure ***************
 			*******************************************************************/
@@ -267,7 +269,7 @@ int main(void){
 		#endif
 			
 		/*********** LED blinking **************/
-		#if defined(ALLIGATOR) | defined(TEC_MODULE)
+		#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 		if(blink_switch) if(blink_timeout++ == blink_switch) {TOGGLE_SIGNAL_LED;}
 		#endif
 		

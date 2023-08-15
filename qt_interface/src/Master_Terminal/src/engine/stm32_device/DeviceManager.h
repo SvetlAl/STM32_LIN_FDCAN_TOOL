@@ -1,24 +1,33 @@
 #ifndef DEVICEMANAGER_H
 #define DEVICEMANAGER_H
 
+/***********************************************************************
+ *
+ *
+ * DeviceManager is a class designed to handle all supported device modes
+ *
+ * Based on the structures imported form the firmware C code
+ *
+ *
+ ************************************************************************/
+
 #include <QObject>
 #include <QDebug>
 #include "OverrideStatus.h"
 #include "QML_Model/QDiscardId_ModelProperty.h"
 #include "QML_Model/QOverrideFilter_ModelProperty.h"
-//#include "../../core/Console.h"
-
-
 
 //======================= Exported from 'C' ============================
 typedef enum  : uint8_t {
     DEVICE_OPERATION_MODE_DEFAULT = (uint8_t)0xFF,
     DEVICE_OPERATION_MODE_ON = (uint8_t)0x01,
     DEVICE_OPERATION_MODE_OFF = (uint8_t)0x02,
-    DEVICE_OPERATION_MODE_REV = (uint8_t)0x03,
+    DEVICE_OPERATION_MODE_REV = (uint8_t)0x03,   // Reverse CAN1 and CAN2
     DEVICE_OPERATION_MODE_CIRCULAR_REV = (uint8_t)0x04,
     DEVICE_OPERATION_MODE_CIRCULAR = (uint8_t)0x05,
-    DEVICE_OPERATION_MODE_FILTR_UPD = (uint8_t)0x06} eDeviceFunctionMode;
+    DEVICE_OPERATION_MODE_FILTR_UPD = (uint8_t)0x06,
+    DEVICE_OPERATION_MODE_CDC_TRACE_AUTO_THRESHOLD = (uint8_t)0x07,
+    DEVICE_OPERATION_MODE_CDC_TRACE_FIXED_THRESHOLD = (uint8_t)0x08} eDeviceFunctionMode;
 
     /* this is needed for interface application for a correct command set */
 typedef enum  : uint8_t{
@@ -31,7 +40,7 @@ typedef enum  : uint8_t{
 typedef struct DeviceModel{
     eMemChipModel memChipModel;
     eDeviceFunctionMode canGatewayMode;
-    eDeviceFunctionMode can2GatewayMode;
+    eDeviceFunctionMode can2GatewayMode; // OBSOLETE
     eDeviceFunctionMode calibratorFilterMode;
     eDeviceFunctionMode canOverrideMode;
     eDeviceFunctionMode canScannerMode;
@@ -49,18 +58,29 @@ typedef struct DeviceModel{
     uint8_t val_BTR_SJW_2;
     eDeviceFunctionMode customBTR_2;
     eDeviceFunctionMode canInjectionMode_CDC;
-} DeviceModel;
+    eDeviceFunctionMode canInjection_CDC_threshold_mode;
+    uint8_t canInjection_CDC_threshold_value;
+    eDeviceFunctionMode scanner_hardware_filter;
+    uint8_t lower_hw_filter_b0;
+    uint8_t lower_hw_filter_b1;
+    uint8_t lower_hw_filter_b2;
+    uint8_t lower_hw_filter_b3;
+    uint8_t higher_hw_filter_b0;
+    uint8_t higher_hw_filter_b1;
+    uint8_t higher_hw_filter_b2;
+    uint8_t higher_hw_filter_b3;
+} DeviceModel; //creating new type
 
 enum DeviceModelProperties{
     Enm_memChipModel = 0,
     Enm_canGatewayMode = 1,
-    Enm_can2GatewayMode = 2,
+    Enm_can2GatewayMode = 2, // OBSOLETE
     Enm_calibratorFilterMode = 3,
     Enm_canOverrideMode = 4,
     Enm_canScannerMode = 5,
     Enm_can2ScannerMode = 6,
     Enm_memoryProgramingMode = 7,
-    Enm_canInjectionMode = 8,
+    Enm_canInjectionMode = 8, // not tested properly
     Enm_val_BTR_PSC = 9,
     Enm_val_BTR_BS1 = 10,
     Enm_val_BTR_BS2 = 11,
@@ -71,9 +91,19 @@ enum DeviceModelProperties{
     Enm_val_BTR_BS2_2 = 16,
     Enm_val_BTR_SJW_2 = 17,
     Enm_customBTR_2 = 18,
-    Enm_canInjectionMode_CDC = 19
+    Enm_canInjectionMode_CDC = 19,
+    Enm_canInjection_CDC_threshold_mode = 20,
+    Enm_canInjection_CDC_threshold_value = 21,
+    Enm_scanner_hardware_filter = 22,
+    Enm_lower_hw_filter_b0 = 23,
+    Enm_lower_hw_filter_b1 = 24,
+    Enm_lower_hw_filter_b2 = 25,
+    Enm_lower_hw_filter_b3 = 26,
+    Enm_higher_hw_filter_b0 = 27,
+    Enm_higher_hw_filter_b1 = 28,
+    Enm_higher_hw_filter_b2 = 29,
+    Enm_higher_hw_filter_b3 = 30
 };
-
 
 typedef union uDeviceModel{
     DeviceModel deviceModel;
@@ -101,7 +131,11 @@ class DeviceManager : public QObject{
     Q_PROPERTY(int val_BTR_SJW_2 READ val_BTR_SJW_2 WRITE setVal_BTR_SJW_2 NOTIFY changed)
     Q_PROPERTY(int canInjection_Mode_CDC READ canInjection_Mode_CDC NOTIFY changed)
     Q_PROPERTY(QString memchip_name READ memchip_name NOTIFY memchip_changed)
-
+    Q_PROPERTY(int cdc_injection_threshold_mode READ cdc_injection_threshold_mode WRITE set_cdc_injection_threshold_mode NOTIFY changed)
+    Q_PROPERTY(int cdc_injection_threshold_value READ cdc_injection_threshold_value WRITE set_cdc_injection_threshold_value NOTIFY changed)
+    Q_PROPERTY(int scanner_hardware_filter READ scanner_hardware_filter WRITE set_scanner_hardware_filter NOTIFY changed)
+    Q_PROPERTY(QString str_scanner_hardware_filter_lwr READ str_scanner_hardware_filter_lwr WRITE set_str_scanner_hardware_filter_lwr NOTIFY changed)
+    Q_PROPERTY(QString str_scanner_hardware_filter_hgr READ str_scanner_hardware_filter_hgr WRITE set_str_scanner_hardware_filter_hgr NOTIFY changed)
 
     /******************************************************************************************/
     /*                              CAN override configuration                                */
@@ -119,22 +153,19 @@ public:
         reset();
     }
     ~DeviceManager() {};
-
-    void reset(){
-        for(size_t i = 0; i < sizeof(DeviceModel) ; i++){
-            targetDeviceData.data[i] = 0xFF;
-        }
-    }
     constexpr static const int data_struct_size = sizeof(DeviceModel);
 
-    void init(const QByteArray &_init_data){
-        for(size_t i = 0; i < sizeof(DeviceModel); i++){
-            targetDeviceData.data[i] = _init_data.at(i);
-        }
-        emit changed();
-        emit memchip_changed();
-    }
+    //===================================== init ======================================
+    void reset();
+    void init(const QByteArray &_init_data);
+    // Discard model
+    Q_INVOKABLE void fill_OvrSts_from_DscModel();
+    Q_INVOKABLE void update_DscModel_from_OvrSts();
+    // Override filter model
+    Q_INVOKABLE void fill_OvrSts_from_OvrModel();
+    Q_INVOKABLE void update_OvrModel_from_OvrSts();
 
+    //============================== Class setters/getters=============================
     int memoryPrograming_Mode() const { return targetDeviceData.deviceModel.memoryProgramingMode; }
     int canGateway_Mode() const { return targetDeviceData.deviceModel.canGatewayMode; }
     int calibratorFilter_Mode() const { return targetDeviceData.deviceModel.calibratorFilterMode; }
@@ -153,6 +184,12 @@ public:
     int val_BTR_BS2_2() const { return targetDeviceData.deviceModel.val_BTR_BS2_2; }
     int val_BTR_SJW_2() const { return targetDeviceData.deviceModel.val_BTR_SJW_2; }
     int canInjection_Mode_CDC() const { return targetDeviceData.deviceModel.canInjectionMode_CDC; }
+    int cdc_injection_threshold_mode() const { return targetDeviceData.deviceModel.canInjection_CDC_threshold_mode; }
+    int cdc_injection_threshold_value() const { return targetDeviceData.deviceModel.canInjection_CDC_threshold_value; }
+    int scanner_hardware_filter() const { return targetDeviceData.deviceModel.scanner_hardware_filter; }
+    QString str_scanner_hardware_filter_lwr() const;
+    QString str_scanner_hardware_filter_hgr() const;
+    Q_INVOKABLE int get_harware_scanner_filter_value(const int byte_n, bool isLowerBound);
 
     void setCanInjection_Mode(int value);
     void setCanGateway_Mode(int value);
@@ -171,49 +208,27 @@ public:
     void setVal_BTR_BS2_2(int value);
     void setVal_BTR_SJW_2(int value);
     void setCanInjection_Mode_CDC(int value);
+    void set_cdc_injection_threshold_mode(int value);
+    void set_cdc_injection_threshold_value(int value);
+    void set_scanner_hardware_filter(int value);
+    void set_str_scanner_hardware_filter_lwr(const QString new_value);
+    void set_str_scanner_hardware_filter_hgr(const QString new_value);
 
 
+
+
+    const int memchip_code() const;
     const QString memchip_name() const;
-
     const int memchip() const{ return targetDeviceData.deviceModel.memChipModel;}
 
-    /************************************************************************
-     *
-     *
-     *                               Override status
-     *
-     *
-     * **********************************************************************/
+    // Override status
     const QByteArray getOvrFilterData() const;
 
-
-    /************************************************************************
-     *
-     *
-     *                               Discard model
-     *
-     *
-     * **********************************************************************/
-
+    // Discard model
     QDiscardId_ModelProperty *DiscardIdModel(){return &m_DiscardIdModel;}
 
-    Q_INVOKABLE void fill_OvrSts_from_DscModel();
-    Q_INVOKABLE void update_DscModel_from_OvrSts();
-
-
-
-    /************************************************************************
-     *
-     *
-     *                          Override filter model
-     *
-     *
-     * **********************************************************************/
+    // Override filter model
     QOverrideFilter_ModelProperty *OverrideFilterModel(){return &m_OverrideFilterModel;}
-
-    Q_INVOKABLE void fill_OvrSts_from_OvrModel();
-    Q_INVOKABLE void update_OvrModel_from_OvrSts();
-
 
 signals:
     void changed();

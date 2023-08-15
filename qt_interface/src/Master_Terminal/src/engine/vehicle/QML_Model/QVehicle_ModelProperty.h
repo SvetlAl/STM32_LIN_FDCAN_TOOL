@@ -1,6 +1,15 @@
 #ifndef QVEHICLE_MODELPROPERTY_H
 #define QVEHICLE_MODELPROPERTY_H
 
+/***********************************************************************
+ *
+ *
+ * QVehicle_ModelItem set is exposed as a model
+ *
+ *
+ ************************************************************************/
+
+
 #include "../../../app_settings.h"
 #ifdef QT_IN_USE
 #include <QDebug>
@@ -14,12 +23,6 @@
 #include <QQmlEngine>
 #include <QVariant>
 #include <QRegExp>
-
-
-/*****************************************************************************************/
-/* QSerialPortConfigProperty is a model list, that incapsulates all supported car models */
-/*****************************************************************************************/
-/*****************************************************************************************/
 
 
 class QVehicle_ModelProperty: public Obj_List_Model<QVehicle_ModelItem>{
@@ -43,6 +46,7 @@ public:
         return QVariant::fromValue( obj );
     }
 
+    //============================= Setters/Getters =================================
     Q_INVOKABLE QVariant current_item();
     Q_INVOKABLE int getCurrentIndex() const;
     Q_INVOKABLE void setCurrentIndex(int _index);
@@ -52,6 +56,7 @@ public:
     const int get_property_value(const int i);
     const void set_property_value(const int _new_val, const int i);
 
+    //==================================== init =====================================
     virtual void init (){};
 
 Q_SIGNALS:
@@ -66,9 +71,6 @@ protected:
     int default_index = 0;
 };
 
-/*****************************************************************************************/
-/*********************       Model names property model      *****************************/
-/*****************************************************************************************/
 
 class QVehicleNames_ModelProperty: public QVehicle_ModelProperty{
     Q_OBJECT
@@ -79,6 +81,7 @@ public:
     virtual ~QVehicleNames_ModelProperty(){};
 
 
+    //==================================== init =====================================
     void init () override;
 
     protected:

@@ -201,6 +201,7 @@ public:
     Q_INVOKABLE void saveDeviceStatus(); // device status and override filters
     Q_INVOKABLE bool setDeviceValue(uint32_t property, uint8_t value);
     Q_INVOKABLE bool startCDC_CAN_Injection(uint8_t value);
+    Q_INVOKABLE void refresh_hardware_scanner_filters(bool isLowerThresh);
 
 
 
@@ -302,8 +303,6 @@ public slots:
     }
 
     void readInjectionModeRequest(const QByteArray _data){
-        //qDebug() << "_data.toHex()";
-        //qDebug() << _data.toHex();
         // Here host recieves from device a request with how many bytes of a trace need to be sent
         uint32_t msgcount = 0x00;
         msgcount |= (uint32_t)((uint32_t)(_data.at(0) << 24) & ~0x00FFFFFF);

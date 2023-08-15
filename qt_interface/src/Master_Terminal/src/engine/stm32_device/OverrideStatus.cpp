@@ -1,4 +1,11 @@
 #include "OverrideStatus.h"
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
 
 void OverrideStatus::init_OverrideStatuswithRawData(const QByteArray &data){
     if(data.size()!=DEVICE_OVERRIDE_FILTER_SETTINGS_LENGTH) return;
@@ -6,6 +13,14 @@ void OverrideStatus::init_OverrideStatuswithRawData(const QByteArray &data){
         m_ovr_status.raw_data[i] = data.at(i);
     }
 }
+
+/********************************************************************
+ *
+ *
+ *                     Class Setters/getters
+ *
+ *
+********************************************************************/
 
 void OverrideStatus::setActiveFilters(const QByteArray &data){
     if(data.size()!= 4) return;
@@ -18,16 +33,6 @@ const QByteArray OverrideStatus::getRawData() const{
     const QByteArray data(reinterpret_cast<const char*>(m_ovr_status.raw_data), sizeof(u_can_override_status));
     return data;
 }
-/*
-uint16_t ignored_id_num;
-uint16_t overrided_id_num;
-uint16_t ignored_id_dirs_msk; // 0 - CAN1, 1 - CAN2
-uint16_t overrided_id_dirs_msk; // 0 - CAN1, 1 - CAN2
-can_override_filter filters[MAX_OVERRIDE_FILTERS];
-can_id ignored_ids[MAX_IGNORED_IDS];
-uint8_t override_msks[MAX_OVERRIDE_FILTERS];
-
-*/
 
 const uint16_t OverrideStatus::get_ignored_id_num() const{
     return m_ovr_status.status.ignored_id_num;

@@ -1,5 +1,14 @@
 #include "Vehicle.h"
 
+
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
+
 void Vehicle::init_with_response_bytes(const QByteArray &response_bytes){
     uint16_t prev_model = model();
 
@@ -122,13 +131,55 @@ void Vehicle::initNewModel() {
         is_cruise_mlt_available = true;
         is_tyres_threshold_available = true;
         set_modelName("TANK_300");
+        break;   
+    case MODEL_TOYOTA_SEQUOIA_2022:
+        is_speedometer_mlt_available = true;
+        is_odometer_mlt_available = true;
+        is_cruise_mlt_available = true;
+        is_tyres_threshold_available = true;
+        set_modelName("TOYOTA_SEQUOIA_22");
         break;
-    case MODEL_EXTRA:
-        is_speedometer_mlt_available = false;
-        is_odometer_mlt_available = false;
-        is_cruise_mlt_available = false;
-        is_tyres_threshold_available = false;
-        set_modelName("EXTRA");
+    case MODEL_HONDA_CRV_III:
+        is_speedometer_mlt_available = true;
+        is_odometer_mlt_available = true;
+        is_cruise_mlt_available = true;
+        is_tyres_threshold_available = true;
+        set_modelName("HONDA_CRV_III");
+        break;
+    case MODEL_FORD_TRANSIT_2020:
+        is_speedometer_mlt_available = true;
+        is_odometer_mlt_available = true;
+        is_cruise_mlt_available = true;
+        is_tyres_threshold_available = true;
+        set_modelName("FORD_TRANSIT_20");
+        break;
+    case MODEL_EXTRA_I:
+        is_speedometer_mlt_available = true;
+        is_odometer_mlt_available = true;
+        is_cruise_mlt_available = true;
+        is_tyres_threshold_available = true;
+        set_modelName("EXTRA_I");
+        break;
+    case MODEL_EXTRA_II:
+        is_speedometer_mlt_available = true;
+        is_odometer_mlt_available = true;
+        is_cruise_mlt_available = true;
+        is_tyres_threshold_available = true;
+        set_modelName("EXTRA_II");
+        break;
+    case MODEL_EXTRA_III:
+        is_speedometer_mlt_available = true;
+        is_odometer_mlt_available = true;
+        is_cruise_mlt_available = true;
+        is_tyres_threshold_available = true;
+        set_modelName("EXTRA_III");
+        break;
+    case MODEL_NISSAN_PATROL_2020:
+        is_speedometer_mlt_available = true;
+        is_odometer_mlt_available = true;
+        is_cruise_mlt_available = true;
+        is_tyres_threshold_available = true;
+        set_modelName("NISSAN_PTRL_20");
         break;
     default:
         is_speedometer_mlt_available = false;
@@ -154,6 +205,14 @@ void Vehicle::reset(){
     set_id_odometer(0);
     set_id_cruise(0);
 }
+
+/********************************************************************
+ *
+ *
+ *                     Signals
+ *
+ *
+********************************************************************/
 
 void Vehicle::all_changed(){
     emit model_name_changed();

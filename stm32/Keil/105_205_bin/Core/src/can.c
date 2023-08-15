@@ -174,19 +174,22 @@ void Can_Init_Buffers(){
 	CAN1->IER |= CAN_IER_TMEIE;
 	CAN1->IER |= CAN_IER_LECIE;
 	
-	CAN2->IER |= CAN_IER_ERRIE;
-	CAN2->IER |= CAN_IER_TMEIE;
-	CAN2->IER |= CAN_IER_LECIE;
-	
 	NVIC_EnableIRQ(CAN1_TX_IRQn);
 	NVIC_SetPriority(CAN1_TX_IRQn, 9);
 	NVIC_EnableIRQ(CAN1_SCE_IRQn);
 	NVIC_SetPriority(CAN1_SCE_IRQn, 8);
+		
+	#ifndef DEVICE_1CAN2LIN
+	CAN2->IER |= CAN_IER_ERRIE;
+	CAN2->IER |= CAN_IER_TMEIE;
+	CAN2->IER |= CAN_IER_LECIE;
 	
+
 	NVIC_EnableIRQ(CAN2_TX_IRQn);
 	NVIC_SetPriority(CAN2_TX_IRQn, 9);
 	NVIC_EnableIRQ(CAN2_SCE_IRQn);
 	NVIC_SetPriority(CAN2_SCE_IRQn, 8);
+	#endif
 	
 #endif
 }
@@ -681,6 +684,8 @@ uint32_t process_buffered_can_tx(){
 		}
 	}	// пробежаться по интерфейсам
 	return sent_msgs;
+	#else
+	return 0x00;
 	#endif
 }
 

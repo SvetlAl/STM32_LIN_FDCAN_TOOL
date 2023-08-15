@@ -1,5 +1,13 @@
 #include "Containerdesign.h"
 
+/********************************************************************
+ *
+ *
+ *                     Operators
+ *
+ *
+********************************************************************/
+
 QDataStream& operator << (QDataStream& d, const ContainerDesignInt& cd){
     d << cd.m_name << cd.p_items;
     return d;

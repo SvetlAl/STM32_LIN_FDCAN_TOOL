@@ -1,15 +1,49 @@
 #ifndef QOVERRIDEFILTER_MODELITEM_H
 #define QOVERRIDEFILTER_MODELITEM_H
 
+/***********************************************************************
+ * QOverrideFilter_ModelItem ==> QOverrideFilter_ModelProperty ==>
+ *
+ *
+ *
+ * QOverrideFilter_ModelItem represent an override CAN filter of the firmware
+ *
+ * An override filter contains:
+ *  Editable Status: Enabled or disabled
+ *  Enabled Status: Enabled or disabled
+ *  Direction: CAN1 or CAN2
+ *  ID
+ *  Byte 0
+ *  Byte 1
+ *  Byte 2
+ *  Byte 3
+ *  Byte 4
+ *  Byte 5
+ *  Byte 6
+ *  Byte 7
+ *  Mask
+ *
+ * Example:
+ * If the override filter
+ *  CAN2
+ *  ID 0x121
+ *  Byte 0 0x00
+ *  Byte 1 0x00
+ *  Byte 2 0x00
+ *  Byte 3 0x03
+ *  Byte 4 0x00
+ *  Byte 5 0x00
+ *  Byte 6 0x00
+ *  Byte 7 0x07
+ *  Mask 0b00010001
+ * is enabled, all messages with id 0x121 coming from CAN2 into CAN1 would have the bytes 3 and 7 replaced with the values 0x03 and 0x07
+ *
+ ************************************************************************/
+
+
 #include "../../../app_settings.h"
 #include <QDebug>
 #include <stdio.h>
-
-/*****************************************************************************************/
-/*****************************************************************************************/
-/***********                Override CAN filter item                           ***********/
-/*****************************************************************************************/
-/*****************************************************************************************/
 
 class QOverrideFilter_ModelItem: public QObject{
     Q_OBJECT
@@ -35,9 +69,7 @@ class QOverrideFilter_ModelItem: public QObject{
     Q_PROPERTY(bool byte6_on READ byte6_on WRITE setByte6_on NOTIFY changed)
     Q_PROPERTY(bool byte7_on READ byte7_on WRITE setByte7_on NOTIFY changed)
 
-
 public:
-
     explicit QOverrideFilter_ModelItem(QObject *parent = nullptr) {
         if(ovrfltr_id_count == 0)setEditable(true);
         else setEditable(false);
@@ -49,8 +81,7 @@ public:
     }
 
 
-/*** setters and getters ***/
-
+    //=========================== Class setters/getters ===============================
     bool editable() const;
     void setEditable(bool newval);
 

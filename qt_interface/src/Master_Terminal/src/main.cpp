@@ -29,15 +29,16 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QDir>
+#include <QSslSocket>
+#include <QProcess>
+
 #include "app_environment.h"
 #include "app_settings.h"
-//#include "import_qml_plugins.h"
-//#include "main.h"
 #include "src/core/Core.h"
 #include "src/core/Console.h"
 #include "src/core/VersionManager.h"
 #include "src/engine/translator/Qmltranslator.h"
-//#include "src/core/design/Appdesign.h"
 #include "src/engine/serial_port/QSerialPortConfig.h"
 #include "src/engine/serial_port/QSerialPortConfigPC.h"
 #include "src/engine/serial_port/QSerialPortConfigJNI.h"
@@ -48,29 +49,20 @@
 #include "src/engine/memory/MemoryManager.h"
 #include "src/engine/bus/BusManager.h"
 #include "src/engine/stm32_device/DeviceManager.h"
-#include <QDir>
-#include <QSslSocket>
 
-#include <QProcess>
 
 /* Create a core instance */
-
 Core core;
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     set_qt_environment();
 
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
-    /*
-    qDebug() << "************************************************";
-    qDebug() << QSslSocket::supportsSsl() << QSslSocket::sslLibraryBuildVersionString() << QSslSocket::sslLibraryVersionString();
-     true "Secure Channel (NTDDI: 0xA00000B)" "Secure Channel, Windows 10.0.19044"
-    */
 
-    core.init();
 
+    /* Init Core: profile, design settings */
+    core.init(); // load profile and design settings
     qmlRegisterType<Core>("Core", 1, 0, "Core");
     engine.rootContext()->setContextProperty("core", &core);
 
@@ -78,9 +70,6 @@ int main(int argc, char *argv[])
     QmlTranslator qmlTranslator;
     engine.rootContext()->setContextProperty("qmlTranslator", &qmlTranslator);
     qmlTranslator.setTranslation(core.getUserProfileValue(UserProfile::ProfileMembers::Language));
-
-
-
 
     /* Create a QSerialPortConfig, Console and CommandManager instances */
     WebManager *webManager = new WebManager(&app);
@@ -119,30 +108,26 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("serialport_config", serialport_config);
     engine.rootContext()->setContextProperty("theVehicle", theVehicle);
     cmd_manager->init_driver(); 
+
+    /* Set cross references */
     cmd_manager->setVehicle(theVehicle);
     cmd_manager->setPMemoryManager(memory_manager);
-
     webManager->setConsole(interface_console);
     webManager->setWebConfig(webConfig);
     webManager->setVersionManager(versionManager);
     webManager->setCommandManager(cmd_manager);
-
     versionManager->setConsole(interface_console);
     cmd_manager->setPBusManager(bus_manager);
-
-   // cmd_manager->setCore(&core);
-
-
-
     core.setWebConfig(webConfig);
     core.setSerialport_config(serialport_config);
     core.loadSerialPortPreset();
     core.loadWebConfigPreset();
     core.setVersionManager(versionManager);
+
+
     versionManager->handleDeviceVersionInfo();
 
     /* Register singletons */
-  //  engine.load(QUrl(QStringLiteral("qrc:/content/CoreImport.qml")));
     qmlRegisterSingletonType(QUrl("qrc:/content/CoreImport.qml"), "CoreImport", 1, 0, "CoreImport");
 
     const QUrl url(u"qrc:/content/App.qml"_qs);

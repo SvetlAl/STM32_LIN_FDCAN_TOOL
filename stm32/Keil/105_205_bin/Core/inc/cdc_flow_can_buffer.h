@@ -25,6 +25,7 @@
 #define DUAL_CCB_INJECTION_STARTED   (uint32_t)0x00000004 // 00000100 
 #define DUAL_CCB_A_READ_B_WRITE      (uint32_t)0x00000008 // 00001000 //
 #define DUAL_CCB_B_READ_A_WRITE      (uint32_t)0x00000010 // 00010000
+#define DUAL_CCB_STOP                (uint32_t)0x00000020 // 00100000
 
 /*
 enum cdc_flow_can_buffer_status{
@@ -63,6 +64,8 @@ uint32_t fill_dual_cc_buf(dual_cdc_can_buff *dual_buf, uint8_t *data, uint32_t l
 uint32_t pop_dual_cc_buf_item(can_message_info_raw *msg, dual_cdc_can_buff *dual_buf);
 uint32_t pop_single_cc_buf_item(can_message_info_raw *msg, cdc_flow_can_buffer *buf);
 
+uint32_t get_current_READ_buf_read_level(dual_cdc_can_buff *dual_buf);
+uint32_t get_current_WRITE_buf_fill_level(dual_cdc_can_buff *dual_buf);
 
 /*
 typedef union u_cdc_flow_can_buffer{

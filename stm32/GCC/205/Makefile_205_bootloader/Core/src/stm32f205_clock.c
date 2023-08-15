@@ -9,9 +9,9 @@
 #ifdef STM32F205
 #include <stm32f205_clock.h>
 
-#ifndef MDK_ARM_ENV
+//#ifndef MDK_ARM_ENV
 #define HSEStartUp_TimeOut   ((uint16_t)0x0500) /*!< Time out for HSE start up */
-#endif
+//#endif
 
 
 /**

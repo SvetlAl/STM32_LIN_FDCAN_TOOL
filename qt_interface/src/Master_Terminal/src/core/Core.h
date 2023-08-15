@@ -1,12 +1,22 @@
 #ifndef CORE_H
 #define CORE_H
+/***********************************************************************
+ *
+ *
+ * The application core handles:
+ * User Profile (language, e-mail, phone)
+ * View settings (design, scale, color theme)
+ * Serial Port preset
+ *
+ *
+ ************************************************************************/
+
 
 #include <QObject>
 #include <QDebug>
 #include <iostream>
 #include "CoreStatus.h"
 #include "VersionManager.h"
-#include "../app_settings.h"
 #include "../engine/web/WebConfig.h"
 #include "../engine/serial_port/QSerialPortConfig.h"
 #include "design/Appdesign.h"
@@ -20,15 +30,16 @@ public:
     explicit Core(QObject *parent = nullptr);
     ~Core();
 
-    void init_folders();
-    void init();
-
     enum LoaderMode {
         LmUserProfile = 0,
         LmAppDesign = 1,
         LmCoreStatus = 2
     };
 
+
+    //==================================== init =====================================
+    void init_folders();
+    void init();
 
     //===================== Design values setters/getters ============================
     Q_INVOKABLE int getDesignValue_int(const QString _assignment, const QString _item_element, const QString _name){
@@ -68,10 +79,10 @@ public:
     Q_INVOKABLE void saveSetting(int _mode);
     Q_INVOKABLE bool loadSetting(QString _username, int _mode);
 
-    /*************** Serial Port Preset ***********/
+    //============================ Serial Port Preset ===============================
     Q_INVOKABLE void saveSerialPortPreset();
     Q_INVOKABLE bool loadSerialPortPreset();
-    /*************** WebConfig ***********/
+    //================================= WebConfig ===================================
     Q_INVOKABLE void saveWebConfigPreset();
     Q_INVOKABLE bool loadWebConfigPreset();
 
@@ -80,7 +91,7 @@ public:
         m_pAappdesign->print();
     }
 
-    /************************* Setters/Getters **************************/
+    //======================== Class setters/getters =================================
     QSerialPortConfig *getSerialport_config() const;
     void setSerialport_config(QSerialPortConfig *newPtr_serialport_config);
     void setWebConfig(WebConfig *newPWebConfig);
@@ -91,7 +102,7 @@ signals:
     void appDesignChanged();
 
 private:
-    QString fullpath = "";
+    QString fullpath = ""; // holds a full path of the Application folder
     void initUserProfile();
     void initAppDesign(); 
 

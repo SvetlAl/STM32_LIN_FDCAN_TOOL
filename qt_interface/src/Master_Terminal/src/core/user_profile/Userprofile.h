@@ -5,7 +5,6 @@
 #include <map>
 #include <QDebug>
 #include "PhoneNumber.h"
-#include "../../app_settings.h"
 
 using namespace std;
 
@@ -22,9 +21,11 @@ public:
     explicit UserProfile();
     ~UserProfile();
 
-#ifdef QT_IN_USE
+    //======================== Setters/getters =================================
     QString getValue(int _val) const;
     void setValue(int _val, QString _str);
+
+    //============================= Operators ==================================
     friend QDataStream& operator>>( QDataStream& d, UserProfile& up);
 
     UserProfile& operator= (const UserProfile &cs){
@@ -37,30 +38,30 @@ public:
         return *this;
     }
 
-#endif
-    void print();
     friend class Core;
-    /*** setters and getters ***/
 
+    //======================== Debug and print ==================================
+    void print();
+
+    //==================== Class setters/getters ================================
     const QString &name() const;
     const QString &language() const;
     const QString &email() const;
     const PhoneNumber &phone_number() const;
 
 private:
-#ifdef QT_IN_USE
+
     QString m_name;
     QString m_language;
     QString m_email;
-#endif
 
     PhoneNumber m_phone_number;
 };
 
-#ifdef QT_IN_USE
+
 QDataStream& operator << (QDataStream& d, const UserProfile& up);
 QDataStream& operator >> (QDataStream& d, UserProfile& up);
 QDebug operator << (QDebug d, const UserProfile& up);
-#endif
+
 
 #endif // USERPROFILE_H

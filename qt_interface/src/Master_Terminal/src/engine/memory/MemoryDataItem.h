@@ -1,6 +1,23 @@
 #ifndef MEMORYDATAITEM_H
 #define MEMORYDATAITEM_H
 
+/***********************************************************************
+ * MemoryManager <== FlashSpiMemoryDataProperty
+ *                   *MemoryDataProperty         <==  MemoryDataItem
+ *
+ *
+ * MemoryDataItem is an item for MemoryDataProperty model, that represents chip memory data as
+ *  Address
+ *  B0  (bytes 0-3)
+ *  B4  (bytes 4-7)
+ *  B8  (bytes 8-11)
+ *  BC  (bytes 12-15)
+ *  ASCII representation of B0-BC data
+ *
+ *
+ *
+ ************************************************************************/
+
 #include "../../app_settings.h"
 #ifdef QT_IN_USE
 #include <QDebug>
@@ -44,7 +61,6 @@ public:
         for(size_t i = 0; i < 32; i+=8){
             m_TheBytes.append(value.mid(i, 8).insert(2, ".").insert(5, ".").insert(8, "."));
         }
-
         // Convert each pair of symbols into an Ascii symbol
 
         for(int i=0; i<value.length(); i+=2) {
@@ -72,6 +88,7 @@ public:
 
     ~MemoryDataItem( ){}
 
+    //================================= Static preset ==================================
     static bool validate4bytes(const QString &bytes){
         static const QRegularExpression regex = QRegularExpression("^(?:[0-9A-F]{2}\\.?){4}$");
         QRegularExpressionMatch match = regex.match(bytes);
@@ -79,8 +96,11 @@ public:
         else return false;
     }
 
-    /*** setters and getters ***/
+    //================================= Class service ==================================
+    const QByteArray &raw_data() const;
+    void setRaw_data(const QByteArray &newRaw_data);
 
+    //============================= Class setters/getters ==============================
     const QString &Address() const;
     void setAddress(const QString &newAddress);
 
@@ -92,16 +112,13 @@ public:
     void setByte8(const QString &newTheBytes);
     const QString &ByteC() const;
     void setByteC(const QString &newTheBytes);
-
     void recalculateRawData();
     void recalculateAScii();
     const QString &Ascii() const;
     void setAscii(const QString &newAscii);
 
+    //================================= Print and debug ================================
     Q_INVOKABLE QString print() const;
-
-    const QByteArray &raw_data() const;
-    void setRaw_data(const QByteArray &newRaw_data);
 
 signals:
     void AddressChanged();

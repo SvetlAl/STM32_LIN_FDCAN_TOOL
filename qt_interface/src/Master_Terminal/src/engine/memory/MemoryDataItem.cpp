@@ -1,8 +1,81 @@
 #include "MemoryDataItem.h"
 
 
-const QString &MemoryDataItem::Address() const
-{
+
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
+
+/********************************************************************
+ *
+ *
+ *                     Static preset
+ *
+ *
+********************************************************************/
+
+/********************************************************************
+ *
+ *
+ *                     Data access
+ *
+ *
+********************************************************************/
+
+/********************************************************************
+ *
+ *
+ *                     Edit model
+ *
+ *
+********************************************************************/
+
+/********************************************************************
+ *
+ *
+ *                    Print and debug
+ *
+ *
+********************************************************************/
+
+QString MemoryDataItem::print() const{
+   QString response = Address();
+   response.append(": ");
+   for(size_t i = 0; i < 4; i++){
+       QString tmpByte = m_TheBytes[i];
+       response.append(tmpByte.replace(QString("."), QString("")));
+   }
+   response.append("\n");
+   return response;
+}
+
+/********************************************************************
+ *
+ *
+ *                    Class service
+ *
+ *
+********************************************************************/
+const QByteArray &MemoryDataItem::raw_data() const{
+    return m_raw_data;
+}
+
+void MemoryDataItem::setRaw_data(const QByteArray &newRaw_data){
+    m_raw_data = newRaw_data;
+}
+
+/********************************************************************
+ *
+ *
+ *                     Class setters/getters
+ *
+ *
+********************************************************************/
+const QString &MemoryDataItem::Address() const{
     return m_Address;
 }
 
@@ -14,34 +87,17 @@ void MemoryDataItem::setAddress(const QString &newAddress)
     emit AddressChanged();
 }
 
-
-
-const QString &MemoryDataItem::Ascii() const
-{
+const QString &MemoryDataItem::Ascii() const{
     return m_Ascii;
 }
 
-void MemoryDataItem::setAscii(const QString &newAscii)
-{
+void MemoryDataItem::setAscii(const QString &newAscii){
     if (m_Ascii == newAscii)
         return;
     m_Ascii = newAscii;
     emit AsciiChanged();
 }
-/*
- * const QStringList &MemoryDataItem::TheBytes() const
-{
-    return m_TheBytes;
-}
 
-void MemoryDataItem::setTheBytes(const QStringList &newTheBytes)
-{
-    if (m_TheBytes == newTheBytes)
-        return;
-    m_TheBytes = newTheBytes;
-    emit TheBytesChanged();
-}
-*/
 const QString &MemoryDataItem::Byte0() const{
     return m_TheBytes[0];
 }
@@ -126,21 +182,6 @@ void MemoryDataItem::recalculateRawData(){
 
 
 
-QString MemoryDataItem::print() const{
-   QString response = Address();
-   response.append(": ");
-   for(size_t i = 0; i < 4; i++){
-       QString tmpByte = m_TheBytes[i];
-       response.append(tmpByte.replace(QString("."), QString("")));
-   }
-   response.append("\n");
-   return response;
-}
 
-const QByteArray &MemoryDataItem::raw_data() const{
-    return m_raw_data;
-}
 
-void MemoryDataItem::setRaw_data(const QByteArray &newRaw_data){
-    m_raw_data = newRaw_data;
-}
+

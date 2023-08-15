@@ -1,6 +1,16 @@
 #ifndef FILEMANAGER_H
 #define FILEMANAGER_H
 
+/***********************************************************************
+ *
+ *
+ * FileManager is a set of static functions to handle files and folders operations
+ *
+ *
+ *
+ *
+ ************************************************************************/
+
 #include "../../app_settings.h"
 #ifdef QT_IN_USE
 #include <QDebug>

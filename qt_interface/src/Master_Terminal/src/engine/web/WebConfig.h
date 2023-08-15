@@ -1,6 +1,20 @@
 #ifndef WEBCONFIG_H
 #define WEBCONFIG_H
 
+/***********************************************************************
+ *
+ *
+ * Web Config incapsulates main Web URLs exposed for QML:
+ *
+ *  General Update data
+ *  Update bin path
+ *  Override update path
+ *
+ * Web Config Preset class is used here for save/load
+ *
+ *
+ ************************************************************************/
+
 #include "../../app_settings.h"
 #include <QDebug>
 #include "WebConfig_Preset.h"
@@ -19,9 +33,11 @@ public:
     };
     ~WebConfig(){ }
 
+    //==================================== init =====================================
     WebConfig_Preset make_preset();
     void set_preset(const WebConfig_Preset& _preset);
 
+    //========================== Class setters/getters ===============================
     const QString &version_info_url() const;
     void setVersion_info_url(const QString &newVersion_info_url);
     const QString &update_url() const;

@@ -32,7 +32,7 @@ Rectangle {
     property string st_trace_file_anno: qsTr("Trace filename");
     property string st_write_anno: qsTr("Write to Memchip");
     property string st_from_memchip_anno: qsTr("From memory chip")
-    property string st_from_com_port_anno: qsTr("From COM-port")
+    property string st_from_com_port_anno: qsTr("From COM-port *more settings in Device Modes")
     property string st_reset_anno: qsTr("Reset")
 
 
@@ -49,7 +49,7 @@ Rectangle {
         st_write_anno = qsTr("Write to Memchip");
         st_description_anno = qsTr("1. Place a trace file into the app root directory or create your own using CAN scanner page. \n 2. Load the file into the device memory chip. If it's already written into memory, skip this step. \n 3. Select injection mode (circular or single shot). \n 4. Press start/stop.");
         st_from_memchip_anno = qsTr("From memory chip")
-        st_from_com_port_anno = qsTr("From COM-port")
+        st_from_com_port_anno = qsTr("From COM-port *more settings in Device Modes")
         st_reset_anno = qsTr("Reset")
     }
 

@@ -1,5 +1,7 @@
 /* forked from https://github.com/koldoon/qt-listview-generic-cpp-model
 @author Vadim Usoltsev */
+
+
 #ifndef OBJ_LIST_MODEL_H
 #define OBJ_LIST_MODEL_H
 

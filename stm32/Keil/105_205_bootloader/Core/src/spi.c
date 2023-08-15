@@ -16,7 +16,7 @@
 * retval  
 */
 void SPI1_init_pinout(){
-	#if defined(TEC_MODULE) || defined(ALLIGATOR)
+	#if defined(TEC_MODULE) || defined(ALLIGATOR) || defined(DEVICE_FCAN_V6)
 	/* NSS */ /* A4 */
 	GPIOA->MODER &= ~GPIO_MODER_MODER4;
 	GPIOA->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED4;
@@ -54,7 +54,7 @@ void SPI1_init_pinout(){
 	GPIOA->AFR[0] |= GPIO_AFRL_AFSEL7_2;
 	#endif
 
-	#if defined(DEVICE_2CAN) || defined(DEVICE_2CAN_TJA1042) || defined(DEVICE_2CAN_BOXED) || defined(DEVICE_SIGMA)
+	#if defined(DEVICE_2CAN) || defined(DEVICE_2CAN_TJA1042) || defined(DEVICE_2CAN_BOXED) || defined(DEVICE_SIGMA) || defined(DEVICE_1CAN2LIN)
 		/* NSS */ /* A4 */
 	GPIOA->CRL |= GPIO_CRL_MODE4; /* Alternative Function Push-Pull Output */
 	GPIOA->CRL &= ~GPIO_CRL_CNF4;

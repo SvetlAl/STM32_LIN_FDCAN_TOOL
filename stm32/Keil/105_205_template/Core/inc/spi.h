@@ -36,6 +36,12 @@
 #define CS_SET GPIOA->BSRR |= GPIO_BSRR_BS4;
 #define CS_RESET GPIOA->BSRR |= GPIO_BSRR_BR4;
 #endif
+
+#ifdef DEVICE_FCAN_V6
+#define CS_SET GPIOA->BSRR |= GPIO_BSRR_BS4;
+#define CS_RESET GPIOA->BSRR |= GPIO_BSRR_BR4;
+#endif
+
 #ifdef DEVICE_2CAN
 #define CS_SET GPIOA->BSRR |= GPIO_BSRR_BS4;
 #define CS_RESET GPIOA->BSRR |= GPIO_BSRR_BR4;
@@ -55,6 +61,12 @@
 #define CS_SET GPIOC->BSRR |= GPIO_BSRR_BS9;
 #define CS_RESET GPIOC->BSRR |= GPIO_BSRR_BR9;
 #endif
+
+#ifdef DEVICE_1CAN2LIN
+#define CS_SET GPIOA->BSRR |= GPIO_BSRR_BS4;
+#define CS_RESET GPIOA->BSRR |= GPIO_BSRR_BR4;
+#endif
+
 	
 
 typedef enum{

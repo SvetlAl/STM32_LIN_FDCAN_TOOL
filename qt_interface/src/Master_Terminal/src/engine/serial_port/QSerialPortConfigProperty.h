@@ -1,6 +1,22 @@
 #ifndef QSERIALPORTCONFIGPROPERTY_H
 #define QSERIALPORTCONFIGPROPERTY_H
 
+/***********************************************************************
+ * QSerialPortConfigItem ==> QSerialPortConfigProperties ==> Serial Port Config
+ *
+ *
+ *
+ * QSerialPortConfigProperties contains
+ *                     QSerialPortConfigItem  that contain
+ *                                QString name
+ *                                int     value
+ * Also:
+ *  current index
+ *  default index
+ *
+ *
+ ************************************************************************/
+
 #include "../../app_settings.h"
 #ifdef QT_IN_USE
 #include <QDebug>

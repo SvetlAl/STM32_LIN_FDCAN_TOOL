@@ -111,7 +111,7 @@ static inline uint32_t erase_memchip_sector(uint32_t addr){
 	return erase_timeout_memchip(MEMCHIP_ER_TIMEOUT);
 }
 
-uint32_t TEST = 0xAA;
+static uint32_t TEST = 0xAA;
 int main(void){
 	/* Start HSE, PLL, Flash latency, all the RCC configuration */
 	/* Enable all the Peripherial clocks */
@@ -356,8 +356,8 @@ static inline void write_app_into_flash(uint32_t main_app_address, uint32_t load
 //========================================================================================================================
 //========================================================================================================================
 
-uint32_t CORRUPTED_BLOCK = 0x00;
-uint32_t CORRUPTED_BYTE = 0xAA;
+static uint32_t CORRUPTED_BLOCK = 0x00;
+static uint32_t CORRUPTED_BYTE = 0xAA;
 
 
 static inline uint32_t verify_loaded_data(uint32_t main_app_address, uint32_t loaded_app_address, uint32_t size){ //MAIN_PROGRAM_START_ADDRESS

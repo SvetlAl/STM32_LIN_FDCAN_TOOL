@@ -1,6 +1,14 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
+/***********************************************************************
+ *
+ *
+ * This class is designed to expose target device properties on a display
+ *
+ *
+ ************************************************************************/
+
 #include <QObject>
 #include <QDebug>
 #include <QStringList>
@@ -9,12 +17,6 @@
 #include "../app_settings.h"
 
 class CDC_Driver;
-
-/****************************************************************************************************/
-/****************************************************************************************************/
-/************ This class is designed to expose target device properties on a display ****************/
-/****************************************************************************************************/
-/****************************************************************************************************/
 
 
 class Console : public QObject{
@@ -39,27 +41,39 @@ public:
     explicit Console(QObject *parent = nullptr): QObject(parent){
         m_Connection_status_description.append("Disconnected");
         m_Connection_status_description.append(App_settings::CONNECT_BUTTON_DISCONNECTED);
-        // m_versionDate = QDate::fromString("29.01.85", "dd.MM.yy");
     };
     ~Console(){};
 
 
+    //============================== Init and reset =================================
     /*** CONNECTION STATUS & COLOR ***/
-
     void set_connection_status_description(int _status);
-    const QStringList &Connection_status_description() const;
 
     /******* BASE_MAIN TEXT_EDIT *****/
-
     Q_INVOKABLE void reset_cdc_string(){set_cdc_string("");};
+
+    /*** MANUAL_OVERRIDE TEXT_EDIT ***/
+    Q_INVOKABLE void reset_manual_override_string(){set_manual_override(""); setManual_override_string_hex("");};
+
+
+    //============================== Setters/getters =================================
+    /******* is Connected? ********/
+    bool isConnected () const{return(connection_status == App_settings::ConnectionStatus::Connected);};
+    /*** FIRMWARE UPDATE TEXT_EDIT ***/
+    Q_INVOKABLE void reset_firmware_update_string(){set_firmware_update("");};
+
+
+    //======================== Class setters/getters =================================
+    const QStringList &Connection_status_description() const;
+    /*** CDC Driver ***/
+    CDC_Driver *pCdc_driver() const;
+    void setPCdc_driver(CDC_Driver *newPCdc_driver);
+
     const QString &Cdc_string() const;
     void set_cdc_string(const QString &_string);
     void append_cdc_string(const QString &_string);
-
-
-    /*** MANUAL_OVERRIDE TEXT_EDIT ***/
-
-    Q_INVOKABLE void reset_manual_override_string(){set_manual_override(""); setManual_override_string_hex("");};
+    const QString &firmware_update() const;
+    void set_firmware_update(const QString &_string);
     const QString &Manual_override() const;
     void set_manual_override(const QString &_string);
     void append_manual_override(const QString &_string);
@@ -68,24 +82,11 @@ public:
     void setManual_override_string_hex(const QString &newManual_override_string_hex);
 
 
-    /*** FIRMWARE UPDATE TEXT_EDIT ***/
-    Q_INVOKABLE void reset_firmware_update_string(){set_firmware_update("");};
-    const QString &firmware_update() const;
-    void set_firmware_update(const QString &_string);
-
-    /******* is Connected? ********/
-    bool isConnected () const{return(connection_status == App_settings::ConnectionStatus::Connected);};
-
-    /*** CDC Driver ***/
-    CDC_Driver *pCdc_driver() const;
-    void setPCdc_driver(CDC_Driver *newPCdc_driver);
-
 public slots:
     void append_firmware_update(const QString &_string);
     void read_serialport_and_append_data();
 
 signals:
-
     /******* BASE_MAIN TEXT_EDIT *****/
     void cdc_new_string();
 
@@ -113,7 +114,7 @@ private:
     QString m_Firmware_update_string = "";
 
     /*** CONNECTION STATUS & COLOR ***/
-    QStringList m_Connection_status_description;
+    QStringList m_Connection_status_description; // The first string is a cnnection status, the second string is a button color code
 
     /* is Connected? */
     App_settings::ConnectionStatus connection_status = App_settings::ConnectionStatus::Disconnected;
@@ -123,6 +124,4 @@ private:
     constexpr const static int max_firmware_update_cache = 64*32;
 };
 
-
-//Q_DECLARE_METATYPE(Core);
 #endif // CONSOLE_H

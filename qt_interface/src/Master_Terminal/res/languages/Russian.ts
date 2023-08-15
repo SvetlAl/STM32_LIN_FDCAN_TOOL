@@ -97,175 +97,179 @@
         <location filename="../../content/pages/Base_CAN_Override.qml" line="23"/>
         <location filename="../../content/pages/Base_CAN_Override.qml" line="28"/>
         <source>Override injection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ручн. упр. потоком</translation>
     </message>
     <message>
         <location filename="../../content/pages/Base_CAN_Override.qml" line="24"/>
         <location filename="../../content/pages/Base_CAN_Override.qml" line="29"/>
         <source>Discard Id&apos;s</source>
-        <translation type="unfinished"></translation>
+        <translation>Отсеивание ID</translation>
     </message>
     <message>
         <location filename="../../content/pages/Base_CAN_Override.qml" line="25"/>
         <location filename="../../content/pages/Base_CAN_Override.qml" line="30"/>
         <source>Override filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Польз. фильтры</translation>
     </message>
 </context>
 <context>
     <name>Base_CAN_Scanner</name>
     <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="29"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="48"/>
-        <source>id range</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="30"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="49"/>
-        <source>Delete range</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="31"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="50"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="32"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="51"/>
-        <source>Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="33"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="52"/>
-        <source>Trace</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="34"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="53"/>
-        <source>Monitor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="35"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="54"/>
-        <source>File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="36"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="55"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="37"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="56"/>
         <source>Load</source>
-        <translation type="unfinished">Список Польз.</translation>
+        <translation type="obsolete">Список Польз.</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="38"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="57"/>
         <source>Filename</source>
-        <translation type="unfinished">Имя файла</translation>
+        <translation type="obsolete">Имя файла</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="39"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="58"/>
         <source>Clear</source>
-        <translation type="unfinished">Сброс</translation>
+        <translation type="obsolete">Сброс</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="40"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="59"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="41"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="60"/>
         <source>Delete</source>
-        <translation type="unfinished">Удалить</translation>
+        <translation type="obsolete">Удалить</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="42"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="61"/>
-        <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="21"/>
+        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="25"/>
+        <source>Scanner</source>
+        <translation>Сканер</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="43"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="62"/>
-        <source>Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="44"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="63"/>
-        <source>CAN1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="45"/>
-        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="64"/>
-        <source>CAN2</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="22"/>
+        <location filename="../../content/pages/Base_CAN_Scanner.qml" line="26"/>
+        <source>Analyzer</source>
+        <translation>Анализатор</translation>
     </message>
 </context>
 <context>
     <name>Base_Device_Modes</name>
     <message>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="54"/>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="64"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="212"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="241"/>
         <source>Memory chip</source>
         <translation>Чип памяти</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="55"/>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="65"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="213"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="242"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="56"/>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="66"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="214"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="243"/>
         <source>Calibrator</source>
         <translation>Калибратор</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="57"/>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="67"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="215"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="244"/>
         <source>CAN gateway</source>
         <translation>CAN шлюз</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="58"/>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="68"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="216"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="245"/>
         <source>1CAN scanner</source>
         <translation>Сканер 1CAN</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="59"/>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="69"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="217"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="246"/>
         <source>2CAN scanner</source>
         <translation>Сканер 2CAN</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="60"/>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="70"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="218"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="247"/>
         <source>CAN override</source>
         <translation>CAN руч.режим</translation>
     </message>
     <message>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="61"/>
-        <location filename="../../content/pages/Base_Device_Modes.qml" line="71"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="219"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="248"/>
         <source>MemProgramm Mode</source>
         <translation>Режим прог.памяти</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="221"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="250"/>
+        <source>Trace injection</source>
+        <translation>Проигрывание трейса</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="222"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="251"/>
+        <source>Reverse CAN1/CAN2</source>
+        <translation>Обратить CAN1/CAN2</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="223"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="252"/>
+        <source>Circular</source>
+        <translation>Повтор</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="225"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="253"/>
+        <source>Сustom BTR. Save and restart needed</source>
+        <translation>Польз. BTR. Необх. сохранить/рестарт</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="226"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="254"/>
+        <source>set CAN1</source>
+        <translation>Уст.CAN1</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="227"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="255"/>
+        <source>set CAN2</source>
+        <translation>Уст.CAN2</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="229"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="256"/>
+        <source>Trace injection delay threshold.</source>
+        <translation>Порог задержки пер. трейса</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="230"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="257"/>
+        <source>Increase the value to slow down transmission.</source>
+        <translation>Увеличьте чтобы замедлить передачу.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="232"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="258"/>
+        <source>Fixed threshold</source>
+        <translation>Фикс. порог</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="233"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="259"/>
+        <source>Auto adjust</source>
+        <translation>авто настр.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="234"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="261"/>
+        <source>Enable</source>
+        <translation>Вкл.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="235"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="262"/>
+        <source>Disable</source>
+        <translation>Выкл.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="236"/>
+        <location filename="../../content/pages/Base_Device_Modes.qml" line="263"/>
+        <source>Scanner hardware filter</source>
+        <translation>Аппаратный фильтр сканера</translation>
     </message>
 </context>
 <context>
@@ -287,45 +291,45 @@
     <name>Base_ManualOverride</name>
     <message>
         <location filename="../../content/pages/Base_ManualOverride.qml" line="22"/>
-        <location filename="../../content/pages/Base_ManualOverride.qml" line="31"/>
+        <location filename="../../content/pages/Base_ManualOverride.qml" line="38"/>
         <source>CmdExchange</source>
         <translation>Режим обмена</translation>
     </message>
     <message>
         <location filename="../../content/pages/Base_ManualOverride.qml" line="23"/>
-        <location filename="../../content/pages/Base_ManualOverride.qml" line="32"/>
+        <location filename="../../content/pages/Base_ManualOverride.qml" line="39"/>
         <source>Send</source>
         <translation>Отпр.</translation>
     </message>
     <message>
         <location filename="../../content/pages/Base_ManualOverride.qml" line="24"/>
-        <location filename="../../content/pages/Base_ManualOverride.qml" line="33"/>
+        <location filename="../../content/pages/Base_ManualOverride.qml" line="40"/>
         <source>Clear</source>
         <translation>Сброс</translation>
     </message>
     <message>
         <location filename="../../content/pages/Base_ManualOverride.qml" line="25"/>
-        <location filename="../../content/pages/Base_ManualOverride.qml" line="34"/>
+        <location filename="../../content/pages/Base_ManualOverride.qml" line="41"/>
         <source>Read</source>
-        <translation type="unfinished">Читать</translation>
+        <translation>Читать</translation>
     </message>
     <message>
         <location filename="../../content/pages/Base_ManualOverride.qml" line="26"/>
-        <location filename="../../content/pages/Base_ManualOverride.qml" line="35"/>
+        <location filename="../../content/pages/Base_ManualOverride.qml" line="42"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Стоп</translation>
     </message>
     <message>
         <location filename="../../content/pages/Base_ManualOverride.qml" line="27"/>
-        <location filename="../../content/pages/Base_ManualOverride.qml" line="36"/>
+        <location filename="../../content/pages/Base_ManualOverride.qml" line="43"/>
         <source>Hex</source>
-        <translation type="unfinished"></translation>
+        <translation>Hex</translation>
     </message>
     <message>
         <location filename="../../content/pages/Base_ManualOverride.qml" line="28"/>
-        <location filename="../../content/pages/Base_ManualOverride.qml" line="37"/>
+        <location filename="../../content/pages/Base_ManualOverride.qml" line="44"/>
         <source>Ascii</source>
-        <translation type="unfinished"></translation>
+        <translation>Ascii</translation>
     </message>
 </context>
 <context>
@@ -509,45 +513,368 @@
     </message>
 </context>
 <context>
+    <name>Component_Base_CAN_Override_discard_id</name>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_discard_id.qml" line="19"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_discard_id.qml" line="26"/>
+        <source>Apply</source>
+        <translation>Применить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_discard_id.qml" line="20"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_discard_id.qml" line="27"/>
+        <source>Refresh</source>
+        <translation>Обновить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_discard_id.qml" line="21"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_discard_id.qml" line="28"/>
+        <source>Enable</source>
+        <translation>Вкл.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_discard_id.qml" line="22"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_discard_id.qml" line="29"/>
+        <source>Disable</source>
+        <translation>Выкл.</translation>
+    </message>
+</context>
+<context>
     <name>Component_Base_CAN_Override_injection_ovr</name>
     <message>
-        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="25"/>
-        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="35"/>
-        <source>Load trace</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="26"/>
-        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="36"/>
-        <source>Circular mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="27"/>
-        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="37"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="43"/>
+        <source>Load trace</source>
+        <translation>Загр.трейс</translation>
     </message>
     <message>
         <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="28"/>
-        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="38"/>
-        <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="44"/>
+        <source>Circular mode</source>
+        <translation>Режим повтора</translation>
     </message>
     <message>
         <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="29"/>
-        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="39"/>
-        <source>Trace filename</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="45"/>
+        <source>Start</source>
+        <translation>Старт</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="30"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="46"/>
+        <source>Stop</source>
+        <translation>Стоп</translation>
     </message>
     <message>
         <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="31"/>
-        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="40"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="47"/>
+        <source>Reverse CAN1/CAN2</source>
+        <translation>Обратить CAN1/CAN2</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="32"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="48"/>
+        <source>Trace filename</source>
+        <translation>Файл трейса</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="33"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="49"/>
+        <source>Write to Memchip</source>
+        <translation>Запись в чип памяти</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="34"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="51"/>
+        <source>From memory chip</source>
+        <translation>Из чипа памяти</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="35"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="52"/>
+        <source>From COM-port *more settings in Device Modes</source>
+        <translation>Через COM-порт *см. настройках устройства</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="36"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="53"/>
+        <source>Reset</source>
+        <translation>Сброс</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="39"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_injection_ovr.qml" line="50"/>
         <source>1. Place a trace file into the app root directory or create your own using CAN scanner page. 
  2. Load the file into the device memory chip. If it&apos;s already written into memory, skip this step. 
  3. Select injection mode (circular or single shot). 
  4. Press start/stop.</source>
-        <translation type="unfinished"></translation>
+        <translation>1. Скопируйте файл трейса в папку приложения или создайте свой используя CAN-сканер. 
+ 2. Загрузите файл в чип памяти устройства. Если уже загружен, пропустите этот шаг. 
+ 3. Выберите режим отправки трейса. (одиночный или повтор). 
+ 4. Нажмите старт/стоп.</translation>
+    </message>
+</context>
+<context>
+    <name>Component_Base_CAN_Override_ovr_ids</name>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_ovr_ids.qml" line="20"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_ovr_ids.qml" line="27"/>
+        <source>Apply</source>
+        <translation>Применить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_ovr_ids.qml" line="21"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_ovr_ids.qml" line="28"/>
+        <source>Refresh</source>
+        <translation>Обновить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_ovr_ids.qml" line="22"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_ovr_ids.qml" line="29"/>
+        <source>Enable</source>
+        <translation>Вкл.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Override_ovr_ids.qml" line="23"/>
+        <location filename="../../content/pages/Component_Base_CAN_Override_ovr_ids.qml" line="30"/>
+        <source>Disable</source>
+        <translation>Выкл.</translation>
+    </message>
+</context>
+<context>
+    <name>Component_Base_CAN_Scanner_Analyzer</name>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="55"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="77"/>
+        <source>CropTime</source>
+        <translation>Обрез.время</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="56"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="78"/>
+        <source>Recalculate timestamps start from 0</source>
+        <translation>Пересчитать метки времени от 0</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="57"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="79"/>
+        <source>File</source>
+        <translation>Файл</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="58"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="80"/>
+        <source>Save</source>
+        <translation>Сохранить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="59"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="81"/>
+        <source>Load</source>
+        <translation>Загрузить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="60"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="82"/>
+        <source>Filename trace Main</source>
+        <translation>Осн. трейс</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="61"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="83"/>
+        <source>Filename trace Aux</source>
+        <translation>Доп. трейс</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="62"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="84"/>
+        <source>Crop ID range</source>
+        <translation>Обрезать ID ряд</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="63"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="85"/>
+        <source>Crop Time range</source>
+        <translation>Обрез. Диапазон Врем.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="65"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="87"/>
+        <source>Delete all ID&apos;s within the range</source>
+        <translation>Удалить ID в диапазоне</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="66"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="88"/>
+        <source>Add/Delete selected items</source>
+        <translation>Добавить/удалить выбранное</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="67"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="89"/>
+        <source>Add</source>
+        <translation>Добавить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="68"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="90"/>
+        <source>Delete</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="69"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="91"/>
+        <source>Clear all</source>
+        <translation>Очистить все</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="70"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="92"/>
+        <source>Change multiple messages with selected ID</source>
+        <translation>Изменить все сообщения с ID</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="71"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="93"/>
+        <source>Set CAN1</source>
+        <translation>Уст.CAN1</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="72"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Analyzer.qml" line="94"/>
+        <source>Set CAN2</source>
+        <translation>Уст.CAN2</translation>
+    </message>
+</context>
+<context>
+    <name>Component_Base_CAN_Scanner_Scanner</name>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="35"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="59"/>
+        <source>id range</source>
+        <translation>диапазон id</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="36"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="60"/>
+        <source>Delete range</source>
+        <translation>Удалить диапазон</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="37"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="61"/>
+        <source>Start</source>
+        <translation>Старт</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="38"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="62"/>
+        <source>Stop</source>
+        <translation>Стоп</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="39"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="63"/>
+        <source>Trace</source>
+        <translation>Трейс</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="40"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="64"/>
+        <source>Monitor</source>
+        <translation>Монитор</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="41"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="65"/>
+        <source>File</source>
+        <translation>Файл</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="42"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="66"/>
+        <source>Save</source>
+        <translation>Сохр.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="43"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="67"/>
+        <source>Load</source>
+        <translation>Загрузить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="44"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="68"/>
+        <source>Filename</source>
+        <translation>Имя файла</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="45"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="69"/>
+        <source>Clear</source>
+        <translation>Сброс</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="46"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="70"/>
+        <source>Add</source>
+        <translation>Добавить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="47"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="71"/>
+        <source>Delete</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="48"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="77"/>
+        <source>Crop rng</source>
+        <translation>Обр. диап.</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="49"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="72"/>
+        <source>Filter</source>
+        <translation>Фильтр</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="50"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="73"/>
+        <source>Options</source>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="51"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="74"/>
+        <source>CAN1</source>
+        <translation>CAN1</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="52"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="75"/>
+        <source>CAN2</source>
+        <translation>CAN2</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="53"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="76"/>
+        <source>Edit</source>
+        <translation>Править</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="54"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="78"/>
+        <source>CropTime</source>
+        <translation>Обрез.время</translation>
+    </message>
+    <message>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="56"/>
+        <location filename="../../content/pages/Component_Base_CAN_Scanner_Scanner.qml" line="79"/>
+        <source>*see hardware id filter
+ in DeviceModes</source>
+        <translation>*см. аппаратный id фильтр
+ в настройках устройства</translation>
     </message>
 </context>
 <context>
@@ -1055,7 +1382,7 @@ Wiring color correspondence can be found in wiring nomination tables.&lt;br&gt;&
         <location filename="../../content/pages/Component_DrawerItem_Settings_Main.qml" line="45"/>
         <location filename="../../content/pages/Component_DrawerItem_Settings_Main.qml" line="67"/>
         <source>Max CAN trace items</source>
-        <translation type="unfinished"></translation>
+        <translation>Макс. размер CAN трейса</translation>
     </message>
 </context>
 <context>
@@ -1101,224 +1428,224 @@ Wiring color correspondence can be found in wiring nomination tables.&lt;br&gt;&
     <name>CoreImport</name>
     <message>
         <location filename="../../content/CoreImport.qml" line="15"/>
-        <location filename="../../content/CoreImport.qml" line="203"/>
+        <location filename="../../content/CoreImport.qml" line="240"/>
         <source>Microcontroller user interface designed for CAN bus and LIN bus research and reprogramming. Based on a CAN gateway implemented with STM32 microcontrollers and flash memory. This multi-platform application (Android, PC) was created using Qt.</source>
         <translation>Интерфейс устройств для программирования и исследования CAN/LIN шин. Основано на CAN шлюзе на базе STM32 микроконтроллерах и внешней Flash памяти. Мультиплатформенное приложение (Android, PC) написаное на Qt. Исполнение Android USB - форк от https://github.com/VanThanBK/QtAndroid-UsbSerial</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="138"/>
-        <location filename="../../content/CoreImport.qml" line="213"/>
+        <location filename="../../content/CoreImport.qml" line="175"/>
+        <location filename="../../content/CoreImport.qml" line="250"/>
         <source>Main</source>
         <translation>Главная</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="139"/>
-        <location filename="../../content/CoreImport.qml" line="214"/>
+        <location filename="../../content/CoreImport.qml" line="176"/>
+        <location filename="../../content/CoreImport.qml" line="251"/>
         <source>SelectModel</source>
         <translation>Выбрать модель</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="140"/>
-        <location filename="../../content/CoreImport.qml" line="215"/>
+        <location filename="../../content/CoreImport.qml" line="177"/>
+        <location filename="../../content/CoreImport.qml" line="252"/>
         <source>Speedometer</source>
         <translation>Спидометр</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="141"/>
-        <location filename="../../content/CoreImport.qml" line="216"/>
+        <location filename="../../content/CoreImport.qml" line="178"/>
+        <location filename="../../content/CoreImport.qml" line="253"/>
         <source>Odometer</source>
         <translation>Одометр</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="142"/>
-        <location filename="../../content/CoreImport.qml" line="217"/>
+        <location filename="../../content/CoreImport.qml" line="179"/>
+        <location filename="../../content/CoreImport.qml" line="254"/>
         <source>Cruise</source>
         <translation>Круиз</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="143"/>
-        <location filename="../../content/CoreImport.qml" line="218"/>
+        <location filename="../../content/CoreImport.qml" line="180"/>
+        <location filename="../../content/CoreImport.qml" line="255"/>
         <source>Tyres threshold</source>
         <translation>Давление в шинах</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="144"/>
-        <location filename="../../content/CoreImport.qml" line="219"/>
+        <location filename="../../content/CoreImport.qml" line="181"/>
+        <location filename="../../content/CoreImport.qml" line="256"/>
         <source>Dashboard test</source>
         <translation>Тест приборов</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="145"/>
-        <location filename="../../content/CoreImport.qml" line="220"/>
+        <location filename="../../content/CoreImport.qml" line="182"/>
+        <location filename="../../content/CoreImport.qml" line="257"/>
         <source>Manual Override</source>
         <translation>Ручной режим</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="146"/>
-        <location filename="../../content/CoreImport.qml" line="221"/>
+        <location filename="../../content/CoreImport.qml" line="183"/>
+        <location filename="../../content/CoreImport.qml" line="258"/>
         <source>Memory Monitor</source>
         <translation>Монитор памяти</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="147"/>
-        <location filename="../../content/CoreImport.qml" line="222"/>
+        <location filename="../../content/CoreImport.qml" line="184"/>
+        <location filename="../../content/CoreImport.qml" line="259"/>
         <source>Memory Write</source>
         <translation>Запись в память</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="148"/>
-        <location filename="../../content/CoreImport.qml" line="223"/>
+        <location filename="../../content/CoreImport.qml" line="185"/>
+        <location filename="../../content/CoreImport.qml" line="260"/>
         <source>CAN Override</source>
         <translation>Ручн.режим CAN</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="149"/>
-        <location filename="../../content/CoreImport.qml" line="224"/>
+        <location filename="../../content/CoreImport.qml" line="186"/>
+        <location filename="../../content/CoreImport.qml" line="261"/>
         <source>CAN Scanner</source>
         <translation>Сканер CAN</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="150"/>
-        <location filename="../../content/CoreImport.qml" line="225"/>
+        <location filename="../../content/CoreImport.qml" line="187"/>
+        <location filename="../../content/CoreImport.qml" line="262"/>
         <source>Device Modes</source>
         <translation>Режимы устройства</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="151"/>
-        <location filename="../../content/CoreImport.qml" line="226"/>
+        <location filename="../../content/CoreImport.qml" line="188"/>
+        <location filename="../../content/CoreImport.qml" line="263"/>
         <source>LIN Override</source>
         <translation>LIN руч.режим</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="152"/>
-        <location filename="../../content/CoreImport.qml" line="227"/>
+        <location filename="../../content/CoreImport.qml" line="189"/>
+        <location filename="../../content/CoreImport.qml" line="264"/>
         <source>Update</source>
         <translation>Обновления</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="153"/>
-        <location filename="../../content/CoreImport.qml" line="228"/>
+        <location filename="../../content/CoreImport.qml" line="190"/>
+        <location filename="../../content/CoreImport.qml" line="265"/>
         <source>AndroidJNIDebug</source>
         <translation>AndroidJNIDebug</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="157"/>
-        <location filename="../../content/CoreImport.qml" line="205"/>
+        <location filename="../../content/CoreImport.qml" line="194"/>
+        <location filename="../../content/CoreImport.qml" line="242"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="158"/>
-        <location filename="../../content/CoreImport.qml" line="206"/>
+        <location filename="../../content/CoreImport.qml" line="195"/>
+        <location filename="../../content/CoreImport.qml" line="243"/>
         <source>User Profile</source>
         <translation>Профиль польз.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="159"/>
-        <location filename="../../content/CoreImport.qml" line="207"/>
+        <location filename="../../content/CoreImport.qml" line="196"/>
+        <location filename="../../content/CoreImport.qml" line="244"/>
         <source>View</source>
         <translation>Вид</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="160"/>
-        <location filename="../../content/CoreImport.qml" line="208"/>
+        <location filename="../../content/CoreImport.qml" line="197"/>
+        <location filename="../../content/CoreImport.qml" line="245"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="161"/>
-        <location filename="../../content/CoreImport.qml" line="209"/>
+        <location filename="../../content/CoreImport.qml" line="198"/>
+        <location filename="../../content/CoreImport.qml" line="246"/>
         <source>Debug</source>
         <translation>Неполадки</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="162"/>
-        <location filename="../../content/CoreImport.qml" line="210"/>
+        <location filename="../../content/CoreImport.qml" line="199"/>
+        <location filename="../../content/CoreImport.qml" line="247"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="163"/>
-        <location filename="../../content/CoreImport.qml" line="211"/>
+        <location filename="../../content/CoreImport.qml" line="200"/>
+        <location filename="../../content/CoreImport.qml" line="248"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="186"/>
-        <location filename="../../content/CoreImport.qml" line="231"/>
+        <location filename="../../content/CoreImport.qml" line="223"/>
+        <location filename="../../content/CoreImport.qml" line="268"/>
         <source>Speedometer calibration available.</source>
         <translation>Калибровка спидометра доступна.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="187"/>
-        <location filename="../../content/CoreImport.qml" line="233"/>
+        <location filename="../../content/CoreImport.qml" line="224"/>
+        <location filename="../../content/CoreImport.qml" line="270"/>
         <source>Speedometer calibration is available via pulse calibrator.</source>
         <translation>Калибровка спидометра доступна с помошью импульсного калибратора.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="188"/>
-        <location filename="../../content/CoreImport.qml" line="232"/>
+        <location filename="../../content/CoreImport.qml" line="225"/>
+        <location filename="../../content/CoreImport.qml" line="269"/>
         <source>Speedometer calibration unavailable.</source>
         <translation>Калибровка спидометра недоступна.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="189"/>
-        <location filename="../../content/CoreImport.qml" line="234"/>
+        <location filename="../../content/CoreImport.qml" line="226"/>
+        <location filename="../../content/CoreImport.qml" line="271"/>
         <source>Ododometer calibration is available via pulse calibrator.</source>
         <translation>Калибровка одометра доступна с помошью импульсного калибратора.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="190"/>
-        <location filename="../../content/CoreImport.qml" line="235"/>
+        <location filename="../../content/CoreImport.qml" line="227"/>
+        <location filename="../../content/CoreImport.qml" line="272"/>
         <source>Ododometer calibration available. 
  Notice: the greater the distance of the test, the more percision shown in odometer readings. Some models&apos; odometers may ignore the speed below 1 km/h. Press &quot;Freeze&quot; to stop odometer.</source>
         <translation>Калибровка одометра доступна. Внимание: чем больше дистанция замера, тем точнее результаты тестов. Некоторые авто игнорируют скорости ниже 1 км/ч.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="191"/>
-        <location filename="../../content/CoreImport.qml" line="236"/>
+        <location filename="../../content/CoreImport.qml" line="228"/>
+        <location filename="../../content/CoreImport.qml" line="273"/>
         <source>Ododometer calibration unavailable separatedly from speedometer. Use the speedometer calibration.</source>
         <translation>Калибровка одометра недоступна отдельно от спидометра. Используйте калибровку спидометра. </translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="192"/>
-        <location filename="../../content/CoreImport.qml" line="237"/>
+        <location filename="../../content/CoreImport.qml" line="229"/>
+        <location filename="../../content/CoreImport.qml" line="274"/>
         <source>Cruise control calibration available.</source>
         <translation>Калибровка круиз-контроля доступна.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="193"/>
-        <location filename="../../content/CoreImport.qml" line="238"/>
+        <location filename="../../content/CoreImport.qml" line="230"/>
+        <location filename="../../content/CoreImport.qml" line="275"/>
         <source>Cruise control calibration unavailable.</source>
         <translation>Калибровка круиз-контроля недоступна.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="194"/>
-        <location filename="../../content/CoreImport.qml" line="240"/>
+        <location filename="../../content/CoreImport.qml" line="231"/>
+        <location filename="../../content/CoreImport.qml" line="277"/>
         <source>Tyres pressure threshold customization available.</source>
         <translation>Установка давления в шин доступна.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="195"/>
-        <location filename="../../content/CoreImport.qml" line="241"/>
+        <location filename="../../content/CoreImport.qml" line="232"/>
+        <location filename="../../content/CoreImport.qml" line="278"/>
         <source>Tyres pressure threshold customization is available via LIN.</source>
         <translation>Установка давления в шин доступна через LIN.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="196"/>
-        <location filename="../../content/CoreImport.qml" line="242"/>
+        <location filename="../../content/CoreImport.qml" line="233"/>
+        <location filename="../../content/CoreImport.qml" line="279"/>
         <source>Tyres pressure threshold customization unavailable.</source>
         <translation>Установка давления в шин недоступна.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="197"/>
-        <location filename="../../content/CoreImport.qml" line="243"/>
+        <location filename="../../content/CoreImport.qml" line="234"/>
+        <location filename="../../content/CoreImport.qml" line="280"/>
         <source>Press the button to check wires connection. When connected properly the speedometer dial would show a test value.</source>
         <translation>Нажмите на кнопку для теста подключения проводов. Если проводка подключена корректно, Стрелка спидометра покажет тестовое значение.</translation>
     </message>
     <message>
-        <location filename="../../content/CoreImport.qml" line="198"/>
-        <location filename="../../content/CoreImport.qml" line="244"/>
+        <location filename="../../content/CoreImport.qml" line="235"/>
+        <location filename="../../content/CoreImport.qml" line="281"/>
         <source>Connection test unavailable.</source>
         <translation>Тест соединения недоступен.</translation>
     </message>

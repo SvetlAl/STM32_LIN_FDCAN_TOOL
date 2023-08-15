@@ -3,7 +3,6 @@
         <file>content/App.qml</file>
         <file>Languages.qrc</file>
         <file>qtquickcontrols2.conf</file>
-        <file>src/icon.ico</file>
         <file>content/AppDrawer.qml</file>
         <file>content/AppToolBar.qml</file>
         <file>content/AppToolBarButton.qml</file>
@@ -134,5 +133,9 @@
         <file>content/pages/png/XXXL.png</file>
         <file>content/pages/Component_Base_CAN_Scanner_Analyzer.qml</file>
         <file>content/pages/Component_Base_CAN_Scanner_Scanner.qml</file>
+        <file>content/pages/png/model_logos/FORD.png</file>
+        <file>content/pages/png/model_logos/HONDA.png</file>
+        <file>content/pages/png/model_logos/NISSAN.png</file>
+        <file>icon.ico</file>
     </qresource>
 </RCC>

@@ -25,12 +25,13 @@
 #include "can.h"
 #include "tim.h"
 
+extern uDeviceModel theDeviceModel;
+
 /****************************************************************************************/
 /*************************************** Main format settings. **************************/
 /****************************************************************************************/
 
 #define CAN_INJECTION_MEMCHIP_ADDR	FREE_MEMSPACE_ADDRESS
-
 #define MSG_INFO_START_CHAR		'@'
 
 /****************************************************************************************/
@@ -39,6 +40,11 @@
 
 #define MAX_OVERRIDE_FILTERS 16
 #define MAX_IGNORED_IDS			 16
+
+#define FOCRED_DELAY_STEP 				10 // 0x3E8 // (100.0) msecs
+
+#define BUFFER_OVERFLOW_CTR_LEVEL_PRCNT 75    // percents
+#define BUFFER_OVERFLOW_CTR_LEVEL (CDC_CAN_INJECTION_BUFFER_SIZE*BUFFER_OVERFLOW_CTR_LEVEL_PRCNT)/100
 
 /****************************************************************************************/
 /*******************					 Command definitions 								 **********************/
@@ -127,12 +133,17 @@ typedef struct can_inj_tim_settings{
 
 /* STATUS CAN injection */
 typedef struct can_injection_status{	
-	can_message_info_raw msg;
+	can_message_info_raw msg;                                // current message to inject
 	uint32_t current_address;
-//	uint32_t seconds;
-//	uint16_t milseconds;
-	can_inj_tim_settings tim_val;
-//	uint16_t unused;
+	can_inj_tim_settings tim_val;// includes the values below
+	                             // uint16_t ref_seconds;       previous timestamp second
+	                             // uint16_t ref_milseconds;    previous timestamp milsecond
+	                             // uint16_t prescaler;         PSC value used for TIM IRQ
+	                             // uint16_t reloadValue;       reload value used for TIM IRQ
+	
+	uint8_t  lower_timer_threshold;
+	uint8_t  forced_sec_delay;
+	uint16_t forced_msec_delay;
 } can_injection_status; //creating new type
 
 
@@ -169,6 +180,7 @@ void CDC_initMessageInjection(void);
 void CDC_can_inj_recieve_data( uint8_t *data, uint32_t length);
 void CDC_setInjectionMsg(can_injection_status *_status);
 void calculate_tim_settings(can_injection_status *_status);
+void handle_buffer_overflow(void);
 
 
 

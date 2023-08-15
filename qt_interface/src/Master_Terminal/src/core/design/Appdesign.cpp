@@ -1,10 +1,120 @@
 #include "Appdesign.h"
 
-#ifdef QT_IN_USE
+
+/********************************************************************
+ *
+ *
+ *                     Initialization
+ *
+ *
+********************************************************************/
+
 void AppDesign::default_init(){
     setSizePreset(Sp_M);
     setColorPreset();
 }
+
+void AppDesign::setSizePreset(int size_preset){
+    /*** View Scale ***/
+    /* int */
+    p_ViewScale_Height.addItem(name_Container, default_ViewScale_Height_Container[size_preset]);
+
+    /************** General Design Items **************/
+    /* int */
+    p_GeneralDesign_Font.addItem(name_ToolBar, default_GeneralDesign_Font_ToolBar[size_preset]);
+    p_GeneralDesign_Font.addItem(name_DrawerTitleFrame, default_GeneralDesign_Font_DrawerTitleFrame[size_preset]);
+    p_GeneralDesign_Font.addItem(name_DrawerItemText, default_GeneralDesign_Font_DrawerItemText[size_preset]);
+    p_GeneralDesign_Height.addItem(name_ToolBar, default_GeneralDesign_Height_ToolBar[size_preset]);
+    p_GeneralDesign_Height.addItem(name_DrawerTitleFrame, default_GeneralDesign_Height_DrawerTitleFrame[size_preset]);
+    p_GeneralDesign_Height.addItem(name_DrawerItemIcons, default_GeneralDesign_Height_DrawerItemIcons[size_preset]);
+    /* string */
+
+    /* float */
+    p_GeneralDesign_Ratio.addItem(name_TitleToToolbar, default_GeneralDesign_Ratio_TitleToToolbar[size_preset]);
+    p_GeneralDesign_Ratio.addItem(name_ScreenAdjSideCrop, default_GeneralDesign_Ratio_ScreenAdjSideCrop[size_preset]);
+    p_GeneralDesign_Ratio.addItem(name_ScreenAdjVertContainerCrop, default_GeneralDesign_Ratio_ScreenAdjVertContainerCrop[size_preset]);
+    p_GeneralDesign_Gradient.addItem(name_Backstage, default_GeneralDesign_Gradient_Backstage);
+
+    /************** Simple Items **************/
+    /* int */
+    p_SimpleItems_Font.addItem(name_Main, default_SimpleItems_Font_Main[size_preset]);
+    p_SimpleItems_Width.addItem(name_ButtonBorder, default_SimpleItems_Width_ButtonBorder[size_preset]);
+    /* float */
+    p_SimpleItems_HeightToWidth.addItem(name_Button, default_SimpleItems_HeightToWidth_Button[size_preset]);
+    p_SimpleItems_Ratio.addItem(name_ButtonFont, default_SimpleItems_Ratio_ButtonFont[size_preset]);
+    p_SimpleItems_Ratio.addItem(name_ButtonOnPress, default_SimpleItems_Ratio_ButtonOnPress[size_preset]);
+    /* string */
+
+    /************** Base **************/
+    /* int */
+    p_Base_Height.addItem(name_Navibar, default_Base_Height_Navibar[size_preset]);
+    p_Base_Width.addItem(name_ButtonBorder, default_Base_Width_ButtonBorder[size_preset]);
+    p_Base_Font.addItem(name_TerminalSz, default_Base_Font_TerminalSz[size_preset]);
+    p_Base_Width.addItem(name_ItemFrame, default_Base_Width_ItemFrame[size_preset]);
+    p_Base_Height.addItem(name_Item, default_Base_Height_Item[size_preset]);
+    p_Base_Ratio.addItem(name_ButtonFont, default_Base_Ratio_ButtonFont[size_preset]);
+    p_Base_Height.addItem(name_PageGrid, default_Base_Height_PageGrid[size_preset]);
+
+
+    /* float */
+    p_Base_Gradient.addItem(name_PositionA, default_Base_Gradient_PositionA);
+    p_Base_Gradient.addItem(name_PositionB, default_Base_Gradient_PositionB);
+    /* string */
+}
+
+    /*********** Set default color preset *************/
+void AppDesign::setColorPreset(){
+    /*** View Scale ***/
+    /* int */
+
+    /************** General Design Items **************/
+    /* int */
+    /* string */
+    p_GeneralDesign_Color.addItem(name_ToolBar, default_GeneralDesign_Color_ToolBar);
+    p_GeneralDesign_Color.addItem(name_ToolBarText, default_GeneralDesign_Color_ToolBarText);
+    p_GeneralDesign_Color.addItem(name_DrawerFrame, default_GeneralDesign_Color_DrawerFrame);
+    p_GeneralDesign_Color.addItem(name_DrawerItemText, default_GeneralDesign_Color_DrawerItemText);
+    p_GeneralDesign_Color.addItem(name_DrawerFrameText, default_GeneralDesign_Color_DrawerFrameText);
+    /* float */
+
+
+    /************** Simple Items **************/
+    /* int */
+
+    /* float */
+
+    /* string */
+    p_SimpleItems_Color.addItem(name_FrameActive, default_SimpleItems_Color_FrameActive);
+    p_SimpleItems_Color.addItem(name_FrameInactive, default_SimpleItems_Color_FrameInactive);
+    p_SimpleItems_Color.addItem(name_FrameDisabled, default_SimpleItems_Color_FrameDisabled);
+    p_SimpleItems_Color.addItem(name_Button, default_SimpleItems_Color_Button);
+    p_SimpleItems_Color.addItem(name_ButtonText, default_SimpleItems_Color_ButtonText);
+
+    /************** Base **************/
+    /* int */
+
+    /* float */
+
+    /* string */
+    p_Base_Color.addItem(name_Icon, default_Base_Color_Icon);
+    p_Base_Color.addItem(name_IconOverlay, default_Base_Color_IconOverlay);
+    p_Base_Color.addItem(name_BaseFont, default_Base_Color_BaseFont);
+    // p_Base_Color.addItem(name_GradientBackground, default_Base_Color_GradientBackground);
+    p_Base_Color.addItem(name_Frame, default_Base_Color_Frame);
+    p_Base_Color.addItem(name_Canva, default_Base_Color_Canva);
+    p_Base_Color.addItem(name_ButtonCanva, default_Base_Color_ButtonCanva);
+    p_Base_Color.addItem(name_FrameLight, default_Base_Color_FrameLight);
+}
+
+
+/********************************************************************
+ *
+ *
+ *                     Setters/Getters
+ *
+ *
+********************************************************************/
+
 
 ContainerDesignInt *AppDesign::getIntContainerPointer(const QString _assignment, const QString _item_element){
     ContainerDesignInt *containerPointer = nullptr;
@@ -189,8 +299,15 @@ void AppDesign::setFloatValue(const QString _assignment, const QString _item_ele
     else containerPtr->addItem(_name, _value);
 }
 
+/********************************************************************
+ *
+ *
+ *                     Debug and print
+ *
+ *
+********************************************************************/
+
 void AppDesign::print(){
-    DEBUG_OUT("****************** AppDesign ******************");
     p_ViewScale_Height.print();
     p_GeneralDesign_Font.print();
     p_GeneralDesign_Height.print();
@@ -215,97 +332,13 @@ void AppDesign::print(){
 }
 
 
-void AppDesign::setSizePreset(int size_preset){
-    /*** View Scale ***/
-    /* int */
-    p_ViewScale_Height.addItem(name_Container, default_ViewScale_Height_Container[size_preset]);
-
-    /************** General Design Items **************/
-    /* int */
-    p_GeneralDesign_Font.addItem(name_ToolBar, default_GeneralDesign_Font_ToolBar[size_preset]);
-    p_GeneralDesign_Font.addItem(name_DrawerTitleFrame, default_GeneralDesign_Font_DrawerTitleFrame[size_preset]);
-    p_GeneralDesign_Font.addItem(name_DrawerItemText, default_GeneralDesign_Font_DrawerItemText[size_preset]);
-    p_GeneralDesign_Height.addItem(name_ToolBar, default_GeneralDesign_Height_ToolBar[size_preset]);
-    p_GeneralDesign_Height.addItem(name_DrawerTitleFrame, default_GeneralDesign_Height_DrawerTitleFrame[size_preset]);
-    p_GeneralDesign_Height.addItem(name_DrawerItemIcons, default_GeneralDesign_Height_DrawerItemIcons[size_preset]);
-    /* string */
-
-    /* float */
-    p_GeneralDesign_Ratio.addItem(name_TitleToToolbar, default_GeneralDesign_Ratio_TitleToToolbar[size_preset]);
-    p_GeneralDesign_Ratio.addItem(name_ScreenAdjSideCrop, default_GeneralDesign_Ratio_ScreenAdjSideCrop[size_preset]);
-    p_GeneralDesign_Ratio.addItem(name_ScreenAdjVertContainerCrop, default_GeneralDesign_Ratio_ScreenAdjVertContainerCrop[size_preset]);
-    p_GeneralDesign_Gradient.addItem(name_Backstage, default_GeneralDesign_Gradient_Backstage);
-
-    /************** Simple Items **************/
-    /* int */
-    p_SimpleItems_Font.addItem(name_Main, default_SimpleItems_Font_Main[size_preset]);
-    p_SimpleItems_Width.addItem(name_ButtonBorder, default_SimpleItems_Width_ButtonBorder[size_preset]);
-    /* float */
-    p_SimpleItems_HeightToWidth.addItem(name_Button, default_SimpleItems_HeightToWidth_Button[size_preset]);
-    p_SimpleItems_Ratio.addItem(name_ButtonFont, default_SimpleItems_Ratio_ButtonFont[size_preset]);
-    p_SimpleItems_Ratio.addItem(name_ButtonOnPress, default_SimpleItems_Ratio_ButtonOnPress[size_preset]);
-    /* string */
-
-    /************** Base **************/
-    /* int */
-    p_Base_Height.addItem(name_Navibar, default_Base_Height_Navibar[size_preset]);
-    p_Base_Width.addItem(name_ButtonBorder, default_Base_Width_ButtonBorder[size_preset]);
-    p_Base_Font.addItem(name_TerminalSz, default_Base_Font_TerminalSz[size_preset]);
-    p_Base_Width.addItem(name_ItemFrame, default_Base_Width_ItemFrame[size_preset]);
-    p_Base_Height.addItem(name_Item, default_Base_Height_Item[size_preset]);
-    p_Base_Ratio.addItem(name_ButtonFont, default_Base_Ratio_ButtonFont[size_preset]);
-    p_Base_Height.addItem(name_PageGrid, default_Base_Height_PageGrid[size_preset]);
-
-
-    /* float */
-    p_Base_Gradient.addItem(name_PositionA, default_Base_Gradient_PositionA);
-    p_Base_Gradient.addItem(name_PositionB, default_Base_Gradient_PositionB);
-    /* string */
-}
-
-void AppDesign::setColorPreset(){
-    /*** View Scale ***/
-    /* int */
-
-    /************** General Design Items **************/
-    /* int */
-    /* string */
-    p_GeneralDesign_Color.addItem(name_ToolBar, default_GeneralDesign_Color_ToolBar);
-    p_GeneralDesign_Color.addItem(name_ToolBarText, default_GeneralDesign_Color_ToolBarText);
-    p_GeneralDesign_Color.addItem(name_DrawerFrame, default_GeneralDesign_Color_DrawerFrame);
-    p_GeneralDesign_Color.addItem(name_DrawerItemText, default_GeneralDesign_Color_DrawerItemText);
-    p_GeneralDesign_Color.addItem(name_DrawerFrameText, default_GeneralDesign_Color_DrawerFrameText);
-    /* float */
-
-
-    /************** Simple Items **************/
-    /* int */
-
-    /* float */
-
-    /* string */
-    p_SimpleItems_Color.addItem(name_FrameActive, default_SimpleItems_Color_FrameActive);
-    p_SimpleItems_Color.addItem(name_FrameInactive, default_SimpleItems_Color_FrameInactive);
-    p_SimpleItems_Color.addItem(name_FrameDisabled, default_SimpleItems_Color_FrameDisabled);
-    p_SimpleItems_Color.addItem(name_Button, default_SimpleItems_Color_Button);
-    p_SimpleItems_Color.addItem(name_ButtonText, default_SimpleItems_Color_ButtonText);
-
-    /************** Base **************/
-    /* int */
-
-    /* float */
-
-    /* string */
-    p_Base_Color.addItem(name_Icon, default_Base_Color_Icon);
-    p_Base_Color.addItem(name_IconOverlay, default_Base_Color_IconOverlay);
-    p_Base_Color.addItem(name_BaseFont, default_Base_Color_BaseFont);
-    // p_Base_Color.addItem(name_GradientBackground, default_Base_Color_GradientBackground);
-    p_Base_Color.addItem(name_Frame, default_Base_Color_Frame);
-    p_Base_Color.addItem(name_Canva, default_Base_Color_Canva);
-    p_Base_Color.addItem(name_ButtonCanva, default_Base_Color_ButtonCanva);
-    p_Base_Color.addItem(name_FrameLight, default_Base_Color_FrameLight);
-
-}
+/********************************************************************
+ *
+ *
+ *                     Operators
+ *
+ *
+********************************************************************/
 
 QDataStream& operator << (QDataStream& d, const AppDesign& ad){
     d << ad.p_ViewScale_Height;
@@ -372,4 +405,4 @@ QDataStream& operator >> (QDataStream& d, AppDesign& ad){
     d >> ad.p_Base_Color;
     return d;
 }
-#endif
+

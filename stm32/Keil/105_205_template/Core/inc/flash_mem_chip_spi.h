@@ -116,8 +116,8 @@
 #define M45PE16_RDSR_WIP 0x01		/* write in progress bit */
 #define M45PE16_RDSR_WRE 0x02		/* write enable bit */
 
-#define M45PE16_WR_TIMEOUT 0xFFFF 			/* programming timeout */
-#define M45PE16_ER_TIMEOUT 0xFFFF	/* erasing timeout */
+#define M45PE16_WR_TIMEOUT 0xFFFFFFFF /* programming timeout */
+#define M45PE16_ER_TIMEOUT 0xFFFFFFFF	/* erasing timeout */
 
 /******************************************************************
 *							M45PE16 Memory mapping

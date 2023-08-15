@@ -1,6 +1,16 @@
 #ifndef OVERRIDE_STATUS_H
 #define OVERRIDE_STATUS_H
 
+/***********************************************************************
+ *
+ *
+ * OverrideStatus is a structure defined in the firmware and copied here
+ *
+ * supposed to hold information about the filters used as override and discrard templates
+ *
+ *
+ ************************************************************************/
+
 #include <QObject>
 #include <QDebug>
 #include "../bus/CanBusItem.h"
@@ -14,15 +24,11 @@
  *************************************************************/
 
 
-
-
 /**************************************************************
  *
  *  Import from can_override.h
  *
  *************************************************************/
-
-
 
 #define MAX_OVERRIDE_FILTERS 16
 #define MAX_IGNORED_IDS 16
@@ -60,11 +66,13 @@ public:
       //  reset();
     }
     ~OverrideStatus() {};
+    friend class DeviceManager;
 
+    //===================================== init ======================================
     void init_OverrideStatuswithRawData(const QByteArray &data);
+
+    //=========================== Class setters/getters ===============================
     void setActiveFilters(const QByteArray &data);
-
-
 
     const uint16_t get_ignored_id_num() const;
     const uint16_t get_overrided_id_num() const;
@@ -85,11 +93,7 @@ public:
     void set_ignored_ids(int index, can_id value);
     void set_ignored_ids(int index, uint32_t value);
     void set_override_msks(int index, uint8_t value);
-
-
-
     const QByteArray getRawData() const;
-    friend class DeviceManager;
 
 private:
     u_can_override_status m_ovr_status;

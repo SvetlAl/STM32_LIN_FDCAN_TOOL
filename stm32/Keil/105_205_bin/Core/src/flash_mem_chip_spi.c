@@ -45,7 +45,6 @@ uint32_t write_timeout_memchip(){
 		timeout--;
 		result = read_status_reg_memchip();
 	}
-	
 	if(!(result & MEMCHIP_RDSR_WIP)){
 		return MEMCHIP_OK;
 	}
@@ -686,6 +685,14 @@ uint8_t MX_SPI_transmit_byte(uint8_t data){
 	uint8_t _result = SPI3_transmit_byte(data);
 	return _result;
 	#endif
+	#ifdef DEVICE_1CAN2LIN
+	uint8_t _result = SPI1_transmit_byte(data);
+	return _result;
+	#endif
+	#ifdef DEVICE_FCAN_V6
+	uint8_t _result = SPI1_transmit_byte(data);
+	return _result;
+	#endif
 }
 
 
@@ -712,6 +719,14 @@ uint8_t MX_SPI_recieve_byte(){
 	#endif
 	#ifdef DEVICE_SIGMA 
 	uint8_t _result = SPI3_recieve_byte();
+	return _result;
+	#endif
+	#ifdef DEVICE_1CAN2LIN
+	uint8_t _result = SPI1_recieve_byte();
+	return _result;
+	#endif
+	#ifdef DEVICE_FCAN_V6
+	uint8_t _result = SPI1_recieve_byte();
 	return _result;
 	#endif
 }

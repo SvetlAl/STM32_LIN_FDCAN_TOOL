@@ -1,6 +1,17 @@
 #ifndef VERSION_H
 #define VERSION_H
 
+/***********************************************************************
+ *
+ * Version contains a sorted information about firmware or interface:
+ * Is it a device or interface info
+ * Series
+ * Date
+ *
+ *
+ *
+ ************************************************************************/
+
 #include <stdlib.h>
 #include <QDebug>
 #include <QDate>
@@ -9,6 +20,7 @@
 
 using namespace std;
 
+// OBSOLETE
 #define DEV_DEFAULT_CODE				(uint16_t)0x0000
 #define DEV_SPD_CLBR_CODE_MSK			(uint16_t)0x0001
 #define DEV_CANSCANNER_CODE_MSK			(uint16_t)0x0002
@@ -25,12 +37,10 @@ public:
     };
 
     explicit Version(){
-
     };
 
     Version(const QString &init_string, int designCode){
         bool isValidFormat = App_settings::get_DeviceSoftwareVersion_Regex().match(init_string).hasMatch();
-
 
         QStringList parts = init_string.split('.');
         if ((parts.size() != 5) | !isValidFormat) {
@@ -60,6 +70,9 @@ public:
     ~Version(){
     };
 
+
+
+    //=========================== Service data string functions =======================
     bool isValid() const {if(design_code != Invalid) return true; else return false;}
     bool isBeta() const {if(beta_flag == 'b') return true; else return false;}
     bool isDescribed() const {
@@ -84,7 +97,7 @@ public:
     }
 
 
-
+    //===================================== Operators ================================
     friend bool operator == (Version const& lhs, Version const& rhs);
     friend bool operator != (Version const& lhs, Version const& rhs);
     friend bool operator < (Version const& lhs, Version const& rhs);
@@ -168,7 +181,7 @@ public:
         return *this;
     }
 
-
+    //=========================== Class setters/getters ==============================
     const QString &getDescription() const;
     void setDescription(const QString &newDescription);
     const QString &getErrata() const;
@@ -186,12 +199,12 @@ public:
     VerDesignCode getDesign_code() const;
 
 private:
-    uint8_t beta_flag = 0;
+    uint8_t beta_flag = 0; // OBSOLETE
     uint8_t series = 0;
     uint8_t day = 0;
     uint8_t month = 0;
     uint8_t year = 0;
-    uint16_t code = 0;
+    uint16_t code = 0; // OBSOLETE
 
     QString description = "";
     QString errata = "";
@@ -199,10 +212,6 @@ private:
 
     VerDesignCode design_code = Invalid;
 };
-
-
-
-
 
 
 #endif // VERSION_H

@@ -389,11 +389,15 @@ void process_protocol_cmd(elp_cmd *com){
 					//=================== CAN injection from memory chip ========================
 					else if(dev_mode_num == Enm_canInjectionMode){
 						if (value != DEVICE_OPERATION_MODE_OFF){ /* If the command is to start injection */
+							#ifdef SUPPORT_MEMCHIP_CAN_INJECTION
 							startMessageInjection(&theCanInjectionStatus, value);
+							#endif
 							
 						}
 						else if (value == DEVICE_OPERATION_MODE_OFF){ /* If the command is to stop injection */
+							#ifdef SUPPORT_MEMCHIP_CAN_INJECTION
 							stopMessageInjection();
+							#endif
 							return;
 						}
 					}
@@ -440,7 +444,7 @@ void process_protocol_cmd(elp_cmd *com){
 			break;}		
 		
 				/****************	ELPR_OVR_FLTR_GET_FILTER_NUMS	****************/		
-		case(ELPR_OVR_FLTR_GET_FILTER_NUMS):{				/* @SF0000BB2@E ASCII Get sizeof(DeviceModel) of current vehicle settings in raw data*/
+		case(ELPR_OVR_FLTR_GET_FILTER_NUMS):{				/* @SF0000BB2@E ASCII Get 4 bytes of current override settings in raw data*/
 			uint8_t* vers = get_override_settings_data();
 			USB_CDC_send_data(vers, 4);
 			el_reset_state();

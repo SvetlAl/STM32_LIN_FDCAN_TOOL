@@ -1,14 +1,22 @@
 #ifndef BUSMANAGER_H
 #define BUSMANAGER_H
 
+/***********************************************************************
+ * BusManager <== CanBusTraceProperty     <==  CanBusItem
+ *            <== CanBusMonitorProperty   <==  CanBusItemMonitor
+ *
+ *   CanBusTraceProperty *CanBusTraceModel(){return &m_CanBusTraceModel;}
+ *   CanBusMonitorProperty *CanBusMonitorModel(){return &m_CanBusMonitorModel;}
+ *
+ *
+ ************************************************************************/
+
 #include <QObject>
 #include <QDebug>
 #include "BusDataProperty.h"
 //#include "BusParser.h"
 #include "ParseBuffer.h"
 #include <QFile>
-
-
 
 
 class BusManager : public QObject{
@@ -24,7 +32,6 @@ class BusManager : public QObject{
     Q_PROPERTY(QString max_can_trace_items READ max_TraceItems WRITE setMaxTraceItems NOTIFY max_TraceItems_Changed)
     Q_PROPERTY(bool cdc_trace_empty READ cdc_trace_empty NOTIFY cdc_trace_emptyChanged)
 
-
     //=========== Monitor model===========
     Q_PROPERTY(CanBusMonitorProperty* CanBusMonitorModel READ CanBusMonitorModel CONSTANT)
 
@@ -33,8 +40,6 @@ class BusManager : public QObject{
 
     //=========== Aux trace and monitor ===========
     Q_PROPERTY(int aux_trace_size READ aux_trace_size NOTIFY aux_trace_sizeChanged)
-
-
 
 public:
     static inline const QByteArray default_init_data = "4001000000000000000000000008000000000000000000";
@@ -120,10 +125,6 @@ public:
     /******************************************************************************************/
     /*                                       Start/stop                                       */
     /******************************************************************************************/
-    /*
-    void startScanThread();
-    void stopScanThread();
-*/
 
 
     /******************************************************************************************/

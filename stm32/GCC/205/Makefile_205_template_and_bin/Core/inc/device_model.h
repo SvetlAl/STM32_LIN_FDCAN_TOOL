@@ -32,23 +32,43 @@
 //=========================================================================================================
 //=====================================           Model        ============================================
 //#define ALLIGATOR
-#define TEC_MODULE
+//#define TEC_MODULE
 
 //#define DEVICE_2CAN
 //#define DEVICE_2CAN_TJA1042
 //#define DEVICE_2CAN_BOXED
 //#define DEVICE_SIGMA
+//#define DEVICE_1CAN2LIN
+#define DEVICE_FCAN_V6
 
 // If a new model is added, check spi init in spi.h and spi.c
 // flash_mem_chip_spi.h and flash_mem_chip_spi.c - memchip description
 
+//=========================================================================================================
+//=================================     Extra functions and tests    ======================================
+//#define TEST_SPEED_TRANSMITTER
+//#define TEST_SPEED_RESPONDER
+
+
+//=========================================================================================================
+//=====================================     Supported modes    ============================================
+// Comment/Uncomment to reduce code size and RAM usage
+#define CAN_TX_BUFFER_ENABLED               // Buffered CAN transmission.  Buffer size is defined in "can_buffer.h"
+//#define SUPPORT_MEMCHIP_CAN_INJECTION				// playing CAN trace from a memory chip
+
+
+#if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
+#define CAN_INTERFACES_USED 1
+#else 
+#define CAN_INTERFACES_USED 2
+#endif
 
 //=========================================================================================================
 //=================================       Processor   frequency   =========================================
 //== Timer frequencies are supposed to be twice much more, than defined. Eg TIM1_FREQ_60MHZ means 120 Mhz =
 //=========================================================================================================
 
-#if defined(ALLIGATOR) | defined(TEC_MODULE)
+#if defined(ALLIGATOR) | defined(TEC_MODULE) | defined(DEVICE_FCAN_V6)
 #define STM32F205
 #define DEV_FREQ	120000
 #define DEV_FREQ_120MHZ
@@ -57,7 +77,7 @@
 #define TIM2_FREQ_30MHZ 	// used for trace injection
 #endif
 
-#if defined(DEVICE_2CAN) | defined(DEVICE_2CAN_TJA1042) | defined(DEVICE_2CAN_BOXED) | defined(DEVICE_SIGMA)
+#if defined(DEVICE_2CAN) | defined(DEVICE_2CAN_TJA1042) | defined(DEVICE_2CAN_BOXED) | defined(DEVICE_SIGMA) | defined(DEVICE_1CAN2LIN)
 #define STM32F105
 #define DEV_FREQ	72000
 #define DEV_FREQ_72MHZ
@@ -84,9 +104,12 @@
 // Since it's not possible to send a big real trace to a network at maximum supported CAN speed, it's needed to set minimum milsec timeout to slow down transmission.
 // For example, the app can't keep sending messages with so little as 0.1 msec timeout between them,
 // So we set CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD as 50, and minimum timeout between messages is 5 msec.
+//
+// This is a default value
+// actual value is stored in theDeviceModel.deviceModel.canInjection_CDC_threshold_value
 
-//#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)0x0D // real-time timing with max 4 messages with 10 msec period
-#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint16_t)50 // slowed down timing to play the whole trace
+#define CDC_CAN_INJECTING_TIMER_LOWER_THRESHOLD (uint8_t)0x0D // real-time timing with max 4 messages with 10 msec period
+
 
 
 
@@ -96,16 +119,11 @@
 #define BOR_VALUE (uint8_t)0x00 // BOR_3 = 0x00, BOR_2 = 0x01, BOR_1 = 0x02, BOR_OFF = 0x03
 #endif
 
-//=========================================================================================================
-//=================================     Extra functions and tests    ======================================
-
-//#define TEST_SPEED_TRANSMITTER
-//#define TEST_SPEED_RESPONDER
 
 //=========================================================================================================
 //===================================       Memory chip settings      =====================================
 
-#if defined(ALLIGATOR)
+#if defined(ALLIGATOR) | defined(DEVICE_FCAN_V6)
 #define MEMCHIP_M45PE16
 #define MEMCHIP_VOLUME	0x200000
 #endif
@@ -115,7 +133,7 @@
 #define MEMCHIP_VOLUME	0x200000
 #endif
 
-#if defined(DEVICE_2CAN) | defined(DEVICE_2CAN_TJA1042) | defined(DEVICE_2CAN_BOXED) | defined(DEVICE_SIGMA)
+#if defined(DEVICE_2CAN) | defined(DEVICE_2CAN_TJA1042) | defined(DEVICE_2CAN_BOXED) | defined(DEVICE_SIGMA) | defined(DEVICE_1CAN2LIN)
 #define MEMCHIP_MX25L323
 #define MEMCHIP_VOLUME	0x200000*2
 #endif
@@ -138,9 +156,20 @@
 		
 #define SIGNAL_LED_OFF GPIOA->BSRR |= GPIO_BSRR_BS_8
 #define SIGNAL_LED_ON GPIOA->BSRR |= GPIO_BSRR_BR_8
+ 
+#elif defined(DEVICE_FCAN_V6)
+#define SIGNAL_LED_OFF GPIOB->BSRR |= GPIO_BSRR_BR_0
+#define SIGNAL_LED_ON GPIOB->BSRR |= GPIO_BSRR_BS_0
+
+#define TOGGLE_SIGNAL_LED if(GPIOB->ODR & GPIO_ODR_OD0)  \
+	SIGNAL_LED_OFF;	\
+	else SIGNAL_LED_ON	\
+		
+
 #else
 #define SIGNAL_LED_ON 
 #define SIGNAL_LED_OFF 
+
 #endif
 	
 //=========================================================================================================
@@ -163,6 +192,12 @@
 #endif
 #ifdef DEVICE_SIGMA
 #define EMERGENCY_PIN_SET (!(GPIOB->IDR & GPIO_IDR_IDR14))
+#endif
+#ifdef DEVICE_1CAN2LIN
+#define EMERGENCY_PIN_SET (!(GPIOA->IDR & GPIO_IDR_IDR10))
+#endif
+#ifdef DEVICE_FCAN_V6
+#define EMERGENCY_PIN_SET (!(GPIOB->IDR & GPIO_IDR_ID1))
 #endif
 	
 //=========================================================================================================
@@ -197,9 +232,10 @@
 
 
 // CAN injection from memory chip
+#ifdef SUPPORT_MEMCHIP_CAN_INJECTION
 #define CAN_INJECTION_BUFFER_ITEMS 2
 #define CAN_INJECTION_BUFFER_SIZE CAN_INJECTION_BUFFER_ITEMS*sizeof(can_message_info_raw) // elements count
-
+#endif
 
 // CAN injection from USB CDC
 #if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
@@ -208,16 +244,8 @@
 #define CDC_CAN_INJECTION_BUFFER_ITEMS 384
 #endif
 
-
 #define CDC_CAN_INJECTION_BUFFER_SIZE CDC_CAN_INJECTION_BUFFER_ITEMS*sizeof(can_message_info_raw) // elements count
-	
-#define CAN_TX_BUFFER_ENABLED // comment/uncomment  buffer size is defined in "can_buffer.h"
 
-#if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
-#define CAN_INTERFACES_USED 1
-#else 
-#define CAN_INTERFACES_USED 2
-#endif
 
 /**********************************************************************************************************/
 /**********************************************************************************************************/
@@ -243,12 +271,9 @@
 
 #define FREE_MEMSPACE_ADDRESS                   0x040000
 
-
-
 	
 //=========================================================================================================
 //=======================================  Manufactors defs ===============================================
-
 
 #define NULL_MCODE                 '0'
 #define ALLIGATOR_MCODE            '1'
@@ -257,56 +282,8 @@
 #define DEVICE_2CAN_TJA1042_MCODE  '4'
 #define DEVICE_2CAN_BOXED_MCODE    '5'
 #define DEVICE_SIGMA_MCODE         '6'
-
-#define DEV_SPD_CLBR_MODE
-#define DEV_CANSCANNER_MODE
-#define DEV_2CANSCANNER_MODE
-#define DEV_CAN_OVERRIDE_MODE
-#define DEV_CAN_INJECTION_MODE
-
-/***** Device supported modes are exposed as uint_16 value 0x0000 with bit masks applied on ******/
-
-
-#define DEV_DEFAULT_CODE           (uint16_t)0x0000
-
-
-/***** Device modes masks ******/
-#ifdef DEV_SPD_CLBR_MODE
-#define DEV_SPD_CLBR_CODE_MSK      (uint16_t)0x0001
-#else 
-#define DEV_SPD_CLBR_CODE_MSK      DEV_DEFAULT_CODE
-#endif
-
-#ifdef DEV_CANSCANNER_MODE
-#define DEV_CANSCANNER_CODE_MSK	   (uint16_t)0x0002
-#else 
-#define DEV_CANSCANNER_CODE_MSK    DEV_DEFAULT_CODE
-#endif
-
-#ifdef DEV_2CANSCANNER_MODE
-#define DEV_2CANSCANNER_CODE_MSK   (uint16_t)0x0004
-#else 
-#define DEV_2CANSCANNER_CODE_MSK   DEV_DEFAULT_CODE
-#endif
-
-#ifdef DEV_CAN_OVERRIDE_MODE
-#define DEV_CAN_OVERRIDE_CODE_MSK  (uint16_t)0x0008
-#else 
-#define DEV_CAN_OVERRIDE_CODE_MSK  DEV_DEFAULT_CODE
-#endif
-
-#ifdef DEV_CAN_INJECTION_MODE
-#define DEV_CAN_INJECTION_CODE_MSK  (uint16_t)0x0010
-#else 
-#define DEV_CAN_INJECTION_CODE_MSK  DEV_DEFAULT_CODE
-#endif
-
-
-#define DEV_CODE (uint16_t)(DEV_DEFAULT_CODE | DEV_SPD_CLBR_CODE_MSK | DEV_CANSCANNER_CODE_MSK | DEV_2CANSCANNER_CODE_MSK | DEV_CAN_OVERRIDE_CODE_MSK | DEV_CAN_INJECTION_CODE_MSK)
-
-#define DEV_CODE_HBYTE(x) (uint8_t) ((DEV_CODE >> (12 - x*4)) & ~0xF0)
-#define DEV_CODE_ASCII(x) (uint8_t) ((DEV_CODE_HBYTE(x) >= 10) ? ('A' + DEV_CODE_HBYTE(x) -10) : ('0' + DEV_CODE_HBYTE(x)))	
-
+#define DEVICE_1CAN2LIN_MCODE      '7'
+#define DEVICE_FCAN_V6_MCODE       '8'
 
 
 typedef enum{
@@ -316,7 +293,9 @@ typedef enum{
 	DEVICE_OPERATION_MODE_REV = (uint8_t)0x03,   // Reverse CAN1 and CAN2
 	DEVICE_OPERATION_MODE_CIRCULAR_REV = (uint8_t)0x04,
 	DEVICE_OPERATION_MODE_CIRCULAR = (uint8_t)0x05,
-	DEVICE_OPERATION_MODE_FILTR_UPD = (uint8_t)0x06} eDeviceFunctionMode;
+	DEVICE_OPERATION_MODE_FILTR_UPD = (uint8_t)0x06,
+	DEVICE_OPERATION_MODE_CDC_TRACE_AUTO_THRESHOLD = (uint8_t)0x07,
+	DEVICE_OPERATION_MODE_CDC_TRACE_FIXED_THRESHOLD = (uint8_t)0x08} eDeviceFunctionMode;
 
 	/* this needed for interface application for a correct command set */
 typedef enum{
@@ -347,18 +326,29 @@ typedef struct DeviceModel{
 	uint8_t val_BTR_SJW_2;
 	eDeviceFunctionMode customBTR_2;
 	eDeviceFunctionMode canInjectionMode_CDC;
+	eDeviceFunctionMode canInjection_CDC_threshold_mode;
+	uint8_t canInjection_CDC_threshold_value;
+	eDeviceFunctionMode scanner_hardware_filter;
+	uint8_t lower_hw_filter_b0;
+	uint8_t lower_hw_filter_b1;
+	uint8_t lower_hw_filter_b2;
+	uint8_t lower_hw_filter_b3;
+	uint8_t higher_hw_filter_b0;
+	uint8_t higher_hw_filter_b1;
+	uint8_t higher_hw_filter_b2;
+	uint8_t higher_hw_filter_b3;	
 } DeviceModel; //creating new type
 
 enum DeviceModelProperties{
 	Enm_memChipModel = 0,
 	Enm_canGatewayMode = 1,
-  Enm_can2GatewayMode = 2, // OBSOLETE
-  Enm_calibratorFilterMode = 3,
-  Enm_canOverrideMode = 4,
-  Enm_canScannerMode = 5,
-  Enm_can2ScannerMode = 6, 
-  Enm_memoryProgramingMode = 7,
-  Enm_canInjectionMode = 8,
+	Enm_can2GatewayMode = 2, // OBSOLETE
+	Enm_calibratorFilterMode = 3,
+	Enm_canOverrideMode = 4,
+	Enm_canScannerMode = 5,
+	Enm_can2ScannerMode = 6, 
+	Enm_memoryProgramingMode = 7,
+	Enm_canInjectionMode = 8, // not tested properly
 	Enm_val_BTR_PSC = 9,
 	Enm_val_BTR_BS1 = 10,
 	Enm_val_BTR_BS2 = 11,
@@ -369,16 +359,24 @@ enum DeviceModelProperties{
 	Enm_val_BTR_BS2_2 = 16,
 	Enm_val_BTR_SJW_2 = 17,
 	Enm_customBTR_2 = 18,
-	Enm_canInjectionMode_CDC = 19
+	Enm_canInjectionMode_CDC = 19,
+	Enm_canInjection_CDC_threshold_mode = 20,
+	Enm_canInjection_CDC_threshold_value = 21,
+	Enm_scanner_hardware_filter = 22,
+	Enm_lower_hw_filter_b0 = 23,
+	Enm_lower_hw_filter_b1 = 24,
+	Enm_lower_hw_filter_b2 = 25,
+	Enm_lower_hw_filter_b3 = 26,
+	Enm_higher_hw_filter_b0 = 27,
+	Enm_higher_hw_filter_b1 = 28,
+	Enm_higher_hw_filter_b2 = 29,
+	Enm_higher_hw_filter_b3 = 30
 };
-
 
 typedef union uDeviceModel{
 	DeviceModel deviceModel;
 	uint8_t data[sizeof(DeviceModel)];
 }uDeviceModel;
-
-
 
 //=========================================================================================================
 //====================================   The Vehicle global var  ==========================================
@@ -422,6 +420,15 @@ extern uDeviceModel theDeviceModel;
 //========== CAN Injection CDC mode ====================
 #define CAN_INJECTION_CDC_MODE theDeviceModel.deviceModel.canInjectionMode_CDC
 #define SET_CAN_INJECTION_CDC_MODE(uDevMod) (theDeviceModel.deviceModel.canInjectionMode_CDC = uDevMod)
+//========== CAN Injection CDC threshold mode ====================
+#define CAN_INJECTION_CDC_THRESHOLD_MODE theDeviceModel.deviceModel.canInjection_CDC_threshold_mode
+#define SET_CAN_INJECTION_CDC_THRESHOLD_MODE(uDevMod) (theDeviceModel.deviceModel.canInjection_CDC_threshold_mode = uDevMod)
+//========== CAN Injection CDC threshold value ====================
+#define CAN_INJECTION_CDC_THRESHOLD_VALUE theDeviceModel.deviceModel.canInjection_CDC_threshold_value
+#define SET_CAN_INJECTION_CDC_THRESHOLD_VALUE(uDevMod) (theDeviceModel.deviceModel.canInjection_CDC_threshold_value = uDevMod)
+//========== CAN Scanner hardware filter ====================
+#define CAN_SCANNER_HARDWARE_FILTER theDeviceModel.deviceModel.scanner_hardware_filter
+#define SET_CAN_SCANNER_HARDWARE_FILTER(uDevMod) (theDeviceModel.deviceModel.scanner_hardware_filter = uDevMod)
 
 
 //=========================================================================================================
@@ -449,6 +456,76 @@ void set_bor_level(uint8_t br_lvl);
 
 #define DEVICE_MODEL_OK 		0
 #define DEVICE_MODEL_FAIL 	1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//=========================================================================================================
+//================================================ OBSOLETE  ==============================================
+
+#define DEV_SPD_CLBR_MODE
+#define DEV_CANSCANNER_MODE
+#define DEV_2CANSCANNER_MODE
+#define DEV_CAN_OVERRIDE_MODE
+#define DEV_CAN_INJECTION_MODE
+
+/***** Device supported modes are exposed as uint_16 value 0x0000 with bit masks applied on ******/
+#define DEV_DEFAULT_CODE           (uint16_t)0x0000
+
+
+/***** Device modes masks ******/
+
+#ifdef DEV_SPD_CLBR_MODE
+#define DEV_SPD_CLBR_CODE_MSK      (uint16_t)0x0001
+#else 
+#define DEV_SPD_CLBR_CODE_MSK      DEV_DEFAULT_CODE
+#endif
+
+#ifdef DEV_CANSCANNER_MODE
+#define DEV_CANSCANNER_CODE_MSK	   (uint16_t)0x0002
+#else 
+#define DEV_CANSCANNER_CODE_MSK    DEV_DEFAULT_CODE
+#endif
+
+#ifdef DEV_2CANSCANNER_MODE
+#define DEV_2CANSCANNER_CODE_MSK   (uint16_t)0x0004
+#else 
+#define DEV_2CANSCANNER_CODE_MSK   DEV_DEFAULT_CODE
+#endif
+
+#ifdef DEV_CAN_OVERRIDE_MODE
+#define DEV_CAN_OVERRIDE_CODE_MSK  (uint16_t)0x0008
+#else 
+#define DEV_CAN_OVERRIDE_CODE_MSK  DEV_DEFAULT_CODE
+#endif
+
+#ifdef DEV_CAN_INJECTION_MODE
+#define DEV_CAN_INJECTION_CODE_MSK  (uint16_t)0x0010
+#else 
+#define DEV_CAN_INJECTION_CODE_MSK  DEV_DEFAULT_CODE
+#endif
+
+
+#define DEV_CODE (uint16_t)(DEV_DEFAULT_CODE | DEV_SPD_CLBR_CODE_MSK | DEV_CANSCANNER_CODE_MSK | DEV_2CANSCANNER_CODE_MSK | DEV_CAN_OVERRIDE_CODE_MSK | DEV_CAN_INJECTION_CODE_MSK)
+
+#define DEV_CODE_HBYTE(x) (uint8_t) ((DEV_CODE >> (12 - x*4)) & ~0xF0)
+#define DEV_CODE_ASCII(x) (uint8_t) ((DEV_CODE_HBYTE(x) >= 10) ? ('A' + DEV_CODE_HBYTE(x) -10) : ('0' + DEV_CODE_HBYTE(x)))	
 
 
 

@@ -1,5 +1,13 @@
 #include "QDiscardId_ModelItem.h"
 
+/********************************************************************
+ *
+ *
+ *                     Class Setters/getters
+ *
+ *
+********************************************************************/
+
 int QDiscardId_ModelItem::Id_value() const{
     return m_Id_value;
 }

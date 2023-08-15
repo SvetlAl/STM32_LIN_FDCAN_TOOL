@@ -1,22 +1,46 @@
 #ifndef APPDESIGN_H
 #define APPDESIGN_H
+
+/***********************************************************************
+ *
+ *
+ * The design container holds design settings info:
+ *
+ *  a settings name
+ *  a setting vaue (<typename T>)
+ *
+ *
+ ************************************************************************/
+
+
+
 #include <QDebug>
 #include "Containerdesign.h"
-
 #include <iostream>
 #include <map>
-// #include "../../engine/file_manager/SimpleSerializer.h"
 
-#ifdef QT_IN_USE
 class AppDesign{
 
-    /*************** Assignment ***************/
+    //===================== const static presets =======================
+
+
+    /********************************************************************
+     *
+     *                     Design settings groups
+     *
+    ********************************************************************/
+
     static inline const QString assignment_GeneralDesign = "GeneralDesign";
     static inline const QString assignment_SimpleItems = "SimpleItems";
     static inline const QString assignment_ViewScale = "ViewScale";
     static inline const QString assignment_Base = "Base";
 
-    /*************** Target element ***************/
+    /********************************************************************
+     *
+     *                     Design settings type
+     *
+    ********************************************************************/
+
     static inline const QString itemElement_Font = "Font";
     static inline const QString itemElement_Color = "Color";
     static inline const QString itemElement_Height = "Height";
@@ -25,7 +49,12 @@ class AppDesign{
     static inline const QString itemElement_Width = "Width";
     static inline const QString itemElement_Gradient = "Gradient";
 
-    /*************** Var name ***************/
+    /********************************************************************
+     *
+     *                     Design setting target
+     *
+    ********************************************************************/
+
     static inline const QString name_Main = "Main";
     static inline const QString name_ToolBar = "ToolBar";
     static inline const QString name_ToolBarText = "ToolBarText";
@@ -62,6 +91,12 @@ class AppDesign{
     static inline const QString name_FrameLight = "FrameLight";
     static inline const QString name_ButtonCanva = "ButtonCanva";
     static inline const QString name_PageGrid = "PageGrid";
+
+    /********************************************************************
+     *
+     *                     Default values presets
+     *
+    ********************************************************************/
 
     /*** View Scale ***/
     /* int */
@@ -272,18 +307,15 @@ public:
         Sp_XXXL = 5
     };
 
-
+    //==================================== init =====================================
     void default_init();
-
     void setSizePreset(int size_preset);
     void setColorPreset();
+
+    //============================== Print and debug =================================
     void print();
 
-    /********************************************************/
-    /******************** Setters/Getters ******************/
-    /********************************************************/
-  //  template<typename T>
-  //  ContainerDesign<T> *getContainerPointer(const QString _assignment, const QString _item_element);
+    //================================ Setters/Getters ==============================
     ContainerDesignInt *getIntContainerPointer(const QString _assignment, const QString _item_element);
     ContainerDesignFloat *getFloatContainerPointer(const QString _assignment, const QString _item_element);
     ContainerDesignQstring *getQstringContainerPointer(const QString _assignment, const QString _item_element);
@@ -295,6 +327,7 @@ public:
     float getFloatValue(const QString _assignment, const QString _item_element, const QString _name);
     void setFloatValue(const QString _assignment, const QString _item_element, const QString _name, float _value);
 
+    //================================= Operators ====================================
     friend QDataStream& operator >>( QDataStream& d, AppDesign& ad);
     friend QDataStream& operator << (QDataStream& d, const AppDesign& ad);
     AppDesign& operator= (const AppDesign &cs){
@@ -365,7 +398,6 @@ private:
 QDataStream& operator << (QDataStream& d, const AppDesign& ad);
 QDataStream& operator >> (QDataStream& d, AppDesign& ad);
 
-#endif
 
 
 #endif // APPDESIGN_H

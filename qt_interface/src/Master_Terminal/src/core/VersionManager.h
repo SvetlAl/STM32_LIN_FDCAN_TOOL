@@ -1,6 +1,22 @@
 #ifndef VERSIONMANAHER_H
 #define VERSIONMANAHER_H
 
+/***********************************************************************
+ *
+ * Version Manager incapsulates a current interface and versions,
+ * info about available newer versions on the Internet
+ *
+ * Info about possible critical errors
+ * Info about a connected device hardware
+ *
+ * Main functions:
+ * read available versions info,
+ * display, if newer versions available
+ * read and display hardware info
+ *
+ ************************************************************************/
+
+
 #include "../app_settings.h"
 #include <stdlib.h>
 #include <QDebug>
@@ -8,9 +24,6 @@
 #include "Version.h"
 #include "Console.h"
 #include "../app_settings.h"
-
-
-
 
 class VersionManager: public QObject{
     Q_OBJECT
@@ -24,11 +37,11 @@ class VersionManager: public QObject{
 
     Q_PROPERTY(bool isNewHardwareApplicationAvailable READ isNewHardwareApplicationAvailable NOTIFY isNewHardwareApplicationAvailableChanged)
 
-
 public:
     explicit VersionManager(QObject *parent = nullptr): QObject(parent){};
     ~VersionManager(){ }
 
+    //=========================== const presets ==============================
     enum VerInfoLanguage {
         English = 0,
         Russian = 1
@@ -41,24 +54,9 @@ public:
     static inline const QStringList infoVersionUnavailable_ph = {"Version info not found.",  "Информация о версии ПО не найдена."};
     static inline const QStringList errorControl_ph = {"Errata: ",  "Сведения об ошибках: "};
 
-    const QString current_interface_version () const {return m_current_interface_version.version_string();}
-//    const QString available_interface_version () const{return m_available_interface_version.version_string();}
-    const QString current_device_version () const{return m_current_device_version.version_string();}
-//    const QString available_device_version () const{return m_available_device_version.version_string();}
-    const QString &hardware_device_model_name() const{ return m_hardware_device_model_name;};
-
-
-//    void setAvailable_interface_version(const QString &init_string);
+    //=========================== Init functions ==============================
     void setCurrent_device_version(const QString &init_string);
-//    void setAvailable_device_version(const QString &init_string);
     void setHardware_device_model(const QString &init_string);
-
-
-    Q_INVOKABLE void printInterfaceVersions();
-    Q_INVOKABLE void printDeviceVersions();
-    Q_INVOKABLE void printOnUpdate();
-    void printResponse(const QStringList& list)const;
-
     void resetOnDisconnect(){
         m_current_device_version.resetOnDisconnect();
         m_hardware_device_model_name = "";
@@ -69,30 +67,38 @@ public:
         emit hardware_device_modelChanged();
     }
 
+    //========================= Print and display =============================
+    Q_INVOKABLE void printInterfaceVersions();
+    Q_INVOKABLE void printDeviceVersions();
+    Q_INVOKABLE void printOnUpdate();
+    void printResponse(const QStringList& list)const;
+
+    //============================ Class service ==============================
     Version findLatestVersion(int _verDesignCode) const;
     void fillCurrentVersionInfo(int _verDesignCode);
+    bool isNewHardwareApplicationAvailable();
 
+    //========================= Class setters/getters =========================
     void setConsole(Console *newPConsole);
     const QString &CurrentLanguage() const;
     void setCurrentLanguage(const QString &newCurrentLanguage);
+    char hardware_device_model_code() const;
+    const QString current_interface_version () const {return m_current_interface_version.version_string();}
+    const QString current_device_version () const{return m_current_device_version.version_string();}
+    const QString &hardware_device_model_name() const{ return m_hardware_device_model_name;};
+    bool getIsInterfaceInfoAppended() const;
     bool getIsCriticalAlert() const;
     void setIsCriticalAlert(bool newIsCriticalAlert);
-
-    bool getIsInterfaceInfoAppended() const;
     void setIsInterfaceInfoAppended(bool newIsInterfaceInfoAppended);
     bool getIsDeviceInfoAppended() const;
     void setIsDeviceInfoAppended(bool newIsDeviceInfoAppended);
-    bool isNewHardwareApplicationAvailable();
 
-    char hardware_device_model_code() const;
 
 public slots:
     void handleDeviceVersionInfo();
 
 signals:
-//    void available_interface_versionChanged();
     void current_device_versionChanged();
-//    void available_device_versionChanged();
     void hardware_device_modelChanged();
 
     void isCriticalAlertChanged();
@@ -125,11 +131,6 @@ private:
     bool isCriticalAlert = false;
     bool isInterfaceInfoAppended = false;
     bool isDeviceInfoAppended = false;
- //   bool newInterfaceSwAvailable = false;
- //   bool newDeviceSwAvailable = false;
-
-
-
 };
 
 

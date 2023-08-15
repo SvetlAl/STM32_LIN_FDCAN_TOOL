@@ -1,6 +1,16 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
+/***********************************************************************
+ *
+ *
+ * Vehicle class incapsulates vehicle data (imported from the firmware project)
+ *
+ *
+ *
+ *
+ ************************************************************************/
+
 #include <QObject>
 #include <QDebug>
 #include "../../app_settings.h"
@@ -24,8 +34,7 @@ typedef struct VehicleStruct{
     uint32_t id_speedometer_extra;
     uint32_t id_odometer;
     uint32_t id_cruise;
-
-} VehicleStruct; //creating new type
+} VehicleStruct;
 
 typedef union unionVehicleStructData{
     VehicleStruct _vehicleStruct;
@@ -61,10 +70,10 @@ public:
     explicit Vehicle(QObject *parent = nullptr): QObject(parent){
         set_model(0xFFFF);
     };
-
     ~Vehicle(){
     };
 
+    //================================= static presets ==============================
     enum ModelBrand {
         Toyota = 0,
         GreatWall = 1,
@@ -74,13 +83,19 @@ public:
         Isuzu = 5,
         Lexus = 6,
         Tank = 7,
-        Extra = 8,
-        Default = 9
+        Honda = 8,
+        Ford = 9,
+        Nissan = 10,
+        Extra = 11,
+        Default = 12
     };
 
+    //==================================== init =====================================
     void init_with_response_bytes(const QByteArray &response_bytes);
     void initNewModel();
+    void reset();
 
+    //============================= Setters/Getters =================================
     const QString model_name() const {return m_modelName;};
     const uint16_t model() const {return m_VehicleStruct->model;};
     const uint8_t modes() const {return m_VehicleStruct->modes;};
@@ -105,10 +120,6 @@ public:
     void set_id_odometer(uint32_t _id_odometer)  {m_VehicleStruct->id_odometer = _id_odometer; emit id_odometer_changed();};
     void set_id_cruise(uint32_t _id_cruise)  {m_VehicleStruct->id_cruise = _id_cruise; emit id_cruise_changed();};
 
-    /* emit all signals */
-    void all_changed();
-    void reset();
-
     /*** Modes ***/
     bool isOdoFreeze() const{return (m_VehicleStruct->modes & CALIBRATOR_ODO_FREEZE_MODE);}
     bool isTestMode() const{return (m_VehicleStruct->modes & CALIBRATOR_TEST_MODE);}
@@ -118,6 +129,8 @@ public:
     bool cruise_mlt_available() const {return is_cruise_mlt_available;};
     bool tyres_threshold_available() const {return is_tyres_threshold_available;};
 
+    /* emit all signals */
+    void all_changed();
 signals:
 
     void model_name_changed();

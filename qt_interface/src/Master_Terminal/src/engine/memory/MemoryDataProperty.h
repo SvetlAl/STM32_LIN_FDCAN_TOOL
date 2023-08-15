@@ -1,6 +1,23 @@
 #ifndef MEMORYDATAROPERTY_H
 #define MEMORYDATAROPERTY_H
 
+/***********************************************************************
+ * MemoryManager <== FlashSpiMemoryDataProperty
+ *                   *MemoryDataProperty         <==  MemoryDataItem
+ *
+ *
+ * MemoryDataProperty is a data model, that represents chip memory data as
+ *  Address
+ *  B0  (bytes 0-3)
+ *  B4  (bytes 4-7)
+ *  B8  (bytes 8-11)
+ *  BC  (bytes 12-15)
+ *  ASCII representation of B0-BC data
+ *
+ *
+ *
+ ************************************************************************/
+
 #include "../../app_settings.h"
 #ifdef QT_IN_USE
 #include <QDebug>
@@ -30,6 +47,7 @@ public:
 
     virtual ~MemoryDataProperty(){};
 
+    //================================= Static preset ==================================
     enum {
         Address = 0,
         B0 ,
@@ -40,8 +58,36 @@ public:
         ColumnCount
     };
 
+    //=================================== Init =========================================
+    virtual void addItem(const QString &addr, const QString &value){
+        QString _addr = addr;
+        // Validate input strings
 
+         regex.setPattern("[0-9A-F]{1,16}");
+         if (!regex.match(addr).hasMatch()) {
+             qDebug() << "Invalid address:" << addr;
+             return;
+         }
+         else  _addr = addr;
+
+         regex.setPattern("[0-9A-F]{32}");
+         if (!regex.match(value).hasMatch()) {
+             qDebug() << "Invalid value:" << value;
+             return;
+         }
+
+         // Pad address with zeros if necessary
+         if (_addr.length() < 16) {
+             _addr.prepend(QString(16 - _addr.length(), '0'));
+         }
+
+        auto _item = QSharedPointer<MemoryDataItem>(new MemoryDataItem(this, _addr, value));
+        this->append(_item);
+    }
+
+    //================================ Data access =====================================
     int columnCount(const QModelIndex & = QModelIndex()) const override;
+
     QVariant headerData(int section, Qt::Orientation orientation,
                         int role = Qt::DisplayRole) const override;
 
@@ -89,32 +135,7 @@ public:
         return QVariant::fromValue( obj );
     }
 
-    virtual void addItem(const QString &addr, const QString &value){
-        QString _addr = addr;
-        // Validate input strings
 
-         regex.setPattern("[0-9A-F]{1,16}");
-         if (!regex.match(addr).hasMatch()) {
-             qDebug() << "Invalid address:" << addr;
-             return;
-         }
-
-         else  _addr = addr;
-
-         regex.setPattern("[0-9A-F]{32}");
-         if (!regex.match(value).hasMatch()) {
-             qDebug() << "Invalid value:" << value;
-             return;
-         }
-
-         // Pad address with zeros if necessary
-         if (_addr.length() < 16) {
-             _addr.prepend(QString(16 - _addr.length(), '0'));
-         }
-
-        auto _item = QSharedPointer<MemoryDataItem>(new MemoryDataItem(this, _addr, value));
-        this->append(_item);
-    }
 
 
     const QString getAddress(const int i) const{
@@ -208,6 +229,7 @@ public:
     };
     virtual ~FlashSpiMemoryDataProperty(){};
 
+    //=================================== Init =========================================
     void addItem(const QString &addr, const QString &value) override{
         QString _addr = addr;
         // Validate input strings

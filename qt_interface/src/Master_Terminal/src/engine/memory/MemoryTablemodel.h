@@ -1,6 +1,7 @@
 #ifndef MEMORYTABLEMODELVIEW_H
 #define MEMORYTABLEMODELVIEW_H
-//========================= UUNUSED ==================================
+//========================= UNUSED ==================================
+
 #include <qqml.h>
 #include <QAbstractTableModel>
 

@@ -1,10 +1,23 @@
 #include "Downloader.h"
+#include "../../app_settings.h"
 #include <QDir>
 
 Downloader::Downloader(QObject *parent) : QObject(parent){
     m_pManager = new QNetworkAccessManager();
     connect(m_pManager, &QNetworkAccessManager::finished, this, &Downloader::onResult);
 }
+Downloader::~Downloader(){
+    disconnect(m_pManager, &QNetworkAccessManager::finished, this, &Downloader::onResult);
+    delete m_pManager;
+}
+
+/********************************************************************
+ *
+ *
+ *                    Slots
+ *
+ *
+********************************************************************/
 
 void Downloader::getData(QString _url){
     if(m_DownloadPath == "") return;
@@ -18,7 +31,8 @@ void Downloader::onResult(QNetworkReply *reply){
     if(reply->error()){
         m_ErrorString = reply->errorString();
         emit onError();
-    } else {
+    }
+    else {
         QFile *file = new QFile(m_DownloadPath);
         if(file->open(QFile::WriteOnly)){
             file->write(reply->readAll());
@@ -28,6 +42,15 @@ void Downloader::onResult(QNetworkReply *reply){
         }
     }
 }
+
+
+/********************************************************************
+ *
+ *
+ *                    Class Setters/Getters
+ *
+ *
+********************************************************************/
 
 QString Downloader::popErrorString() {
     QString errorString = m_ErrorString;

@@ -1,6 +1,18 @@
 #ifndef WEBMANAGER_H
 #define WEBMANAGER_H
 
+/***********************************************************************
+ *
+ *
+ * Web Manager
+ *
+ * Class designation:
+ * set a download target and start transmisson
+ *
+ *
+ ************************************************************************/
+
+
 #include <QObject>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -10,7 +22,6 @@
 #include <QDebug>
 #include "../../core/Console.h"
 #include "../../core/VersionManager.h"
-#include "../../app_settings.h"
 #include "../../engine/command_manager/CommandManager.h"
 #include "WebConfig.h"
 #include "Downloader.h"
@@ -21,19 +32,22 @@ class WebManager : public QObject{
 
 public:
     explicit WebManager(QObject *parent = 0);
-    ~WebManager() {};
+    ~WebManager();
+
+    //===================== const static presets =======================
 
     enum RequestTarget {
         DefaultValue = 0,
-        DeviceVersionInfo = 1,
-        DeviceUpdate = 2,
-        DeviceCodeOverride = 3
+        DeviceVersionInfo = 1, // Get update info: available versions
+        DeviceUpdate = 2,      // Download a newer binary from main update repo
+        DeviceCodeOverride = 3 // Download a custom date binary from override repo
     };
 
-   Q_INVOKABLE bool put_up_download(int _rq_target_value);
+    //===================== Main functions =======================
+    Q_INVOKABLE bool put_up_download(int _rq_target_value);
 
+    //===================== Class setters/getters =======================
     bool isDownloaderBusy(){return (static_cast<RequestTarget>(m_RequestTarget) != DefaultValue);}
-
     Console *pConsole() const;
     void setConsole(Console *newPConsole);
     WebConfig *pWebConfig() const;
