@@ -8,7 +8,7 @@ https://www.youtube.com/watch?v=TV64RHSr5Tw&lc=
 Interface overview:
 https://youtu.be/wPPCQm3Kelo
 
-Now I'm fixing minor bugs and preparing LIN bus support.
+Now I'm fixing minor bugs and preparing CAN FD support.
 
 
 **Work explanation.**
@@ -90,6 +90,24 @@ This function is not recommended for use with Android.
 
 **General Android limitations**
 Android support here is not native and should not be used with excessive USB data traffic. Slow down transmission or use hardware filters id needed.
+
+
+
+**LIN bus support**
+LIN bus is supported with 4 modes:
+*Device*: any custom logic implemented in void lin_device_master_tx(void); void lin_device_slave_rx(void);
+*Gateway*: split a LIN bus and install a gateway in between Master output. 
+Then, use these two modes:
+*Filter*: 2 fiter available - MISO and MOSI respectively.
+*Scanner*: similar to CAN scanner, but with reduced features.
+
+![hw_filter](Docs/LIN_monitor.png)
+![hw_filter](Docs/LIN_trace.png)
+![hw_filter](Docs/LIN_settings.png)
+
+The only hardware configuration, that supports LIN is DEVICE_2CAN
+![LIN hardware config](Docs/Hardware_Presets/DEVICE_2CAN.png)
+
 
 **Credits**
 The Android com-port implementation made by VanThanBK: https://github.com/VanThanBK/QtAndroid-UsbSerial
