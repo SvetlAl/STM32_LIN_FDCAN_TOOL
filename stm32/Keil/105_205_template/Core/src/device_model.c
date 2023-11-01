@@ -8,6 +8,7 @@
 #include "device_model.h"
 #include "flash_mem_chip_spi.h"
 #include "user_cmd.h"
+#include "lin.h"
 
 //=======================================================================
 //=============== The Vehicle global var ================================
@@ -19,11 +20,11 @@ static uint8_t deviceSoftwareVersion[DEVICE_INFO_STRING_SZ] = {
 	'v',
 	'1',
 	'.',
-	'0',
-	'5',
+	'2',
+	'9',
 	'.',
+	'1',
 	'0',
-	'8',
 	'.',
 	'2',
 	'3',
@@ -210,6 +211,7 @@ static uint8_t hardwareVersion[DEVICE_INFO_STRING_SZ] = {
 #endif
 
 
+
 void initDeviceModelDefaults(uDeviceModel *p_deviceModel){
 	p_deviceModel->deviceModel.canGatewayMode = DEVICE_OPERATION_MODE_ON;
 	p_deviceModel->deviceModel.calibratorFilterMode = DEVICE_OPERATION_MODE_ON;
@@ -300,7 +302,6 @@ void initCANSettings(uint16_t vehicle_model, uDeviceModel *p_deviceModel){
 
 void initDeviceGeneralPinout(void){
 	#ifdef TEC_MODULE
-	
 	/* CAN 1 STB  B4  */
 	GPIOB->MODER &= ~GPIO_MODER_MODER4;
 	GPIOB->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED4;
@@ -362,6 +363,7 @@ void initDeviceGeneralPinout(void){
 	GPIOB->MODER &= ~GPIO_MODER_MODER1;
 	GPIOB->OSPEEDR &= ~GPIO_OSPEEDR_OSPEED1;
 	GPIOB->PUPDR &= ~GPIO_PUPDR_PUPD1;
+	GPIOB->PUPDR |= GPIO_PUPDR_PUPD1_0;
 	GPIOB->OSPEEDR |= GPIO_OSPEEDR_OSPEED1;
 	
 	GPIOB->BSRR |= GPIO_BSRR_BR7;
@@ -391,7 +393,6 @@ void initDeviceGeneralPinout(void){
 	
 	SPI1_init_pinout();
 	SPI1_start(SPI_master_mode, SPI_polling_mode, SPI_b_mode, SPI_msb_mode, SPI_no_Dma);
-	
 	#endif
 	
 	#ifdef DEVICE_2CAN_BOXED 
@@ -552,9 +553,39 @@ void initModelSettings(){
 	read_memchip(&memory_chip_status, DEVICE_OVERRIDE_FILTER_SETTINGS_ADDRESS, ovr_set_addr, DEVICE_OVERRIDE_FILTER_SETTINGS_LENGTH, SPI_no_Dma);
 	
 	
+	
+		// LIN & USART
+	#if defined(SUPPORT_USART) && (defined(DEVICE_2CAN)  )
+	init_device_usart(Baudrate_9600);
+	 #ifdef SUPPORT_LIN
+	if(theDeviceModel.deviceModel.lin_baudrate_preset == DEVICE_OPERATION_MODE_DEFAULT){
+		theDeviceModel.deviceModel.lin_baudrate_preset = LIN_9600;
+	}
+	if(theDeviceModel.deviceModel.lin_mode == DEVICE_OPERATION_MODE_DEFAULT){
+		theDeviceModel.deviceModel.lin_mode = 0x00;
+		theDeviceModel.deviceModel.lin_mode |= (uint8_t)((LIN_STATUS_ON << 4) &~0x0F); // validation
+		theDeviceModel.deviceModel.lin_mode |= LIN_MODE_DEFAULT;
+	}
+	if(theDeviceModel.deviceModel.lin_filter == DEVICE_OPERATION_MODE_DEFAULT){
+		theDeviceModel.deviceModel.lin_filter = LIN_FILTER_OFF;
+	}
+			
+	volatile uint32_t *sec_ptr = get_main_tim_sec_ptr();
+	enable_lin(&theDeviceModel.deviceModel.lin_mode,
+             &theDeviceModel.deviceModel.lin_baudrate_preset,
+	           &theDeviceModel.deviceModel.lin_filter,
+	           MAIN_TIMER, 
+	           sec_ptr);
+	
+	 #endif /* SUPPORT_LIN */ 
+	#endif
+	// Others
+	
+	
 	if(*get_override_settings_data() == 0xFF){ // Make sure the override status data is valid
 		memset((void *)get_override_settings_data(), 0x00, DEVICE_OVERRIDE_FILTER_SETTINGS_LENGTH);
 	}
+
 }
 
 #ifdef STM32F205

@@ -203,6 +203,17 @@ public:
     Q_INVOKABLE bool startCDC_CAN_Injection(uint8_t value);
     Q_INVOKABLE void refresh_hardware_scanner_filters(bool isLowerThresh);
 
+    /********************************* LIN spec ***********************************************/
+    Q_INVOKABLE bool set_LIN_validation(bool value);
+    Q_INVOKABLE bool set_LIN_mode(int value, bool _set);
+    Q_INVOKABLE void refresh_LIN_poll_period(uint16_t value);
+    bool set_LIN_poll_period(uint16_t value);
+    void updateLIN_poll_period();
+    Q_INVOKABLE bool get_LIN_filter(bool dir_mosi);
+    Q_INVOKABLE bool set_LIN_filter(bool dir_mosi);
+
+
+
 
 
     Q_INVOKABLE bool updateOverrideStatus();

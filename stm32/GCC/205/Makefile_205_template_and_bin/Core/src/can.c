@@ -175,9 +175,9 @@ void Can_Init_Buffers(){
 	CAN1->IER |= CAN_IER_LECIE;
 	
 	NVIC_EnableIRQ(CAN1_TX_IRQn);
-	NVIC_SetPriority(CAN1_TX_IRQn, 9);
+	NVIC_SetPriority(CAN1_TX_IRQn, CAN1_TX_IRQ_P);
 	NVIC_EnableIRQ(CAN1_SCE_IRQn);
-	NVIC_SetPriority(CAN1_SCE_IRQn, 8);
+	NVIC_SetPriority(CAN1_SCE_IRQn, CAN1_SCE_IRQ_P);
 		
 	#ifndef DEVICE_1CAN2LIN
 	CAN2->IER |= CAN_IER_ERRIE;
@@ -186,9 +186,9 @@ void Can_Init_Buffers(){
 	
 
 	NVIC_EnableIRQ(CAN2_TX_IRQn);
-	NVIC_SetPriority(CAN2_TX_IRQn, 9);
+	NVIC_SetPriority(CAN2_TX_IRQn, CAN2_TX_IRQ_P);
 	NVIC_EnableIRQ(CAN2_SCE_IRQn);
-	NVIC_SetPriority(CAN2_SCE_IRQn, 8);
+	NVIC_SetPriority(CAN2_SCE_IRQn, CAN2_SCE_IRQ_P);
 	#endif
 	
 #endif

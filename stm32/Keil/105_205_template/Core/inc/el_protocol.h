@@ -125,7 +125,7 @@ uint32_t elp_parse_cmd(elp_cmd_BufferAddress addr);
 uint32_t pick_cmd(elp_cmd_BufferAddress addr);
 uint32_t el_reset_state(void);
 elp_cmd *el_get_current_cmd(void);
-
 void elp_quadro_copy(el_quadro_buffer *qbuf_in, el_quadro_buffer *qbuf_out);
+
 
 #endif /* EL_PROTOCOL_H_INCLUDED*/

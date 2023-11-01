@@ -14,6 +14,7 @@
 #include <QObject>
 #include <QDebug>
 #include "BusDataProperty.h"
+#include "LinBusDataProperty.h"
 //#include "BusParser.h"
 #include "ParseBuffer.h"
 #include <QFile>
@@ -41,6 +42,13 @@ class BusManager : public QObject{
     //=========== Aux trace and monitor ===========
     Q_PROPERTY(int aux_trace_size READ aux_trace_size NOTIFY aux_trace_sizeChanged)
 
+    //========================================= LIN bus =========================================
+    Q_PROPERTY(LinBusTraceProperty* LinBusTraceModel READ LinBusTraceModel CONSTANT)
+    Q_PROPERTY(LinBusMonitorProperty* LinBusMonitorModel READ LinBusMonitorModel CONSTANT)
+    //=========== is current configuration monitor or trace ===========
+    Q_PROPERTY(bool monitorLinScanOn READ getMonitorLinScanOn WRITE setMonitorLinScanOn NOTIFY monitorLinScanOnChanged)
+
+
 public:
     static inline const QByteArray default_init_data = "4001000000000000000000000008000000000000000000";
 
@@ -58,6 +66,10 @@ public:
     bool getMonitorScanOn() const;
     void setMonitorScanOn(bool newMonitorScanOn);
     bool cdc_trace_empty(){return (CanBusTraceModel()->count() == 0);}
+
+    //========================================= LIN ============================================
+    bool getMonitorLinScanOn() const;
+    void setMonitorLinScanOn(bool newMonitorScanOn);
 
     /******************************************************************************************/
     /*                                    Scanner filters                                     */
@@ -87,6 +99,11 @@ public:
 
     const QString max_TraceItems() const;
     void setMaxTraceItems(const QString &newMax_items);
+
+    //========================================= LIN ============================================
+    Q_INVOKABLE void sortLinTraceColumn(const int col, bool fromTopToBottom = true);
+    Q_INVOKABLE void switchLinSortTraceColumn(const int col);
+    Q_INVOKABLE void clearLinSortTrace();
 
     /******************************************************************************************/
     /******************************************************************************************/
@@ -133,6 +150,11 @@ public:
     CanBusTraceProperty *CanBusTraceModel(){return &m_CanBusTraceModel;}
     CanBusMonitorProperty *CanBusMonitorModel(){return &m_CanBusMonitorModel;}
 
+    //========================================= LIN ============================================
+    LinBusTraceProperty *LinBusTraceModel(){return &m_LinBusTraceModel;}
+    LinBusMonitorProperty *LinBusMonitorModel(){return &m_LinBusMonitorModel;}
+
+
 
 signals:
     void use_range_changed();
@@ -143,16 +165,25 @@ signals:
 
     void monitorScanOnChanged();
 
+    //========================================= LIN ============================================
+    void monitorLinScanOnChanged();
+
 public slots:
     /******************************************************************************************/
     /*                          On asynch scanner data recieved                               */
     /******************************************************************************************/
 
     bool processIncomingData(const QByteArray _data);
+    bool processLinIncomingData(const QByteArray _data);
 
     void resetCanBusTraceModel(){
         m_CanBusTraceModel.clear();
         m_CanBusMonitorModel.reset();
+    }
+
+    void resetLinBusTraceModel(){
+        m_LinBusTraceModel.clear();
+        m_LinBusMonitorModel.reset();
     }
 
 private:
@@ -162,12 +193,20 @@ private:
     CanBusTraceProperty m_CanBusTraceModelAux;
     CanBusMonitorProperty m_CanBusMonitorModelAux;
 
-
     ParseFilter m_parse_filter;
     ParseBuffer m_parse_buffer;
 
     bool traceScanOn = false;
     bool monitorScanOn = true;
+
+    //========================================= LIN ============================================
+    LinBusTraceProperty m_LinBusTraceModel;
+    LinBusMonitorProperty m_LinBusMonitorModel;
+
+    LinParseBuffer m_lin_parse_buffer;
+
+    bool traceLinScanOn = false;
+    bool monitorLinScanOn = true;
 
 };
 

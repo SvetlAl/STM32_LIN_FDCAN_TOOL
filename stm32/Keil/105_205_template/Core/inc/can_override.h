@@ -38,10 +38,10 @@ extern uDeviceModel theDeviceModel;
 /****** User settings customized here. Comment/uncomment unused/used configurations *****/
 /****************************************************************************************/
 
-#define MAX_OVERRIDE_FILTERS 16
-#define MAX_IGNORED_IDS			 16
+#define MAX_OVERRIDE_FILTERS         16
+#define MAX_IGNORED_IDS              16
 
-#define FOCRED_DELAY_STEP 				10 // 0x3E8 // (100.0) msecs
+#define FOCRED_DELAY_STEP            0x0AU // 0x3E8 // (100.0) msecs
 
 #define BUFFER_OVERFLOW_CTR_LEVEL_PRCNT 75    // percents
 #define BUFFER_OVERFLOW_CTR_LEVEL (CDC_CAN_INJECTION_BUFFER_SIZE*BUFFER_OVERFLOW_CTR_LEVEL_PRCNT)/100

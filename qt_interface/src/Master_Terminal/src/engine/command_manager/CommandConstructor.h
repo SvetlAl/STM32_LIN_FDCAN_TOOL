@@ -4,6 +4,7 @@
 #include "../../app_settings.h"
 #include <QDebug>
 #include "Command.h"
+#include "../stm32_device/Lin_filter.h"
 #include "../vehicle/Vehicle.h"
 
 
@@ -26,6 +27,7 @@ public:
     uint32_t getMemchipAddress(uint32_t address_code, uint32_t device_code);
 
     bool constructCmd(uint32_t _cmd);
+    bool constructCmd(uint32_t _cmd, bool mosi, lin_filter_raw *filter_ptr);
     bool constructCmd(uint32_t _cmd, uint32_t value32_to_string);
     bool constructCmd(uint32_t _cmd, uint32_t address, uint32_t value32_to_string);
     bool constructCmd(uint32_t _cmd, uint32_t address, uint32_t value32_to_string, uint32_t option);

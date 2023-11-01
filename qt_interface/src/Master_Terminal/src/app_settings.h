@@ -11,7 +11,7 @@
 
 #ifdef Q_OS_ANDROID
 #define ANDROID_V
-//#define PC_WINDOWS
+
 #endif
 #ifndef Q_OS_ANDROID
 //#define PC_WINDOWS
@@ -73,7 +73,7 @@ public:
 //==============================================================================
 //================================= App info ===================================
 //==============================================================================
-    static inline const QString INTERFACE_VERSION = "v1.05.08.23.0000";
+    static inline const QString INTERFACE_VERSION = "v1.29.10.23.0000";
 
 //==============================================================================
 //=========================== Firmware settings ================================
@@ -85,6 +85,8 @@ public:
 
     constexpr static inline const int MAX_DISCARD_ID_COUNT = 16;
     constexpr static inline const int MAX_OVERRIDE_FILTER_COUNT = 16;
+
+    constexpr static inline const int MAX_LIN_OVERRIDE_FILTER_COUNT = 2;
 
 
 //==============================================================================
@@ -124,9 +126,9 @@ public:
 //=========================== Interface presets ================================
 //==============================================================================
 
-    static inline const QString DEFAULT_VERSION_INFO_ADDRESS = "https://raw.githubusercontent.com/SvetlAl/STM32F105_205_2CAN_gateway_scanner_filter/master/version.txt";
-    static inline const QString DEFAULT_UPDATE_ADDRESS = "https://your_address.com/bin/can_gateway";
-    static inline const QString DEFAULT_CODE_OVERRIDE_ADDRESS = "https://your_address.com/bin/can_gateway";
+    static inline const QString DEFAULT_VERSION_INFO_ADDRESS = "https://raw.githubusercontent.com/SvetlAl/ArcticTrucks_SpdClb_Interface/master/version.txt";
+    static inline const QString DEFAULT_UPDATE_ADDRESS = "https://raw.githubusercontent.com";
+    static inline const QString DEFAULT_CODE_OVERRIDE_ADDRESS = "https://raw.githubusercontent.com/SvetlAl/ArcticTrucks_SpdClb_Interface/master/version.txt";
 
     static inline const QString VERSION_INFO_CACHE_PATH = "vinfo.cache"; // This file contains information about new application versions
     static inline const QString UPDATE_CACHE_PATH = "update_app.bin";
@@ -245,12 +247,42 @@ public:
 #define MODEL_HONDA_CRV_III             0x0010
 #define MODEL_FORD_TRANSIT_2020         0x0011
 #define MODEL_NISSAN_PATROL_2020        0x0012
-#define MODEL_EXTRA_I                   0x0013
-#define MODEL_EXTRA_II                  0x0014
-#define MODEL_EXTRA_III                 0x0015
+#define MODEL_TANK_500                  0x0013
+#define MODEL_EXTRA_I                   0x0014
+#define MODEL_EXTRA_II                  0x0015
+#define MODEL_EXTRA_III                 0x0016
 
-#define MODEL_COUNT                     0x0016
+#define MODEL_COUNT                     0x0017
 
+
+/*********************************************************************************/
+/*                                lin.h import                                   */
+/*********************************************************************************/
+#define LIN_1200                          (uint8_t)0x00
+#define LIN_2400                          (uint8_t)0x01
+#define LIN_4800                          (uint8_t)0x02
+#define LIN_9600                          (uint8_t)0x03
+#define LIN_19200                         (uint8_t)0x04
+#define LIN_38400                         (uint8_t)0x05
+#define LIN_57600                         (uint8_t)0x06
+#define LIN_115200                        (uint8_t)0x07
+#define LIN_921600                        (uint8_t)0x08
+
+#define LIN_MODE_DEFAULT                  (uint8_t)0x00
+#define LIN_MODE_GATEWAY                  (uint8_t)0x01
+#define LIN_MODE_SCANNER                  (uint8_t)0x02
+#define LIN_MODE_FILTER                   (uint8_t)0x04
+#define LIN_MODE_DEVICE                   (uint8_t)0x08
+//#define LIN_MODE_ALL                      (LIN_MODE_GATEWAY | LIN_MODE_SCANNER | LIN_MODE_FILTER | LIN_MODE_DEVICE)
+
+/*********************************************************************************/
+/*                                lin_filter.h import                            */
+/*********************************************************************************/
+
+#define LIN_FILTER_OFF              0
+#define LIN_FILTER_USER_MODE        1
+#define LIN_FILTER_MMC_PAJERO_TYRES 2
+#define LIN_FILTER_COUNT            3
 
 
 /*********************************************************************************/
@@ -332,6 +364,25 @@ public:
 #define ELPR_DEVICE_GET_CURRENT_STATUS 							0xF0000BB0	/* @SF0000BB0@E ASCII Get sizeof(DeviceModel) of current vehicle settings in raw data*/
 #define ELPR_OVR_FLTR_GET_CURRENT_STATUS 						0xF0000BB1	/* @SF0000BB1@E ASCII Get sizeof(can_override_status) of current override settings in raw data*/
 #define ELPR_OVR_FLTR_GET_FILTER_NUMS		 					0xF0000BB2	/* @SF0000BB2@E ASCII Get uint16_t ignored_id_num; uint16_t overrided_id_num; */
+
+
+//=========================================================================================================
+//===========================================  LIN bus ====================================================
+
+//#define ELP_LIN_SET_BAUDRATE 												0x00000C00	/* @S00000C00#XX@E   XX - is a baudrate preset */
+//#define ELP_LIN_SET_MODE    												0x00000C01	/* @S00000C01#XY@E   XY -  Y is a LIN mode (gateway/scanner/etc) X - if 0x0, this means "reset", if 0x1- this means "set" */
+#define ELP_LIN_POLL_PERIOD                                     0x00000C02  /* @S00000C02#?08@!0000000A@E Set 0x000A as a poll period */
+//#define ELP_LIN_SET_FILTER_MODE											0x00000C03	/* @S00000C03#XX@E   XX - is a filter mode */
+//#define ELP_LIN_ENABLE        											0x00000C04	/* @S00000C04#XX@E   XX - if 0x00, this means disable, else this means enable */
+//#define ELP_LIN_VALIDATION_ON 											0x00000C05	/* @S00000C05@E  */
+//#define ELP_LIN_VALIDATION_OFF 											0x00000C06	/* @S00000C06@E  */
+#define ELPR_LIN_GET_POLL_PERIOD                                0x00000C07  /* @S00000C07@E   */
+#define ELPR_LIN_GET_MOSI_FILTER                                0x00000C08  /* @S00000C08@E   */
+#define ELPR_LIN_GET_MISO_FILTER                                0x00000C09  /* @S00000C09@E   */
+#define ELP_LIN_SET_FILTER                                      0x00000C0A  /* @S00000C0A#NN#01#02#03#04#05#06#07#08#09#0A#0B#0C@E  NN - if 0x00, MOSI,  else - MISO 01-0C the lin_filter_raw bytes */
+
+
+
 
 /* All commands starting with F and named with ELPR use raw data, without converting into Ascii */
 #define ELPR_VEHICLE_GET_CURRENT_STATUS 						0xF0000AB0	/* @S00000AB0@E ASCII Get 8 bytes of current vehicle settings in raw data*/

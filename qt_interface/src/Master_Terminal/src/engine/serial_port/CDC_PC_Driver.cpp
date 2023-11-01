@@ -120,29 +120,30 @@ QByteArray CDC_PC_Driver::readData(int timeout){
 void CDC_PC_Driver::startAsynchReading(int mode){
     if(m_asynch_read) return;
     setAsynch_read(true);
-    switch (mode){
-    case AsynchReadToConsole:{
-        m_pConsole->setPCdc_driver(this);
-        conn = QObject::connect(m_pSerialPort, &QSerialPort::readyRead, m_pConsole, &Console::read_serialport_and_append_data);
-        return;
-    }
-    case AsynchReadToScanner:{
-        conn = QObject::connect(m_pSerialPort,&QSerialPort::readyRead,this,[this](){
-            if (m_pSerialPort->bytesAvailable()) {
-                const QByteArray recv_data = m_pSerialPort->readAll();
-                emit async_data_passover(recv_data);} });
-        return;
-    }
-    case AsynchReadInjectionMode:{
-        conn = QObject::connect(m_pSerialPort,&QSerialPort::readyRead,this,[this](){
-            if (m_pSerialPort->bytesAvailable()) {
-                const QByteArray recv_data = m_pSerialPort->readAll();
-                //qDebug() << "const QByteArray recv_data" << recv_data.toHex();
-                emit async_data_passover(recv_data); } });
-        return ;
-    }
-    }
 
+    switch (mode){
+        case AsynchReadToConsole:{
+            m_pConsole->setPCdc_driver(this);
+            conn = QObject::connect(m_pSerialPort, &QSerialPort::readyRead, m_pConsole, &Console::read_serialport_and_append_data);
+            return;
+        }
+        case AsynchReadToLinScanner:
+        case AsynchReadToScanner:{
+            conn = QObject::connect(m_pSerialPort,&QSerialPort::readyRead,this,[this](){
+                if (m_pSerialPort->bytesAvailable()) {
+                    const QByteArray recv_data = m_pSerialPort->readAll();
+                    emit async_data_passover(recv_data);} });
+            return;
+        }
+        case AsynchReadInjectionMode:{
+            conn = QObject::connect(m_pSerialPort,&QSerialPort::readyRead,this,[this](){
+                if (m_pSerialPort->bytesAvailable()) {
+                    const QByteArray recv_data = m_pSerialPort->readAll();
+                    //qDebug() << "const QByteArray recv_data" << recv_data.toHex();
+                    emit async_data_passover(recv_data); } });
+            return ;
+        }
+    }
 }
 void CDC_PC_Driver::stopAsynchReading(int mode){
     if(!m_asynch_read) return;
@@ -152,6 +153,7 @@ void CDC_PC_Driver::stopAsynchReading(int mode){
     case AsynchReadToConsole:
         QObject::disconnect(conn);
         return;
+    case AsynchReadToLinScanner:
     case AsynchReadToScanner:
         QObject::disconnect(conn);
         return;

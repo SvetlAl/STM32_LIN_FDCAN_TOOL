@@ -5,7 +5,8 @@
 ************* Vehicle specific vars ****************
 ****************************************************
 ***************************************************/
-//VehicleStruct theVehicle;
+#ifndef SUPPORT_SPEEDO_CALIBRATOR
+
 #include "flash_mem_chip_spi.h"
 #include "user_cmd.h"
 
@@ -193,26 +194,5 @@ can_message calibrateExtras_MODEL_EXTRA_III(can_message *msg, uint8_t _mlt){
 can_message calibrateCruise_MODEL_EXTRA_III(can_message *msg, uint8_t _cruise_mlt){
 	return dummy_Extras(msg, _cruise_mlt);
 }	
-
-/***************************************************
-****************************************************
-*********    MODEL_NISSAN_PATROL_2020      *********
-****************************************************
-***************************************************/
-can_message calibrateSpeedOdo_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _speedometer_mlt, uint8_t _odometer_mlt){
-	uint16_t speed_reading = (uint16_t)((uint16_t)(msg->data[4] << 8) | (uint16_t)(msg->data[5] &~0xFF00));
-	uint16_t calibrated_speed_reading = (uint16_t)((speed_reading*_speedometer_mlt)/100);
-	msg->data[4] = (uint8_t)((calibrated_speed_reading &~0x00FF) >> 8);
-	msg->data[5] = (uint8_t)((calibrated_speed_reading &~0xFF00) >> 0);
-	UNUSED(_odometer_mlt);
 	
-	return *msg;
-}
-can_message calibrateExtras_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _mlt){
-	return dummy_Extras(msg, _mlt);
-}
-can_message calibrateCruise_MODEL_NISSAN_PATROL_2020(can_message *msg, uint8_t _cruise_mlt){
-	return dummy_Extras(msg, _cruise_mlt);
-}	
-	
-	
+#endif /* SUPPORT_SPEEDO_CALIBRATOR */

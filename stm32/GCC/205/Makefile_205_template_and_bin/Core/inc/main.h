@@ -44,6 +44,8 @@
 #include "can_buffer.h"
 #include "extras.h"
 
+#include "lin.h"
+
 #include <string.h>
 
 /****************************************************************
@@ -61,6 +63,7 @@ extern memchip_status memory_chip_status;
 extern VehicleStructData theVehicle;
 extern uDeviceModel theDeviceModel;
 extern u_can_override_status theOverrideStatus;
+volatile uint32_t *get_main_tim_sec_ptr(void);
 	
 /****************************************************************
 * 												Functions

@@ -114,12 +114,10 @@
         <file>content/png/Navibar/Base_CAN_Override.png</file>
         <file>content/png/Navibar/Base_CAN_Scanner.png</file>
         <file>content/png/Navibar/Base_Device_Modes.png</file>
-        <file>content/png/Navibar/Base_LIN_Override.png</file>
         <file>content/png/Navibar/Base_Update.png</file>
         <file>content/pages/Base_CAN_Override.qml</file>
         <file>content/pages/Base_CAN_Scanner.qml</file>
         <file>content/pages/Base_Device_Modes.qml</file>
-        <file>content/pages/Base_LIN_Override.qml</file>
         <file>content/pages/Base_Update.qml</file>
         <file>content/pages/BaseItems/BaseTableViewCANMonitor.qml</file>
         <file>content/pages/Component_Base_CAN_Override_discard_id.qml</file>
@@ -137,5 +135,13 @@
         <file>content/pages/png/model_logos/HONDA.png</file>
         <file>content/pages/png/model_logos/NISSAN.png</file>
         <file>icon.ico</file>
+        <file>content/png/Navibar/Base_LIN_Scanner.png</file>
+        <file>content/png/Navibar/Base_LIN_Settings.png</file>
+        <file>content/pages/Base_LIN_Scanner.qml</file>
+        <file>content/pages/Base_LIN_Settings.qml</file>
+        <file>content/pages/Item_LIN_override_filter.qml</file>
+        <file>content/pages/Component_Base_LIN_Scanner_Scanner.qml</file>
+        <file>content/pages/BaseItems/BaseTableViewLIN.qml</file>
+        <file>content/pages/BaseItems/BaseTableViewLINMonitor.qml</file>
     </qresource>
 </RCC>

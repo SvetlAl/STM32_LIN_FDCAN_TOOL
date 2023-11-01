@@ -26,6 +26,20 @@ void BusManager::setMonitorScanOn(bool newMonitorScanOn){
     emit monitorScanOnChanged();
 }
 
+//========================================= LIN ============================================
+bool BusManager::getMonitorLinScanOn() const{
+    return monitorLinScanOn;
+}
+void BusManager::setMonitorLinScanOn(bool newMonitorScanOn){
+    if (monitorLinScanOn == newMonitorScanOn)
+        return;
+    monitorLinScanOn = newMonitorScanOn;
+    traceLinScanOn = !newMonitorScanOn;
+    emit monitorLinScanOnChanged();
+}
+
+
+
 void BusManager::setFilterCan(const int can_num, bool isEnabled){
     if(can_num == 1){
         m_parse_filter.m_can1 = isEnabled;
@@ -161,6 +175,17 @@ void BusManager::clearSortTrace(){
     m_CanBusTraceModel.clear();
 }
 
+//==================== LIN ====================================
+
+void BusManager::sortLinTraceColumn(const int col, bool fromTopToBottom){
+    m_LinBusTraceModel.sortColumn(col, fromTopToBottom);
+}
+void BusManager::switchLinSortTraceColumn(const int col){
+    m_LinBusTraceModel.switchSortColumn(col);
+}
+void BusManager::clearLinSortTrace(){
+    m_LinBusTraceModel.clear();
+}
 
 const QString BusManager::max_TraceItems() const{
    return QString::number(m_CanBusTraceModel.max_items());
@@ -242,6 +267,17 @@ bool BusManager::processIncomingData(const QByteArray _data){
     }
 
     return true;
+}
+
+bool BusManager::processLinIncomingData(const QByteArray _data){
+    m_lin_parse_buffer.append(_data);
+    QList<QByteArray> data_list = m_lin_parse_buffer.extractAllParseableLines();
+
+     foreach (const auto item, data_list) {
+         if(traceLinScanOn) m_LinBusTraceModel.addItem(item);
+         if(monitorLinScanOn) m_LinBusMonitorModel.addItem(item);
+     }
+     return true;
 }
 
 /******************************************************************************************/

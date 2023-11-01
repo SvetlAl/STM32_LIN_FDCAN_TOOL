@@ -111,7 +111,8 @@ static inline uint32_t erase_memchip_sector(uint32_t addr){
 	return erase_timeout_memchip(MEMCHIP_ER_TIMEOUT);
 }
 
-static uint32_t TEST = 0xAA;
+volatile static uint32_t TEST_CM = 0xAA;
+
 int main(void){
 	/* Start HSE, PLL, Flash latency, all the RCC configuration */
 	/* Enable all the Peripherial clocks */
@@ -124,7 +125,8 @@ int main(void){
 	initDeviceGeneralPinout();
 	SIGNAL_LED_OFF;
 	uint32_t current_mode = getCurrentMode();
-	TEST = current_mode;
+	TEST_CM = current_mode;
+
 	//========================= DEFAULT ===========================
 	if (current_mode == BOOTLOADER_DEFAULT_MODE){
 		SIGNAL_LED_OFF;
@@ -278,8 +280,20 @@ int main(void){
 //========================================================================================================================
 
 static inline uint32_t isEmergencyMode(){
+	#ifndef ALLIGATOR
 	if(EMERGENCY_PIN_SET) return BOOTLOADER_EMERGENCY_MODE;
-	else return 0;
+	else return BOOTLOADER_DEFAULT_MODE;
+	#else 
+	if(EMERGENCY_PIN_SET){
+		volatile uint32_t timeout = 0xFFFFFF;
+		while(timeout != 0){
+			timeout = timeout - 1;
+			if(GPIOB->IDR & GPIO_IDR_ID1)return BOOTLOADER_DEFAULT_MODE;
+		}
+		return BOOTLOADER_EMERGENCY_MODE;
+	}		
+	else return BOOTLOADER_DEFAULT_MODE;
+	#endif
 }
 
 //========================================================================================================================

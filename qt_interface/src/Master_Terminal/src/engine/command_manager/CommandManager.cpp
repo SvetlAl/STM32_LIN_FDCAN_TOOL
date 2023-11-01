@@ -89,6 +89,12 @@ void CommandManager::start_asynch_read(int mode){
         QObject::connect(m_pCDC_drv, &CDC_Driver::async_data_passover, this, &CommandManager::onCanScannerDataRecieved);
         QObject::connect(this, &CommandManager::asynchronousDataIn, m_pBusManager, &BusManager::processIncomingData);
     }
+
+    else if(mode == CDC_Driver::AsynchReadToLinScanner){
+        QObject::connect(m_pCDC_drv, &CDC_Driver::async_data_passover, this, &CommandManager::onCanScannerDataRecieved);
+        QObject::connect(this, &CommandManager::asynchronousDataIn, m_pBusManager, &BusManager::processLinIncomingData);
+    }
+
     else if(mode == CDC_Driver::AsynchReadInjectionMode){
         QObject::connect(m_pCDC_drv, &CDC_Driver::async_data_passover, this, &CommandManager::readInjectionModeRequest);
     }
@@ -100,6 +106,10 @@ void CommandManager::stop_asynch_read(int mode){
     if(mode == CDC_Driver::AsynchReadToScanner){
         QObject::disconnect(m_pCDC_drv, &CDC_Driver::async_data_passover, this, &CommandManager::onCanScannerDataRecieved);
         QObject::disconnect(this, &CommandManager::asynchronousDataIn, m_pBusManager, &BusManager::processIncomingData);
+    }
+    else if(mode == CDC_Driver::AsynchReadToLinScanner){
+        QObject::disconnect(m_pCDC_drv, &CDC_Driver::async_data_passover, this, &CommandManager::onCanScannerDataRecieved);
+        QObject::disconnect(this, &CommandManager::asynchronousDataIn, m_pBusManager, &BusManager::processLinIncomingData);
     }
     else if(mode == CDC_Driver::AsynchReadInjectionMode){
         QObject::disconnect(m_pCDC_drv, &CDC_Driver::async_data_passover, this, &CommandManager::readInjectionModeRequest);
@@ -441,11 +451,87 @@ void CommandManager::saveDeviceStatus(){
 };
 
 
+bool CommandManager::set_LIN_validation(bool value){
+    uint8_t val_to_set = m_pDeviceManager->lin_mode();
+    val_to_set &= ~0xF0;
+    uint8_t val_to_renew = value ? 0xF0 : 0x00;
+    val_to_set |= val_to_renew;
+    return setDeviceValue(32, val_to_set); // lin_mode
+}
+
+bool CommandManager::set_LIN_mode(int value, bool _set){
+    uint8_t validation_hb = m_pDeviceManager->lin_validation() ? 0xF0 : 0x00;
+    uint8_t val_to_set = m_pDeviceManager->lin_mode() ; //
+    uint8_t _mode = value &~ 0xF0;
+    if(_set){
+        val_to_set |= _mode;
+    }
+    else val_to_set &= ~_mode;
+    val_to_set |= validation_hb;
+    if(value == LIN_MODE_DEVICE) updateLIN_poll_period();
+    return setDeviceValue(32, val_to_set); // lin_mode
+}
+
+void CommandManager::refresh_LIN_poll_period(uint16_t value){
+    bool res = set_LIN_poll_period(value);
+    if(res)updateLIN_poll_period();
+}
+
+bool CommandManager::set_LIN_poll_period(uint16_t value){
+    m_cmdConstructor.constructCmd(ELP_LIN_POLL_PERIOD, (uint32_t)value);
+    QString response = exchange_cmd_string(QString::fromUtf8(m_cmdConstructor.cmd_string()));
+    qDebug() << m_cmdConstructor.cmd_string();
+    if(!CommandConstructor::isResponseOk(response)){
+        return false;
+    }
+    return true;
+}
+
+bool CommandManager::get_LIN_filter(bool dir_mosi){
+    if(dir_mosi){
+        m_cmdConstructor.constructCmd(ELPR_LIN_GET_MOSI_FILTER);
+    }
+    else{
+        m_cmdConstructor.constructCmd(ELPR_LIN_GET_MISO_FILTER);
+    }
+    QByteArray response;
+    exchange_cmd_string_HEX(m_cmdConstructor.cmd_string(), &response, false, 10);
+    if(response.size() == sizeof(lin_filter_raw)){
+        m_pDeviceManager->update_lin_filter(dir_mosi, response);
+        return true;
+    }
+    else return false;
+
+}
+bool CommandManager::set_LIN_filter(bool dir_mosi){
+    lin_filter_raw* filter_ptr = m_pDeviceManager->get_refreshed_filter_ptr(dir_mosi);
+    m_cmdConstructor.constructCmd(ELP_LIN_SET_FILTER, dir_mosi, filter_ptr);
+    QString response = exchange_cmd_string(QString::fromUtf8(m_cmdConstructor.cmd_string()));
+    if(!CommandConstructor::isResponseOk(response)){
+        return false;
+    }
+    return true;
+}
+
+
+void CommandManager::updateLIN_poll_period(){
+    m_cmdConstructor.constructCmd(ELPR_LIN_GET_POLL_PERIOD);
+
+    QByteArray response;
+    exchange_cmd_string_HEX(m_cmdConstructor.cmd_string(), &response, false, 10);
+    int result = (uint16_t)response[1] | (uint16_t)(response[0] << 8);
+    m_pDeviceManager->set_lin_poll_period(result);
+};
+
+
 bool CommandManager::setDeviceValue(uint32_t property, uint8_t value){ 
     if(property > DeviceManager::data_struct_size)
         return false;
 
     m_cmdConstructor.constructCmd(ELP_DEVICE_SET_MODE, property, value);
+
+    qDebug() << m_cmdConstructor.cmd_string();
+
     if(property == 19){ // CDC INJECTION
         sendRawData(m_cmdConstructor.cmd_string());
         return true;
@@ -908,6 +994,7 @@ void  CommandManager::reset_all_on_disconnect(){
     stop_asynch_read(0);
     stop_asynch_read(1);
     stop_asynch_read(2);
+    stop_asynch_read(3);
 }
 
 /******************************************************************************************/
