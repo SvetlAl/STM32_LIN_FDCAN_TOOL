@@ -17,7 +17,7 @@
 #define LOBYTE(x) (uint8_t)(x & ~0xFF00)
 #define HIBYTE(x) (uint8_t)((x >> 8) & ~0xFF00)
 
-//#define DEBUG_MODE
+#define DEBUG_MODE
 
 /**********************************************************************************************************/
 /**********************************************************************************************************/
@@ -27,19 +27,22 @@
 
 //=========================================================================================================
 //=====================================       Environment      ============================================
-#define MDK_ARM_ENV // if MDK ARM Keil IDE is used
+//#define MDK_ARM_ENV // if MDK ARM Keil IDE is used
 
 //=========================================================================================================
 //=====================================           Model        ============================================
+/*
+Tank-300 vehicle.c
+*/
 //#define ALLIGATOR
-//#define TEC_MODULE
+#define TEC_MODULE
 
 //#define DEVICE_2CAN
 //#define DEVICE_2CAN_TJA1042
 //#define DEVICE_2CAN_BOXED
 //#define DEVICE_SIGMA
 //#define DEVICE_1CAN2LIN
-#define DEVICE_FCAN_V6
+//#define DEVICE_FCAN_V6
 
 // If a new model is added, check spi init in spi.h and spi.c
 // flash_mem_chip_spi.h and flash_mem_chip_spi.c - memchip description
@@ -53,15 +56,52 @@
 //=========================================================================================================
 //=====================================     Supported modes    ============================================
 // Comment/Uncomment to reduce code size and RAM usage
-#define CAN_TX_BUFFER_ENABLED               // Buffered CAN transmission.  Buffer size is defined in "can_buffer.h"
+#define CAN_TX_BUFFER_ENABLED                 // Buffered CAN transmission.  Buffer size is defined in "can_buffer.h"
 //#define SUPPORT_MEMCHIP_CAN_INJECTION				// playing CAN trace from a memory chip
 
+
+//#define SUPPORT_SPEEDO_CALIBRATOR
+
+#ifdef DEVICE_2CAN // USART is supported for DEVICE_2CAN only
+#define SUPPORT_USART
+#ifdef SUPPORT_USART
+#define SUPPORT_LIN     // Enable/disable LIN
+#endif
+#endif
 
 #if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
 #define CAN_INTERFACES_USED 1
 #else 
 #define CAN_INTERFACES_USED 2
 #endif
+
+//=========================================================================================================
+//=====================================     LIN Settings    ===============================================
+#ifdef SUPPORT_LIN 
+#define LIN_PROGRAMM_PRESETS      // Enable/disable LIN programm presets
+#define LIN_DEVICE_SUPPORT        // Device mode works as a regular LIN device with a Master logic in "void lin_device_master_rx()"/"void lin_device_master_tx()"
+                                  // and Slave logic in "void lin_device_slave_rx()"/"void lin_device_slave_tx()"
+#endif
+
+//=========================================================================================================
+//=====================================     IRQ priorities    =============================================
+#define USB_FS_IRQ_P                  5  // This should be the highest priority
+#define CAN1_RX0_IRQ_P                7
+#define CAN2_RX0_IRQ_P                8
+#define CAN1_TX_IRQ_P                 9
+#define CAN2_TX_IRQ_P                 9
+#define CAN1_SCE_IRQ_P                8
+#define CAN2_SCE_IRQ_P                8
+
+#define MAIN_TIMER_IRQ_P              11  // This timer is used for timestamps and watchdog procedure
+#define TRACE_INJ_TIMER_IRQ_P         4   // This timer is used to schedule CAN trace play into a network
+
+#define USART_IRQ_P                   15  // All USARTs have the same priority
+
+#define LIN_MS_POLLING_TIM_IRQ_P      14  // This timer is used for LIN Master polling period
+#define LIN_SLAVE_USART_IRQ_P         10
+#define LIN_MASTER_USART_IRQ_P        10
+
 
 //=========================================================================================================
 //=================================       Processor   frequency   =========================================
@@ -75,16 +115,19 @@
 #define APB1_FREQ_30MHZ
 #define TIM1_FREQ_60MHZ 	// used for scanner timestamp and watchdog
 #define TIM2_FREQ_30MHZ 	// used for trace injection
+
+#define APB2_FREQ_60MHZ
 #endif
 
 #if defined(DEVICE_2CAN) | defined(DEVICE_2CAN_TJA1042) | defined(DEVICE_2CAN_BOXED) | defined(DEVICE_SIGMA) | defined(DEVICE_1CAN2LIN)
 #define STM32F105
 #define DEV_FREQ	72000
 #define DEV_FREQ_72MHZ
-
 #define APB1_FREQ_36MHZ
 #define TIM1_FREQ_36MHZ 		// used for scanner timestamp and watchdog
 #define TIM2_FREQ_36MHZ 		// used for trace injection
+
+#define APB2_FREQ_36MHZ
 #endif
 
 
@@ -219,6 +262,11 @@
 #include "spi.h"
 #include "can.h"
 
+//#ifdef SUPPORT_USART
+#include "usart.h"
+//#include "lin.h"
+//#endif
+
 #define DEVICE_INFO_STRING_SZ 16
 //=========================================================================================================
 //========================================  Buffer size  ==================================================
@@ -227,7 +275,7 @@
 #if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
 #define USB_CDC_CIRC_BUFFER_SIZE 0x100 // 0x800UL*2
 #else 
-#define USB_CDC_CIRC_BUFFER_SIZE 0x400UL*2
+#define USB_CDC_CIRC_BUFFER_SIZE 0x200UL*2// 0x400UL*2
 #endif
 
 
@@ -241,7 +289,7 @@
 #if defined(TEST_SPEED_TRANSMITTER) | defined(TEST_SPEED_RESPONDER)
 #define CDC_CAN_INJECTION_BUFFER_ITEMS 16 //256
 #else 
-#define CDC_CAN_INJECTION_BUFFER_ITEMS 384
+#define CDC_CAN_INJECTION_BUFFER_ITEMS 256
 #endif
 
 #define CDC_CAN_INJECTION_BUFFER_SIZE CDC_CAN_INJECTION_BUFFER_ITEMS*sizeof(can_message_info_raw) // elements count
@@ -336,7 +384,11 @@ typedef struct DeviceModel{
 	uint8_t higher_hw_filter_b0;
 	uint8_t higher_hw_filter_b1;
 	uint8_t higher_hw_filter_b2;
-	uint8_t higher_hw_filter_b3;	
+	uint8_t higher_hw_filter_b3;
+	
+	uint8_t lin_baudrate_preset;
+	uint8_t lin_mode;
+	uint8_t lin_filter;
 } DeviceModel; //creating new type
 
 enum DeviceModelProperties{
@@ -370,7 +422,10 @@ enum DeviceModelProperties{
 	Enm_higher_hw_filter_b0 = 27,
 	Enm_higher_hw_filter_b1 = 28,
 	Enm_higher_hw_filter_b2 = 29,
-	Enm_higher_hw_filter_b3 = 30
+	Enm_higher_hw_filter_b3 = 30,
+	Enm_lin_baudrate_preset = 31,
+	Enm_lin_mode = 32,
+	Enm_lin_filter = 33
 };
 
 typedef union uDeviceModel{

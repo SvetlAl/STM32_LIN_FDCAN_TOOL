@@ -167,7 +167,8 @@ Item {
         base_group + "CAN_Override",
         base_group + "CAN_Scanner",
         base_group + "Device_Modes",
-        base_group + "LIN_Override",
+        base_group + "LIN_Settings",
+        base_group + "LIN_Scanner",
         base_group + "Update",
         base_group + "AndroidJNIDebug"];
 
@@ -186,7 +187,8 @@ Item {
         qsTr("CAN Override"),
         qsTr("CAN Scanner"),
         qsTr("Device Modes"),
-        qsTr("LIN Override"),
+        qsTr("LIN Settings"),
+        qsTr("LIN Scanner"),
         qsTr("Update"),
         qsTr("AndroidJNIDebug")];
 
@@ -261,7 +263,8 @@ Item {
                  qsTr("CAN Override"),
                  qsTr("CAN Scanner"),
                  qsTr("Device Modes"),
-                 qsTr("LIN Override"),
+                 qsTr("LIN Settings"),
+                 qsTr("LIN Scanner"),
                  qsTr("Update"),
                  qsTr("AndroidJNIDebug")
                  ];
@@ -282,7 +285,7 @@ Item {
         tyr_thr_unavailable_description = qsTr("Tyres pressure threshold customization unavailable.")
         test_available_description = qsTr("Press the button to check wires connection. When connected properly the speedometer dial would show a test value.")
         test_unavailable_description = qsTr("Connection test unavailable.")
-        */
+*/
         // Public
 
         spd_clbr_available_description = qsTr("Big tires calibrator is available from https://www.arctictrucks.ru/")

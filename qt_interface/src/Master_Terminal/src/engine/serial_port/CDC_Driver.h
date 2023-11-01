@@ -43,7 +43,8 @@ public:
     enum {
         AsynchReadToConsole = 0,
         AsynchReadToScanner = 1,
-        AsynchReadInjectionMode = 2
+        AsynchReadInjectionMode = 2,
+        AsynchReadToLinScanner = 3
     };
 
     //==================================== init =====================================

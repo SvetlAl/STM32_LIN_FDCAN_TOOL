@@ -15,6 +15,12 @@
 #define CMD_CDC_TRANSACTION_SZ	MAX_CDC_EP1_TX_SIZ /* size used for "USB send" function */
 
 
+//=========================================================================================================
+//===========================================  DEBUG ======================================================
+#ifdef DEBUG_MODE
+#define	ELP_CMD_SEND_W_USART												0xD0000000	/* @SD0000000#02@?04@!Test@E --> Send 4 bytes of "Test" through USART2  */
+#endif
+
 
 //=========================================================================================================
 //===========================================  General ====================================================
@@ -96,6 +102,27 @@
 
 #define ELP_DEVICE_SAVE_STATUS											0x00000BA0	/* @S00000BA0@E Save current device settings into (0x00FA00) DEVICE_MODES_ADDRESS */
 #define ELP_UPDATE_OVR_FILTERS											0x00000BA1	/* @S00000BA1@E Start filter update procedure */
+
+//=========================================================================================================
+//===========================================  LIN bus ====================================================
+#ifdef SUPPORT_LIN
+//#define ELP_LIN_SET_BAUDRATE 												0x00000C00	/* @S00000C00#XX@E   XX - is a baudrate preset */
+//#define ELP_LIN_SET_MODE    												0x00000C01	/* @S00000C01#XY@E   XY -  Y is a LIN mode (gateway/scanner/etc) X - if 0x0, this means "reset", if 0x1- this means "set" */
+#define ELP_LIN_POLL_PERIOD                         0x00000C02  /* @S00000C02#?08@!0000000A@E Set 0x000A as a poll period */
+//#define ELP_LIN_SET_FILTER_MODE											0x00000C03	/* @S00000C03#XX@E   XX - is a filter mode */
+//#define ELP_LIN_ENABLE        											0x00000C04	/* @S00000C04#XX@E   XX - if 0x00, this means disable, else this means enable */
+//#define ELP_LIN_VALIDATION_ON 											0x00000C05	/* @S00000C05@E  */
+//#define ELP_LIN_VALIDATION_OFF 											0x00000C06	/* @S00000C06@E  */
+#define ELPR_LIN_GET_POLL_PERIOD                    0x00000C07  /* @S00000C07@E   */
+#define ELPR_LIN_GET_MOSI_FILTER                    0x00000C08  /* @S00000C08@E   */
+#define ELPR_LIN_GET_MISO_FILTER                    0x00000C09  /* @S00000C09@E   */
+#define ELP_LIN_SET_FILTER                          0x00000C0A  /* @S00000C0A#NN#01#02#03#04#05#06#07#08#09#0A#0B#0C@E  NN - if 0x00, MOSI,  else - MISO 01-0C the lin_filter_raw bytes */
+#endif
+
+
+//=========================================================================================================
+//===========================================  Raw data ===================================================
+
 #define ELPR_DEVICE_GET_CURRENT_STATUS 							0xF0000BB0	/* @SF0000BB0@E ASCII Get sizeof(DeviceModel) of current vehicle settings in raw data*/
 #define ELPR_OVR_FLTR_GET_CURRENT_STATUS 						0xF0000BB1	/* @SF0000BB1@E ASCII Get sizeof(can_override_status) of current override settings in raw data*/
 #define ELPR_OVR_FLTR_GET_FILTER_NUMS		 						0xF0000BB2	/* @SF0000BB2@E ASCII Get uint16_t ignored_id_num; uint16_t overrided_id_num; */

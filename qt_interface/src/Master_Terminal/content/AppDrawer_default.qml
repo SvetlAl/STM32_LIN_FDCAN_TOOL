@@ -85,10 +85,6 @@ Item{
                 anchors.fill: logo_rect
                 source: "./png/logo.jpg"
                 fillMode: Image.PreserveAspectCrop
-                antialiasing:  true
-                smooth: true
-                mipmap: true
-
 
                 clip: false
                 visible: false

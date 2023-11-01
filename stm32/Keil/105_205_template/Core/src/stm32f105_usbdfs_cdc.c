@@ -40,7 +40,7 @@ static uint8_t lineCoding[CDC_LINE_CODING_LENGTH]={
 
 
 static uint32_t device_state = DEVICE_STATE_DEFAULT; /* Device state */
-uint32_t getdevstat(){ return device_state;}
+//static uint32_t getdevstat(){ return device_state;}
 
 EndPointStruct EndPoint[EP_COUNT];	/* All the Enpoints are included in this array */
 
@@ -62,6 +62,11 @@ static inline uint32_t check_free_space_inFifo(uint8_t dfifo, uint32_t space);
 static inline uint32_t is_epena_stuck(uint8_t EPnum);
 
 static inline uint32_t recovery_routine_EP_IN (uint8_t EPnum);
+
+static uint32_t write_Fifo(uint8_t dfifo, uint8_t *src, uint16_t len);
+
+static void read_Setup_Fifo(void);
+
 
 /* Init EP */
 static void initEndPoints(void);
@@ -290,7 +295,7 @@ void USB_OTG_FS_init_device(){
 	initEndPoints();
 	
 
-	NVIC_SetPriority(OTG_FS_IRQn, 5);
+	NVIC_SetPriority(OTG_FS_IRQn, USB_FS_IRQ_P);
 	NVIC_EnableIRQ(OTG_FS_IRQn);
 }
 
@@ -397,7 +402,7 @@ static inline void toggle_Rx_EP_Status(uint8_t EPnum, uint8_t param){
 * param 
 * retval 
 */
-void read_Setup_Fifo(){
+static void read_Setup_Fifo(){
 	/* Read Setup packet. Always 8 bytes */
 	setup_pkt_data.raw_data[0] = USB_OTG_DFIFO(0);
 	setup_pkt_data.raw_data[1] = USB_OTG_DFIFO(0);
@@ -445,7 +450,7 @@ void read_Fifo(uint8_t dfifo, uint16_t len){
 * param 
 * retval OK or FAILED (in case DFIFO overrun, for better details watch my youtube)
 */
-uint32_t write_Fifo(uint8_t dfifo, uint8_t *src, uint16_t len){ 
+static uint32_t write_Fifo(uint8_t dfifo, uint8_t *src, uint16_t len){ 
 
 	uint16_t residue = (len%4==0) ? 0 : 1;
 	uint32_t block_cnt = (uint32_t)((len/4) + residue);

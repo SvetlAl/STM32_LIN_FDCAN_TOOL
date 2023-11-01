@@ -340,10 +340,10 @@ static inline void increase_forced_delay(){
 		theCanInjectionStatus.lower_timer_threshold = 0;
 	}
 	
-	theCanInjectionStatus.forced_msec_delay += FOCRED_DELAY_STEP;
+	theCanInjectionStatus.forced_msec_delay = (uint16_t)(theCanInjectionStatus.forced_msec_delay + FOCRED_DELAY_STEP);
 	if(theCanInjectionStatus.forced_msec_delay > 10000){
-		theCanInjectionStatus.forced_msec_delay = theCanInjectionStatus.forced_msec_delay - 10000;
-		theCanInjectionStatus.forced_sec_delay += 1;
+		theCanInjectionStatus.forced_msec_delay = (uint16_t)(theCanInjectionStatus.forced_msec_delay - 10000);
+		theCanInjectionStatus.forced_sec_delay = (uint8_t)(theCanInjectionStatus.forced_sec_delay + 1);
 	}
 }
 
@@ -363,11 +363,11 @@ static inline void decrease_forced_delay(){
 	}
 	
 	if(theCanInjectionStatus.forced_msec_delay >= FOCRED_DELAY_STEP){
-		theCanInjectionStatus.forced_msec_delay -= FOCRED_DELAY_STEP;
+		theCanInjectionStatus.forced_msec_delay = (uint16_t)(theCanInjectionStatus.forced_msec_delay - FOCRED_DELAY_STEP);
 	}	
 	else if(theCanInjectionStatus.forced_sec_delay > 0){
-		theCanInjectionStatus.forced_sec_delay -= 1;
-		theCanInjectionStatus.forced_msec_delay = 10000 - FOCRED_DELAY_STEP;
+		theCanInjectionStatus.forced_sec_delay =  (uint8_t)(theCanInjectionStatus.forced_sec_delay - 1);
+		theCanInjectionStatus.forced_msec_delay = (uint16_t)(10000 - FOCRED_DELAY_STEP);
 	}
 }
 
@@ -386,7 +386,7 @@ void handle_buffer_overflow(){
 		increase_forced_delay();
 		if(CAN_INJECTION_CDC_THRESHOLD_MODE == DEVICE_OPERATION_MODE_CDC_TRACE_AUTO_THRESHOLD){
 			//SET_CAN_INJECTION_CDC_THRESHOLD_VALUE(CAN_INJECTION_CDC_THRESHOLD_VALUE + 1);
-			theCanInjectionStatus.lower_timer_threshold = theCanInjectionStatus.lower_timer_threshold + 1;
+			theCanInjectionStatus.lower_timer_threshold = (uint8_t)(theCanInjectionStatus.lower_timer_threshold + 1);
 		}
 	}
 	else decrease_forced_delay();
@@ -499,9 +499,9 @@ void calculate_tim_settings(can_injection_status *_status){
 		sec_residue  = 1;
 	}
 	
-	msec_residue += theCanInjectionStatus.forced_msec_delay;
+	msec_residue = (uint16_t)(msec_residue + theCanInjectionStatus.forced_msec_delay);
 	if(msec_residue >= 10000){
-		msec_residue = msec_residue - 10000;
+		msec_residue = (uint16_t)(msec_residue - 10000);
 		sec_residue +=1;
 	}
 	sec_residue  += theCanInjectionStatus.forced_sec_delay;

@@ -122,6 +122,17 @@ set(PROJECT_SOURCES
         src/engine/stm32_device/QML_Model/QOverrideFilter_ModelProperty.h
         src/engine/stm32_device/QML_Model/QOverrideFilter_ModelProperty.cpp
 
+        src/engine/stm32_device/QML_Model/QLinConfigItem.h
+        src/engine/stm32_device/QML_Model/QLinConfigItem.cpp
+        src/engine/stm32_device/QML_Model/QLinConfigProperty.h
+        src/engine/stm32_device/QML_Model/QLinConfigProperty_BaudRate.h
+        src/engine/stm32_device/QML_Model/QLinConfigProperty_FilterPreset.h
+        src/engine/stm32_device/QML_Model/QLinOverrideFilter_ModelItem.h
+        src/engine/stm32_device/QML_Model/QLinOverrideFilter_ModelItem.cpp
+        src/engine/stm32_device/QML_Model/QLinOverrideFilter_ModelProperty.h
+        src/engine/stm32_device/QML_Model/QLinOverrideFilter_ModelProperty.cpp
+        src/engine/stm32_device/Lin_filter.h
+
 
         src/engine/vehicle/Vehicle.h
         src/engine/vehicle/Vehicle.cpp
@@ -150,6 +161,10 @@ set(PROJECT_SOURCES
         src/engine/bus/BusDataProperty.cpp
         src/engine/bus/CanBusItem.h
         src/engine/bus/CanBusItem.cpp
+        src/engine/bus/LinBusItem.h
+        src/engine/bus/LinBusItem.cpp
+        src/engine/bus/LinBusDataProperty.h
+        src/engine/bus/LinBusDataProperty.cpp
         src/engine/bus/ParseFilter.h
         src/engine/bus/ParseBuffer.h
         src/engine/bus/ParseBuffer.cpp

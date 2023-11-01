@@ -76,6 +76,27 @@ bool CommandConstructor::constructCmd(uint32_t _cmd){
         return true;
         break;
     }
+    case ELPR_LIN_GET_POLL_PERIOD:{
+        Command elp_cmd(_cmd, isBigEndian);
+        m_cmd_output.resize(elp_cmd.calculateStringSize());
+        elp_cmd.makeString(m_cmd_output);
+        return true;
+        break;
+    }
+    case ELPR_LIN_GET_MOSI_FILTER:{
+        Command elp_cmd(_cmd, isBigEndian);
+        m_cmd_output.resize(elp_cmd.calculateStringSize());
+        elp_cmd.makeString(m_cmd_output);
+        return true;
+        break;
+    }
+    case ELPR_LIN_GET_MISO_FILTER:{
+        Command elp_cmd(_cmd, isBigEndian);
+        m_cmd_output.resize(elp_cmd.calculateStringSize());
+        elp_cmd.makeString(m_cmd_output);
+        return true;
+        break;
+    }
 
     default:
         return false;
@@ -83,7 +104,27 @@ bool CommandConstructor::constructCmd(uint32_t _cmd){
     }
 }
 
-
+bool CommandConstructor::constructCmd(uint32_t _cmd, bool mosi, lin_filter_raw *filter_ptr){
+    m_cmd_output.clear();
+    switch(_cmd){
+    case ELP_LIN_SET_FILTER:{
+        //if(input_buf.length() != 4) return false;
+        Command elp_cmd(_cmd, isBigEndian);
+        uint8_t mosi_flag = mosi ? 0x00 : 0xFF;
+        elp_cmd.add_param(mosi_flag);
+        for(size_t i = 0; i < sizeof(lin_filter_raw); i++){
+            elp_cmd.add_param(filter_ptr->data[i]);
+        }
+        m_cmd_output.resize(elp_cmd.calculateStringSize());
+        elp_cmd.makeString(m_cmd_output);
+        return true;
+        break;
+    }
+    default:
+        return false;
+        break;
+    }
+}
 
 bool CommandConstructor::constructCmd(uint32_t _cmd, uint32_t value32_to_string){
     m_cmd_output.clear();
@@ -108,7 +149,14 @@ bool CommandConstructor::constructCmd(uint32_t _cmd, uint32_t value32_to_string)
         elp_cmd.makeString(m_cmd_output);
         return true;
         break;
-
+    }
+    case ELP_LIN_POLL_PERIOD:{
+        Command elp_cmd(_cmd, isBigEndian);
+        elp_cmd.append_uint_to_string(value32_to_string);
+        m_cmd_output.resize(elp_cmd.calculateStringSize());
+        elp_cmd.makeString(m_cmd_output);
+        return true;
+        break;
     }
 
     default:
@@ -260,7 +308,6 @@ void CommandConstructor::translateVehicleStatus(const QString& status_string, Ve
 void CommandConstructor::translateVehicleStatus(const QByteArray& status_string, Vehicle& _trgt_vhcl) const{
     _trgt_vhcl.init_with_response_bytes(status_string);
 }
-
 
 
 uint32_t CommandConstructor::getMemchipAddress(uint32_t address_code, uint32_t device_code){

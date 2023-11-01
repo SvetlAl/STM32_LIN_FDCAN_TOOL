@@ -37,8 +37,8 @@
 #define FLUSH_FIFO_TIMEOUT		20000
 #define DTFXSTS_TIMEOUT 		20000 //TODO
 
-#define RX_FIFO_SIZE			  36 									// 35 - minimum working   / 128
-#define TX_EP0_FIFO_SIZE		16 									// 16 - minimum working  64
+#define RX_FIFO_SIZE			36 									  // 35 - minimum working   / 128
+#define TX_EP0_FIFO_SIZE		16 									  // 16 - minimum working  64
 #define TX_EP1_FIFO_SIZE		320-(RX_FIFO_SIZE+TX_EP0_FIFO_SIZE)   // 128
 #define TX_EP2_FIFO_SIZE		0
 #define TX_EP3_FIFO_SIZE		0
@@ -176,8 +176,8 @@ void enumerate_Setup(void);
 // void initEndPoints(void); -> static
 
 /* FIFO access */
-uint32_t write_Fifo(uint8_t dfifo, uint8_t *src, uint16_t len);
-void read_Setup_Fifo(void);
+
+
 void read_Fifo(uint8_t dfifo, uint16_t len);
 // uint32_t DTFXSTS_timeout(uint8_t Epnum, uint32_t dtxfsts_val); -> static
 
@@ -201,7 +201,7 @@ uint32_t USB_CDC_send_data(uint8_t *txBuff, uint16_t len);
 uint32_t USB_CDC_recieve_data(uint16_t length);
 eLinkState USB_CDC_process_watchdog(void);
 
-uint32_t getdevstat(void);
+//uint32_t getdevstat(void);
 
 
 /***************************************************

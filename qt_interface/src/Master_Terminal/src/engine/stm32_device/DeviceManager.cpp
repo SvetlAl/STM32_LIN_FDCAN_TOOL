@@ -1,4 +1,12 @@
 #include "DeviceManager.h"
+#include "../../app_settings.h"
+
+#define LIN_STATUS_OFF                    (uint8_t)0x00
+#define LIN_STATUS_ON                     (uint8_t)0x0F
+
+#define IS_VALIDATION_MODE  (targetDeviceData.deviceModel.lin_mode &   (uint8_t)(LIN_STATUS_ON << 4))
+#define LIN_VALIDATION_ON   targetDeviceData.deviceModel.lin_mode |=  (uint8_t)(LIN_STATUS_ON << 4);
+#define LIN_VALIDATION_OFF  targetDeviceData.deviceModel.lin_mode &=~ (uint8_t)(LIN_STATUS_ON << 4);
 
 /********************************************************************
  *
@@ -61,6 +69,120 @@ int DeviceManager::get_harware_scanner_filter_value(const int byte_n, bool isLow
     int device_data_pos = struct_pos + byte_n;
     return targetDeviceData.data[device_data_pos];
 }
+
+bool DeviceManager::lin_validation() const{
+    if(IS_VALIDATION_MODE){
+        return true;
+    }
+    else return false;
+}
+
+bool DeviceManager::lin_mode_gateway() const{
+    if(targetDeviceData.deviceModel.lin_mode & LIN_MODE_GATEWAY){
+        return true;
+    }
+    else return false;
+}
+
+bool DeviceManager::lin_mode_filter() const{
+    if(targetDeviceData.deviceModel.lin_mode & LIN_MODE_FILTER){
+        return true;
+    }
+    else return false;
+}
+
+bool DeviceManager::lin_mode_scanner() const{
+    if(targetDeviceData.deviceModel.lin_mode & LIN_MODE_SCANNER){
+        return true;
+    }
+    else return false;
+}
+
+bool DeviceManager::lin_mode_device() const{
+    if(targetDeviceData.deviceModel.lin_mode & LIN_MODE_DEVICE){
+        return true;
+    }
+    else return false;
+}
+
+int DeviceManager::lin_poll_period() const{
+    return m_lin_poll_period;
+}
+
+void DeviceManager::set_lin_poll_period(int new_value){
+    if(m_lin_poll_period == new_value) return;
+    m_lin_poll_period = new_value;
+    emit lin_pp_changed();
+}
+
+
+void DeviceManager::update_lin_filter(bool dir_mosi, QByteArray _data){
+    uint8_t *lin_ptr = (dir_mosi) ? mosi_filter.data : miso_filter.data;
+    uint8_t pos = 0;
+    while(pos < sizeof(lin_filter_raw)){
+        *lin_ptr++ = _data[pos++];
+    }
+    refresh_lin_filter(dir_mosi);
+}
+void DeviceManager::refresh_lin_filter(bool dir_mosi){
+    uint8_t *lin_ptr = (dir_mosi) ? mosi_filter.data : miso_filter.data;
+    uint8_t model_item_num = (dir_mosi) ? 0 : 1;
+    uint8_t model_byte_pos = 0;
+    uint8_t filter_byte_pos = 4;
+
+    m_OverrideLINFilterModel.set_byte0_value(model_item_num, QString::number(lin_ptr[filter_byte_pos++], 16).toUpper());
+    m_OverrideLINFilterModel.enable_byte0(model_item_num, (lin_ptr[1] >> model_byte_pos++));
+    m_OverrideLINFilterModel.set_byte1_value(model_item_num, QString::number(lin_ptr[filter_byte_pos++], 16).toUpper());
+    m_OverrideLINFilterModel.enable_byte0(model_item_num, (lin_ptr[1] >> model_byte_pos++));
+    m_OverrideLINFilterModel.set_byte2_value(model_item_num, QString::number(lin_ptr[filter_byte_pos++], 16).toUpper());
+    m_OverrideLINFilterModel.enable_byte0(model_item_num, (lin_ptr[1] >> model_byte_pos++));
+    m_OverrideLINFilterModel.set_byte3_value(model_item_num, QString::number(lin_ptr[filter_byte_pos++], 16).toUpper());
+    m_OverrideLINFilterModel.enable_byte0(model_item_num, (lin_ptr[1] >> model_byte_pos++));
+    m_OverrideLINFilterModel.set_byte4_value(model_item_num, QString::number(lin_ptr[filter_byte_pos++], 16).toUpper());
+    m_OverrideLINFilterModel.enable_byte0(model_item_num, (lin_ptr[1] >> model_byte_pos++));
+    m_OverrideLINFilterModel.set_byte5_value(model_item_num, QString::number(lin_ptr[filter_byte_pos++], 16).toUpper());
+    m_OverrideLINFilterModel.enable_byte0(model_item_num, (lin_ptr[1] >> model_byte_pos++));
+    m_OverrideLINFilterModel.set_byte6_value(model_item_num, QString::number(lin_ptr[filter_byte_pos++], 16).toUpper());
+    m_OverrideLINFilterModel.enable_byte0(model_item_num, (lin_ptr[1] >> model_byte_pos++));
+    m_OverrideLINFilterModel.set_byte7_value(model_item_num, QString::number(lin_ptr[filter_byte_pos], 16).toUpper());
+    m_OverrideLINFilterModel.enable_byte0(model_item_num, (lin_ptr[1] >> model_byte_pos));
+    m_OverrideLINFilterModel.set_str_id_value(model_item_num, QString::number(lin_ptr[0], 16).toUpper());
+}
+
+lin_filter_raw *DeviceManager::get_refreshed_filter_ptr(bool dir_mosi){
+    uint8_t model_item_num = (dir_mosi) ? 0 : 1;
+    lin_filter_raw *filter_ptr = (dir_mosi) ? &mosi_filter : &miso_filter;
+    m_OverrideLINFilterModel.set_lin_filter_values(model_item_num, filter_ptr);
+    return filter_ptr;
+}
+
+void DeviceManager::set_lin_validation(bool new_value){
+    if(lin_validation() == new_value) return;
+    if(new_value == false){
+        LIN_VALIDATION_OFF;
+    }
+    else{
+        LIN_VALIDATION_ON;
+    }
+    emit changed();
+}
+
+int DeviceManager::lin_mode() const{
+    uint8_t mode = targetDeviceData.deviceModel.lin_mode;
+    mode &= ~0xF0;
+    return mode;
+}
+
+
+void DeviceManager::set_lin_mode(int new_value){
+    uint8_t new_mode = new_value &~0xF0;
+    if(new_mode == (targetDeviceData.deviceModel.lin_mode &~ 0xF0)) return;
+    targetDeviceData.deviceModel.lin_mode &=~ 0x0F;
+    targetDeviceData.deviceModel.lin_mode |= new_mode;
+    emit changed();
+}
+
+
 
 QString DeviceManager::str_scanner_hardware_filter_lwr() const{
     QString result;

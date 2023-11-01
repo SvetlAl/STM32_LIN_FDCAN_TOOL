@@ -157,6 +157,7 @@ void CDC_JNI_Driver::startAsynchReading(int mode){
         QObject::connect(m_pSerialPort, &QASerialPort::readyRead, m_pConsole, &Console::read_serialport_and_append_data);
         return;
         }
+    case AsynchReadToLinScanner:
     case AsynchReadToScanner:{
         conn = QObject::connect(m_pSerialPort,&QASerialPort::readyRead,this,[this](){
             if (m_pSerialPort->bytesAvailable()) {
@@ -185,6 +186,7 @@ void CDC_JNI_Driver::stopAsynchReading(int mode){
         QObject::disconnect(m_pSerialPort, &QSerialPort::readyRead, m_pConsole, &Console::read_serialport_and_append_data);
 #endif
         return;
+    case AsynchReadToLinScanner:
     case AsynchReadToScanner:
         QObject::disconnect(conn);
         return ;

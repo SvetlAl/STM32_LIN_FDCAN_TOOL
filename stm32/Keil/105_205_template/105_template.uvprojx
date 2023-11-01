@@ -731,6 +731,36 @@
               <FileType>1</FileType>
               <FilePath>.\Core\src\stm32f205_clock.c</FilePath>
             </File>
+            <File>
+              <FileName>lin.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\src\lin.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\src\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\src\gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart_rx_buffer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\src\usart_rx_buffer.c</FilePath>
+            </File>
+            <File>
+              <FileName>lin_filter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\src\lin_filter.c</FilePath>
+            </File>
+            <File>
+              <FileName>lin_device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Core\src\lin_device.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

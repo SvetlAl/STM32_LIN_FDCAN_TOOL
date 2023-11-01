@@ -126,6 +126,10 @@ void QVehicleNames_ModelProperty::init (){
     this->append(_item);
 
     _item = QSharedPointer<QVehicle_ModelItem>
+        (new QVehicle_ModelItem(this, "Tank 500", MODEL_TANK_500, Vehicle::ModelBrand::Tank));
+    this->append(_item);
+
+    _item = QSharedPointer<QVehicle_ModelItem>
         (new QVehicle_ModelItem(this, "Extra I", MODEL_EXTRA_I, Vehicle::ModelBrand::Extra));
     this->append(_item);
 

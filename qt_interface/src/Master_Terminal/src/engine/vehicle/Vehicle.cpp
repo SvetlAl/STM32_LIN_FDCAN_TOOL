@@ -153,6 +153,13 @@ void Vehicle::initNewModel() {
         is_tyres_threshold_available = true;
         set_modelName("FORD_TRANSIT_20");
         break;
+    case MODEL_TANK_500:
+        is_speedometer_mlt_available = true;
+        is_odometer_mlt_available = true;
+        is_cruise_mlt_available = true;
+        is_tyres_threshold_available = true;
+        set_modelName("TANK_500");
+        break;
     case MODEL_EXTRA_I:
         is_speedometer_mlt_available = true;
         is_odometer_mlt_available = true;

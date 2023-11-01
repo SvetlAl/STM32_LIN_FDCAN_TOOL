@@ -18,6 +18,9 @@ VehicleStructData theVehicle;
 u_can_override_status theOverrideStatus;
 
 static volatile uint32_t secs = 0x00; /* Timer, that counts seconds from the start */
+volatile uint32_t *get_main_tim_sec_ptr(){
+	return &secs;
+}
 
 extern memchip_status memory_chip_status;
 extern volatile uint32_t cmd_fll;				/* cmd_buffer flag. If recieved data contains a message, the flag changes its status */
@@ -194,10 +197,10 @@ int main(void){
 	USB_OTG_FS_init_device();
 
 	NVIC_EnableIRQ(CAN1_RX0_IRQn);
-	NVIC_SetPriority(CAN1_RX0_IRQn, 7);
+	NVIC_SetPriority(CAN1_RX0_IRQn, CAN1_RX0_IRQ_P);
 	#ifndef DEVICE_1CAN2LIN
 	NVIC_EnableIRQ(CAN2_RX0_IRQn);
-	NVIC_SetPriority(CAN2_RX0_IRQn, 8);
+	NVIC_SetPriority(CAN2_RX0_IRQn, CAN2_RX0_IRQ_P);
 	#endif
 	
 	// watchdog
@@ -206,11 +209,12 @@ int main(void){
 	NVIC_SetPriority(TIM1_UP_TIM10_IRQn, 11);
 	#elif defined(STM32F105)
 	NVIC_EnableIRQ (TIM1_UP_IRQn);
-	NVIC_SetPriority(TIM1_UP_IRQn, 11);
+	NVIC_SetPriority(TIM1_UP_IRQn, MAIN_TIMER_IRQ_P);
 	#endif
 	// trace injection
 	NVIC_EnableIRQ (TIM2_IRQn);
-	NVIC_SetPriority(TIM2_IRQn, 4);
+	NVIC_SetPriority(TIM2_IRQn, TRACE_INJ_TIMER_IRQ_P);
+
 	
 	
 	SIGNAL_LED_OFF;
@@ -223,7 +227,13 @@ int main(void){
 	#endif
 	
 	__enable_irq ();
+	
 	while(1){
+		
+		#ifdef SUPPORT_LIN 
+		process_lin_engine();
+		#endif
+		
 		#ifndef CAN_TX_BUFFER_ENABLED
 		timeout = 0xFFF;
 		while(timeout-- > 0){

@@ -14,6 +14,13 @@ static uint8_t elp_cmd_buffer[ELP_MAX_STR_CMD_LENGTH]; /* A global var to store 
 static uint32_t elp_cmd_buffer_index = 0;
 elp_cmd global_el_command; /* A global var to store a current cmd readings */
 
+
+void elp_quadro_copy(el_quadro_buffer *qbuf_in, el_quadro_buffer *qbuf_out){
+	for(uint32_t i = 0; i < ELP_QUADRO_BUF_SIZE/4; i++){
+		qbuf_out->raw_data32[i] = qbuf_in->raw_data32[i];
+	}
+}
+
 elp_cmd *el_get_current_cmd(){
 	return &global_el_command;
 }
@@ -213,8 +220,4 @@ uint32_t find_and_parse_elp_cmd(){
 }
 
 
-void elp_quadro_copy(el_quadro_buffer *qbuf_in, el_quadro_buffer *qbuf_out){
-	for(uint32_t i = 0; i < ELP_QUADRO_BUF_SIZE/4; i++){
-		qbuf_out->raw_data32[i] = qbuf_in->raw_data32[i];
-	}
-}
+

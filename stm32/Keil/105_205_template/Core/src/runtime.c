@@ -251,3 +251,42 @@ uint32_t process_override_procedure(can_message *newMessage, uint32_t _can_num /
 	return PROCESS_MSG;
 }
 
+
+/********************************************************************************************/
+/********************************************************************************************/
+/***********                    USART data recieved                               ***********/
+/********************************************************************************************/
+/********************************************************************************************/
+
+#if defined(DEBUG_MODE) && defined(SUPPORT_USART) && !defined(SUPPORT_LIN)
+static uint8_t recieved_from_usart[64];
+
+uint32_t usart_recieve_data(uint8_t usart_num, uint16_t length){
+	if(usart_num < 1 || usart_num > 3) return 0;
+	
+	if(length >= 4){
+		usart_bufs[usart_num]->read(recieved_from_usart);
+		
+		uint8_t data_to_send[64];
+		uint8_t pos = 0;
+		data_to_send[pos++] = 'U';
+		data_to_send[pos++] = 'S';
+		data_to_send[pos++] = 'A';
+		data_to_send[pos++] = 'R';
+		data_to_send[pos++] = 'T';
+		data_to_send[pos++] = SC_4BIT_TO_ASCII(((usart_num << 0) &~0xFF00));
+		data_to_send[pos++] = 'R';
+		data_to_send[pos++] = 'X';
+		data_to_send[pos++] = ' ';
+		
+		uint32_t com_pos = 0;
+		while((pos < 64) && (com_pos < length)){
+			// data_to_send[pos++] = recieved_from_usart[com_pos++];
+			data_to_send[pos++] = recieved_from_usart[com_pos++];
+		}
+		USB_CDC_send_data(data_to_send, pos);
+		
+	}
+	return length;
+}
+#endif

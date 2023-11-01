@@ -24,7 +24,7 @@
 
 //=========================================================================================================
 //=====================================         Model          ============================================
-//#define ALLIGATOR
+#define ALLIGATOR
 //#define TEC_MODULE
 
 //#define DEVICE_2CAN
@@ -32,7 +32,7 @@
 //#define DEVICE_2CAN_BOXED
 //#define DEVICE_SIGMA
 //#define DEVICE_1CAN2LIN
-#define DEVICE_FCAN_V6
+//#define DEVICE_FCAN_V6
 
 //=========================================================================================================
 //=======================================       Processor      ============================================
@@ -81,13 +81,15 @@
 #define SIGNAL_LED_ON GPIOC->BSRR |= GPIO_BSRR_BS_13
 #define SIGNAL_LED_OFF GPIOC->BSRR |= GPIO_BSRR_BR_13
 
+
 #elif defined(ALLIGATOR)
 #define TOGGLE_SIGNAL_LED if(GPIOA->ODR & GPIO_ODR_OD8)  \
 	GPIOA->BSRR |= GPIO_BSRR_BR_8;	\
 	else GPIOA->BSRR |= GPIO_BSRR_BS_8	\
 		
-#define SIGNAL_LED_ON GPIOA->BSRR |= GPIO_BSRR_BS_8
-#define SIGNAL_LED_OFF GPIOA->BSRR |= GPIO_BSRR_BR_8
+#define SIGNAL_LED_ON GPIOA->BSRR |= GPIO_BSRR_BR_8
+#define SIGNAL_LED_OFF GPIOA->BSRR |= GPIO_BSRR_BS_8
+	
 #elif defined(DEVICE_FCAN_V6)
 #define SIGNAL_LED_OFF GPIOB->BSRR |= GPIO_BSRR_BR_0
 #define SIGNAL_LED_ON GPIOB->BSRR |= GPIO_BSRR_BS_0
