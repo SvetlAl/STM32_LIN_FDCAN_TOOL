@@ -1,0 +1,1409 @@
+Archive member included to satisfy reference by file (symbol)
+
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o (atexit)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o (exit)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o (__libc_fini_array)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o) (_global_impure_ptr)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o (__libc_init_array)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+                              ./Release/Core/src/BxCAN/can_cdc_player_buffer.o (memcpy)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o (memset)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o) (__register_exitproc)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o) (__call_exitprocs)
+/usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+                              /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o) (_exit)
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crti.o
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crti.o
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crti.o
+ .data          0x0000000000000000        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+ .rodata        0x0000000000000000       0x24 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+ .text          0x0000000000000000       0x70 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .ARM.extab     0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .ARM.exidx     0x0000000000000000       0x10 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .debug_line    0x0000000000000000       0x87 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .debug_info    0x0000000000000000       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .debug_abbrev  0x0000000000000000       0x14 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .debug_aranges
+                0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .debug_str     0x0000000000000000       0x95 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .ARM.attributes
+                0x0000000000000000       0x1c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/device_model.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/device_model.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/device_model.o
+ .text.make_default_device_settings
+                0x0000000000000000       0x18 ./Release/Core/src/device_model.o
+ .text.init_STD_CAN_settings
+                0x0000000000000000       0xa4 ./Release/Core/src/device_model.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/extras.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/extras.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/extras.o
+ .text.init_extras
+                0x0000000000000000        0x4 ./Release/Core/src/extras.o
+ .text.process_extra_transmission
+                0x0000000000000000        0x4 ./Release/Core/src/extras.o
+ .text.calculate_cnt_and_transmit
+                0x0000000000000000        0x4 ./Release/Core/src/extras.o
+ .text.check_test_transmission_request
+                0x0000000000000000        0x4 ./Release/Core/src/extras.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/extras.o
+ .ARM.attributes
+                0x0000000000000000       0x2e ./Release/Core/src/extras.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/main.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/main.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/main.o
+ .text.get_main_tim_sec_ptr
+                0x0000000000000000        0x8 ./Release/Core/src/main.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/ram_updater.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/ram_updater.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/ram_updater.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/runtime.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/runtime.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/runtime.o
+ .text.extra_broadcast
+                0x0000000000000000        0x4 ./Release/Core/src/runtime.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/stm32f105_clock.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/stm32f105_clock.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/stm32f105_clock.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/stm32f105_clock.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/stm32f105_clock.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/stm32f205_clock.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/stm32f205_clock.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/stm32f205_clock.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/stm32f205_clock.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/stm32f205_clock.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/stm32f407_clock.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/stm32f407_clock.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/stm32f407_clock.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/stm32h730_clock.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/stm32h730_clock.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/stm32h730_clock.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/stm32h730_clock.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/stm32h730_clock.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/string_convertor.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/string_convertor.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/string_convertor.o
+ .text.halfbyte_to_hexascii
+                0x0000000000000000       0x10 ./Release/Core/src/string_convertor.o
+ .text.hexascii_to_halfbyte
+                0x0000000000000000       0x2c ./Release/Core/src/string_convertor.o
+ .text.str_to_ascii
+                0x0000000000000000       0xb8 ./Release/Core/src/string_convertor.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/vehicle_template.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/vehicle_template.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/vehicle_template.o
+ .text.vehicle_startup_settings
+                0x0000000000000000        0xc ./Release/Core/src/vehicle_template.o
+ .text.vehicle_spd_mlt
+                0x0000000000000000        0xc ./Release/Core/src/vehicle_template.o
+ .text.vehicle_tyr_thr
+                0x0000000000000000        0xc ./Release/Core/src/vehicle_template.o
+ .text.vehicle_crs_id
+                0x0000000000000000        0xc ./Release/Core/src/vehicle_template.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/watchdog.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/watchdog.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/watchdog.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_buffer.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_buffer.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_buffer.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .text.fill_single_cc_buf
+                0x0000000000000000       0x2c ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .text.get_ccb_freespace
+                0x0000000000000000        0x8 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .text.get_available_ccb_bytes
+                0x0000000000000000        0x8 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .text.pop_single_cc_buf_item
+                0x0000000000000000       0x48 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .text.CDC_startMessageInjection
+                0x0000000000000000       0x18 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .text.CDC_stopMessageInjection
+                0x0000000000000000       0x38 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_override.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_override.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_override.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_scanner.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_scanner.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/BxCAN/can_scanner.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_fdcan.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_fdcan.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_fdcan.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/Commands/cmd_fdcan.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/Commands/cmd_fdcan.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_lin.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_lin.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_lin.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/Commands/cmd_lin.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/Commands/cmd_lin.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_memchip_base.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_memchip_base.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_memchip_base.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_raw.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_raw.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_raw.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_set_vehicle_value.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_set_vehicle_value.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_set_vehicle_value.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_specific.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_specific.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_specific.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_spi_memchip_read.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_spi_memchip_read.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/cmd_spi_memchip_read.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/common_cmd.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/common_cmd.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/common_cmd.o
+ .text.extract_2bytes_cmd
+                0x0000000000000000        0xc ./Release/Core/src/Commands/common_cmd.o
+ .text.cmd_send_raw_data
+                0x0000000000000000       0x60 ./Release/Core/src/Commands/common_cmd.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/device_modes.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/device_modes.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/device_modes.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/el_protocol.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/el_protocol.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/el_protocol.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/test_cmd_nand.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/test_cmd_nand.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/test_cmd_nand.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/Commands/test_cmd_nand.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/Commands/test_cmd_nand.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Commands/user_cmd.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Commands/user_cmd.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Commands/user_cmd.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/DMAF10x/10x_dma.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/DMAF10x/10x_dma.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/DMAF10x/10x_dma.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/DMAF10x/10x_dma.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/DMAF10x/10x_dma.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_buffer.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_buffer.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_buffer.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/FDCAN/fdcan_buffer.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/FDCAN/fdcan_buffer.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/FDCAN/fdcan.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/FDCAN/fdcan.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_can_override.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_can_override.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_can_override.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/FDCAN/fdcan_can_override.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/FDCAN/fdcan_can_override.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_scanner.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_scanner.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_scanner.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/FDCAN/fdcan_scanner.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/FDCAN/fdcan_scanner.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_std_can_legacy.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_std_can_legacy.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/FDCAN/fdcan_std_can_legacy.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/FDCAN/fdcan_std_can_legacy.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/FDCAN/fdcan_std_can_legacy.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Flash_memchip/flash_nand_mem_chip_spi.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Flash_memchip/flash_nand_mem_chip_spi.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Flash_memchip/flash_nand_mem_chip_spi.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/Flash_memchip/flash_nand_mem_chip_spi.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/Flash_memchip/flash_nand_mem_chip_spi.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .text.memchip_erase_data_within_address
+                0x0000000000000000       0x38 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/LIN/lin.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/LIN/lin.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/LIN/lin.o
+ .bss.gatewayLIN
+                0x0000000000000000       0xa0 ./Release/Core/src/LIN/lin.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/LIN/lin.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/LIN/lin.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/LIN/lin_device.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/LIN/lin_device.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/LIN/lin_device.o
+ .text.lin_device_report
+                0x0000000000000000        0x4 ./Release/Core/src/LIN/lin_device.o
+ .text.lin_device_master_tx
+                0x0000000000000000        0x4 ./Release/Core/src/LIN/lin_device.o
+ .text.lin_device_slave_rx
+                0x0000000000000000        0x4 ./Release/Core/src/LIN/lin_device.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/LIN/lin_device.o
+ .ARM.attributes
+                0x0000000000000000       0x2e ./Release/Core/src/LIN/lin_device.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/LIN/lin_filter.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/LIN/lin_filter.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/LIN/lin_filter.o
+ .text.implement_lin_user_filter
+                0x0000000000000000       0xd4 ./Release/Core/src/LIN/lin_filter.o
+ .text.implement_lin_dummy_filter
+                0x0000000000000000        0x4 ./Release/Core/src/LIN/lin_filter.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/LIN/lin_filter.o
+ .ARM.attributes
+                0x0000000000000000       0x2e ./Release/Core/src/LIN/lin_filter.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/SPI/spi_1xx.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/SPI/spi_1xx.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/SPI/spi_1xx.o
+ .text.SPI_1xx_transmit_dbyte
+                0x0000000000000000       0x48 ./Release/Core/src/SPI/spi_1xx.o
+ .text.SPI_1xx_receive_dbyte
+                0x0000000000000000       0x44 ./Release/Core/src/SPI/spi_1xx.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/SPI/spi_7xx.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/SPI/spi_7xx.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/SPI/spi_7xx.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/SPI/spi_7xx.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/SPI/spi_7xx.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/SPI/spi.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/SPI/spi.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/SPI/spi.o
+ .text.SPI_transmit_receive_data
+                0x0000000000000000       0x28 ./Release/Core/src/SPI/spi.o
+ .text.SPI_receive_data
+                0x0000000000000000       0x20 ./Release/Core/src/SPI/spi.o
+ .text.SPI_transmit_data
+                0x0000000000000000       0x20 ./Release/Core/src/SPI/spi.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/TIM/tim.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/TIM/tim.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/TIM/tim.o
+ .text.pauseBasicTimer
+                0x0000000000000000        0xc ./Release/Core/src/TIM/tim.o
+ .text.resumeBasicTimer
+                0x0000000000000000        0xc ./Release/Core/src/TIM/tim.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/USART/usart.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/USART/usart.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/USART/usart.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/USART/usart.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/USART/usart.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/USART/usart_rx_buffer.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/USART/usart_rx_buffer.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/USART/usart_rx_buffer.o
+ .text.urb_write_data
+                0x0000000000000000       0x4c ./Release/Core/src/USART/usart_rx_buffer.o
+ .text.urb_get_data_length
+                0x0000000000000000        0x4 ./Release/Core/src/USART/usart_rx_buffer.o
+ .text.urb_read_data
+                0x0000000000000000       0x34 ./Release/Core/src/USART/usart_rx_buffer.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/USART/usart_rx_buffer.o
+ .ARM.attributes
+                0x0000000000000000       0x2e ./Release/Core/src/USART/usart_rx_buffer.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .text.clear_USB_device_status
+                0x0000000000000000       0x10 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .text.USB_CDC_receive_data
+                0x0000000000000000        0x4 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .text          0x0000000000000000        0x0 ./Release/Core/src/USB_CDC/stm32h7xx_usbdfs_cdc.o
+ .data          0x0000000000000000        0x0 ./Release/Core/src/USB_CDC/stm32h7xx_usbdfs_cdc.o
+ .bss           0x0000000000000000        0x0 ./Release/Core/src/USB_CDC/stm32h7xx_usbdfs_cdc.o
+ .comment       0x0000000000000000       0x34 ./Release/Core/src/USB_CDC/stm32h7xx_usbdfs_cdc.o
+ .ARM.attributes
+                0x0000000000000000       0x33 ./Release/Core/src/USB_CDC/stm32h7xx_usbdfs_cdc.o
+ .text          0x0000000000000000       0x14 ./Release/Startup/startup_stm32f407vetx.o
+ .data          0x0000000000000000        0x0 ./Release/Startup/startup_stm32f407vetx.o
+ .bss           0x0000000000000000        0x0 ./Release/Startup/startup_stm32f407vetx.o
+ .text          0x0000000000000000        0xc /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .debug_info    0x0000000000000000      0x100 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .debug_abbrev  0x0000000000000000       0xb7 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .debug_loc     0x0000000000000000       0x32 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .debug_aranges
+                0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .debug_line    0x0000000000000000       0xc0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .debug_str     0x0000000000000000      0x1e3 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .comment       0x0000000000000000       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .debug_frame   0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .ARM.attributes
+                0x0000000000000000       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-atexit.o)
+ .text          0x0000000000000000       0x28 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .debug_info    0x0000000000000000      0x81a /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .debug_abbrev  0x0000000000000000      0x1ba /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .debug_loc     0x0000000000000000       0x22 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .debug_aranges
+                0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .debug_line    0x0000000000000000      0x16d /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .debug_str     0x0000000000000000      0x522 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .comment       0x0000000000000000       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .debug_frame   0x0000000000000000       0x28 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .ARM.attributes
+                0x0000000000000000       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-exit.o)
+ .text          0x0000000000000000       0x2c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .debug_info    0x0000000000000000      0x102 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .debug_abbrev  0x0000000000000000       0xcf /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .debug_loc     0x0000000000000000       0x68 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .debug_aranges
+                0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .debug_line    0x0000000000000000       0xed /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .debug_str     0x0000000000000000      0x1db /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .comment       0x0000000000000000       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .debug_frame   0x0000000000000000       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .ARM.attributes
+                0x0000000000000000       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-fini.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .data          0x0000000000000000       0x64 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .rodata        0x0000000000000000        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .debug_info    0x0000000000000000      0x863 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .debug_abbrev  0x0000000000000000      0x151 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .debug_aranges
+                0x0000000000000000       0x18 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .debug_line    0x0000000000000000       0xe4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .debug_str     0x0000000000000000      0x558 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .comment       0x0000000000000000       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x0000000000000000       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-impure.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+ .text          0x0000000000000000       0xac /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .data          0x0000000000000000        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .bss           0x0000000000000000       0x8c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .debug_info    0x0000000000000000      0x269 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .debug_abbrev  0x0000000000000000      0x1bd /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .debug_loc     0x0000000000000000      0x1c4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .debug_aranges
+                0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .debug_line    0x0000000000000000      0x1ec /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .debug_str     0x0000000000000000      0x291 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .comment       0x0000000000000000       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .debug_frame   0x0000000000000000       0x38 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .ARM.attributes
+                0x0000000000000000       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__atexit.o)
+ .text          0x0000000000000000       0xc0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .bss           0x0000000000000000        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .debug_info    0x0000000000000000      0x249 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .debug_abbrev  0x0000000000000000      0x179 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .debug_loc     0x0000000000000000      0x17d /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .debug_aranges
+                0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .debug_ranges  0x0000000000000000       0x30 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .debug_line    0x0000000000000000      0x1f5 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .debug_str     0x0000000000000000      0x255 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .comment       0x0000000000000000       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .debug_frame   0x0000000000000000       0x40 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .ARM.attributes
+                0x0000000000000000       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-__call_atexit.o)
+ .text          0x0000000000000000        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .debug_info    0x0000000000000000       0xa3 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .debug_abbrev  0x0000000000000000       0x6a /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .debug_loc     0x0000000000000000       0x15 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .debug_aranges
+                0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .debug_line    0x0000000000000000       0x75 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .debug_str     0x0000000000000000      0x17b /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .comment       0x0000000000000000       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .debug_frame   0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .ARM.attributes
+                0x0000000000000000       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a(_exit.o)
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+ .rodata        0x0000000000000000       0x24 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+ .eh_frame      0x0000000000000000        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+ .text          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
+ .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
+ .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x0000000020000000 0x0000000000020000 xrw
+ROM              0x0000000008000000 0x0000000000080000 xr
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crti.o
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/crt0.o
+LOAD ./Release/Core/src/device_model.o
+LOAD ./Release/Core/src/extras.o
+LOAD ./Release/Core/src/main.o
+LOAD ./Release/Core/src/ram_updater.o
+LOAD ./Release/Core/src/runtime.o
+LOAD ./Release/Core/src/stm32f105_clock.o
+LOAD ./Release/Core/src/stm32f205_clock.o
+LOAD ./Release/Core/src/stm32f407_clock.o
+LOAD ./Release/Core/src/stm32h730_clock.o
+LOAD ./Release/Core/src/string_convertor.o
+LOAD ./Release/Core/src/vehicle_template.o
+LOAD ./Release/Core/src/watchdog.o
+LOAD ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+LOAD ./Release/Core/src/BxCAN/can_buffer.o
+LOAD ./Release/Core/src/BxCAN/can.o
+LOAD ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+LOAD ./Release/Core/src/BxCAN/can_cdc_player.o
+LOAD ./Release/Core/src/BxCAN/can_override.o
+LOAD ./Release/Core/src/BxCAN/can_scanner.o
+LOAD ./Release/Core/src/Commands/cmd_fdcan.o
+LOAD ./Release/Core/src/Commands/cmd_lin.o
+LOAD ./Release/Core/src/Commands/cmd_memchip_base.o
+LOAD ./Release/Core/src/Commands/cmd_raw.o
+LOAD ./Release/Core/src/Commands/cmd_set_vehicle_value.o
+LOAD ./Release/Core/src/Commands/cmd_specific.o
+LOAD ./Release/Core/src/Commands/cmd_spi_memchip_read.o
+LOAD ./Release/Core/src/Commands/common_cmd.o
+LOAD ./Release/Core/src/Commands/device_modes.o
+LOAD ./Release/Core/src/Commands/el_protocol.o
+LOAD ./Release/Core/src/Commands/test_cmd_nand.o
+LOAD ./Release/Core/src/Commands/user_cmd.o
+LOAD ./Release/Core/src/DMAF10x/10x_dma.o
+LOAD ./Release/Core/src/FDCAN/fdcan_buffer.o
+LOAD ./Release/Core/src/FDCAN/fdcan.o
+LOAD ./Release/Core/src/FDCAN/fdcan_can_override.o
+LOAD ./Release/Core/src/FDCAN/fdcan_scanner.o
+LOAD ./Release/Core/src/FDCAN/fdcan_std_can_legacy.o
+LOAD ./Release/Core/src/Flash_memchip/flash_nand_mem_chip_spi.o
+LOAD ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+LOAD ./Release/Core/src/LIN/lin.o
+LOAD ./Release/Core/src/LIN/lin_device.o
+LOAD ./Release/Core/src/LIN/lin_filter.o
+LOAD ./Release/Core/src/SPI/spi_1xx.o
+LOAD ./Release/Core/src/SPI/spi_7xx.o
+LOAD ./Release/Core/src/SPI/spi.o
+LOAD ./Release/Core/src/TIM/tim.o
+LOAD ./Release/Core/src/USART/usart.o
+LOAD ./Release/Core/src/USART/usart_rx_buffer.o
+LOAD ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+LOAD ./Release/Core/src/USB_CDC/stm32h7xx_usbdfs_cdc.o
+LOAD ./Release/Startup/startup_stm32f407vetx.o
+START GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libm.a
+END GROUP
+START GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a
+END GROUP
+START GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a
+END GROUP
+START GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libnosys.a
+END GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
+                0x0000000020020000                _estack = (ORIGIN (RAM) + LENGTH (RAM))
+                0x0000000000000200                _Min_Heap_Size = 0x200
+                0x0000000000000400                _Min_Stack_Size = 0x400
+
+.isr_vector     0x0000000008000000      0x188
+                0x0000000008000000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x0000000008000000      0x188 ./Release/Startup/startup_stm32f407vetx.o
+                0x0000000008000000                g_pfnVectors
+                0x0000000008000188                . = ALIGN (0x4)
+
+.text           0x0000000008000188     0x4a38
+                0x0000000008000188                . = ALIGN (0x4)
+ *(.text)
+ .text          0x0000000008000188       0x88 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+ .text          0x0000000008000210       0x48 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+                0x0000000008000210                __libc_init_array
+ .text          0x0000000008000258      0x134 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+                0x0000000008000258                memcpy
+ .text          0x000000000800038c       0xa4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+                0x000000000800038c                memset
+ *(.text*)
+ .text.init_CAN_settings
+                0x0000000008000430       0xa4 ./Release/Core/src/device_model.o
+                0x0000000008000430                init_CAN_settings
+ .text.init_device_settings
+                0x00000000080004d4       0x78 ./Release/Core/src/device_model.o
+                0x00000000080004d4                init_device_settings
+ .text.init_CAN_override_settings
+                0x000000000800054c       0x20 ./Release/Core/src/device_model.o
+                0x000000000800054c                init_CAN_override_settings
+ .text.getDeviceSoftwareVersion
+                0x000000000800056c        0x8 ./Release/Core/src/device_model.o
+                0x000000000800056c                getDeviceSoftwareVersion
+ .text.get_device_model_ptr
+                0x0000000008000574        0x8 ./Release/Core/src/device_model.o
+                0x0000000008000574                get_device_model_ptr
+ .text.get_device_modes_data
+                0x000000000800057c        0x8 ./Release/Core/src/device_model.o
+                0x000000000800057c                get_device_modes_data
+ .text.get_main_tim_secs
+                0x0000000008000584        0xc ./Release/Core/src/main.o
+                0x0000000008000584                get_main_tim_secs
+ .text.startup.main
+                0x0000000008000590      0x12c ./Release/Core/src/main.o
+                0x0000000008000590                main
+ .text.TIM1_UP_TIM10_IRQHandler
+                0x00000000080006bc       0x48 ./Release/Core/src/main.o
+                0x00000000080006bc                TIM1_UP_TIM10_IRQHandler
+ .text.resetCanTimer
+                0x0000000008000704       0x10 ./Release/Core/src/main.o
+                0x0000000008000704                resetCanTimer
+ .text.ram_upd_set_size
+                0x0000000008000714        0xc ./Release/Core/src/ram_updater.o
+                0x0000000008000714                ram_upd_set_size
+ .text.ram_upd_get_pending_size
+                0x0000000008000720        0xc ./Release/Core/src/ram_updater.o
+                0x0000000008000720                ram_upd_get_pending_size
+ .text.ram_upd_record_written_size
+                0x000000000800072c       0x14 ./Release/Core/src/ram_updater.o
+                0x000000000800072c                ram_upd_record_written_size
+ .text.main_led_blink
+                0x0000000008000740       0x40 ./Release/Core/src/runtime.o
+                0x0000000008000740                main_led_blink
+ .text.runWatchdogProcedure
+                0x0000000008000780       0x6c ./Release/Core/src/runtime.o
+                0x0000000008000780                runWatchdogProcedure
+ .text.USB_CDC_receive_data
+                0x00000000080007ec      0x130 ./Release/Core/src/runtime.o
+                0x00000000080007ec                USB_CDC_receive_data
+ .text.findAndProcess_cmd
+                0x000000000800091c       0x68 ./Release/Core/src/runtime.o
+                0x000000000800091c                findAndProcess_cmd
+ .text.CAN1_RX0_IRQHandler
+                0x0000000008000984       0x90 ./Release/Core/src/runtime.o
+                0x0000000008000984                CAN1_RX0_IRQHandler
+ .text.CAN2_RX0_IRQHandler
+                0x0000000008000a14       0x8c ./Release/Core/src/runtime.o
+                0x0000000008000a14                CAN2_RX0_IRQHandler
+ .text.ClockInit
+                0x0000000008000aa0       0x8c ./Release/Core/src/stm32f407_clock.o
+                0x0000000008000aa0                ClockInit
+ .text.enable_peripherals
+                0x0000000008000b2c       0xa4 ./Release/Core/src/stm32f407_clock.o
+                0x0000000008000b2c                enable_peripherals
+ .text.str_to_uint32
+                0x0000000008000bd0      0x1a0 ./Release/Core/src/string_convertor.o
+                0x0000000008000bd0                str_to_uint32
+ .text.str_to_uint8
+                0x0000000008000d70       0x5c ./Release/Core/src/string_convertor.o
+                0x0000000008000d70                str_to_uint8
+ .text.hexArray2asciiArray
+                0x0000000008000dcc       0x48 ./Release/Core/src/string_convertor.o
+                0x0000000008000dcc                hexArray2asciiArray
+ .text.dummy_SpeedOdo
+                0x0000000008000e14        0xc ./Release/Core/src/vehicle_template.o
+ .text.dummy_Cruise
+                0x0000000008000e20        0xc ./Release/Core/src/vehicle_template.o
+ .text.dummy_Extras
+                0x0000000008000e2c        0xc ./Release/Core/src/vehicle_template.o
+ .text.get_vehicle_settings_data
+                0x0000000008000e38        0x8 ./Release/Core/src/vehicle_template.o
+                0x0000000008000e38                get_vehicle_settings_data
+ .text.vehicle_model
+                0x0000000008000e40        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000e40                vehicle_model
+ .text.vehicle_modes
+                0x0000000008000e4c        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000e4c                vehicle_modes
+ .text.vehicle_odo_mlt
+                0x0000000008000e58        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000e58                vehicle_odo_mlt
+ .text.vehicle_crs_mlt
+                0x0000000008000e64        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000e64                vehicle_crs_mlt
+ .text.vehicle_spd_id
+                0x0000000008000e70        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000e70                vehicle_spd_id
+ .text.vehicle_odo_id
+                0x0000000008000e7c        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000e7c                vehicle_odo_id
+ .text.vehicle_ext_id
+                0x0000000008000e88        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000e88                vehicle_ext_id
+ .text.vehicle_calibrate_spd
+                0x0000000008000e94       0x1c ./Release/Core/src/vehicle_template.o
+                0x0000000008000e94                vehicle_calibrate_spd
+ .text.vehicle_calibrate_odo
+                0x0000000008000eb0       0x1c ./Release/Core/src/vehicle_template.o
+                0x0000000008000eb0                vehicle_calibrate_odo
+ .text.vehicle_calibrate_crs
+                0x0000000008000ecc       0x18 ./Release/Core/src/vehicle_template.o
+                0x0000000008000ecc                vehicle_calibrate_crs
+ .text.vehicle_calibrate_ext
+                0x0000000008000ee4       0x18 ./Release/Core/src/vehicle_template.o
+                0x0000000008000ee4                vehicle_calibrate_ext
+ .text.vehicle_set_model
+                0x0000000008000efc       0x48 ./Release/Core/src/vehicle_template.o
+                0x0000000008000efc                vehicle_set_model
+ .text.vehicle_set_modes
+                0x0000000008000f44        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000f44                vehicle_set_modes
+ .text.vehicle_set_odo_mlt
+                0x0000000008000f50        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000f50                vehicle_set_odo_mlt
+ .text.vehicle_set_spd_mlt
+                0x0000000008000f5c        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000f5c                vehicle_set_spd_mlt
+ .text.vehicle_set_crs_mlt
+                0x0000000008000f68        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000f68                vehicle_set_crs_mlt
+ .text.vehicle_set_tyr_thr
+                0x0000000008000f74        0xc ./Release/Core/src/vehicle_template.o
+                0x0000000008000f74                vehicle_set_tyr_thr
+ .text.initVehicleSettings
+                0x0000000008000f80       0x70 ./Release/Core/src/vehicle_template.o
+                0x0000000008000f80                initVehicleSettings
+ .text.reset_hw_watchdog
+                0x0000000008000ff0        0x4 ./Release/Core/src/watchdog.o
+                0x0000000008000ff0                reset_hw_watchdog
+ .text.Init_IWDG
+                0x0000000008000ff4       0x2c ./Release/Core/src/watchdog.o
+                0x0000000008000ff4                Init_IWDG
+ .text.IWDG_reset
+                0x0000000008001020       0x10 ./Release/Core/src/watchdog.o
+                0x0000000008001020                IWDG_reset
+ .text.memchip_make_app_address
+                0x0000000008001030       0x18 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+                0x0000000008001030                memchip_make_app_address
+ .text.init_device_general_pinout
+                0x0000000008001048      0x144 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+                0x0000000008001048                init_device_general_pinout
+ .text.get_board_name
+                0x000000000800118c        0x8 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+                0x000000000800118c                get_board_name
+ .text.set_bor_level
+                0x0000000008001194       0xa4 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+                0x0000000008001194                set_bor_level
+ .text.read_can1_buffer
+                0x0000000008001238       0x34 ./Release/Core/src/BxCAN/can_buffer.o
+ .text.read_can2_buffer
+                0x000000000800126c       0x38 ./Release/Core/src/BxCAN/can_buffer.o
+ .text.read_can1_buf_free_size
+                0x00000000080012a4       0x20 ./Release/Core/src/BxCAN/can_buffer.o
+ .text.read_can2_buf_free_size
+                0x00000000080012c4       0x24 ./Release/Core/src/BxCAN/can_buffer.o
+ .text.write_can1_buffer
+                0x00000000080012e8       0x40 ./Release/Core/src/BxCAN/can_buffer.o
+ .text.write_can2_buffer
+                0x0000000008001328       0x48 ./Release/Core/src/BxCAN/can_buffer.o
+ .text.can_buffer_init
+                0x0000000008001370       0x74 ./Release/Core/src/BxCAN/can_buffer.o
+                0x0000000008001370                can_buffer_init
+ .text.Can_Transmit_BufferedMessage
+                0x00000000080013e4      0x114 ./Release/Core/src/BxCAN/can.o
+ .text.calculate_baudrate
+                0x00000000080014f8       0x2c ./Release/Core/src/BxCAN/can.o
+                0x00000000080014f8                calculate_baudrate
+ .text.Can_Transmit_Message
+                0x0000000008001524       0x3c ./Release/Core/src/BxCAN/can.o
+                0x0000000008001524                Can_Transmit_Message
+ .text.Can_Recieve_StdMessage
+                0x0000000008001560       0x7c ./Release/Core/src/BxCAN/can.o
+                0x0000000008001560                Can_Recieve_StdMessage
+ .text.Can_Init
+                0x00000000080015dc      0x428 ./Release/Core/src/BxCAN/can.o
+                0x00000000080015dc                Can_Init
+ .text.process_buffered_can_tx
+                0x0000000008001a04       0xa8 ./Release/Core/src/BxCAN/can.o
+                0x0000000008001a04                process_buffered_can_tx
+ .text.CAN1_TX_IRQHandler
+                0x0000000008001aac      0x1a4 ./Release/Core/src/BxCAN/can.o
+                0x0000000008001aac                CAN1_TX_IRQHandler
+ .text.CAN2_TX_IRQHandler
+                0x0000000008001c50      0x1ac ./Release/Core/src/BxCAN/can.o
+                0x0000000008001c50                CAN2_TX_IRQHandler
+ .text.CAN1_SCE_IRQHandler
+                0x0000000008001dfc      0x144 ./Release/Core/src/BxCAN/can.o
+                0x0000000008001dfc                CAN1_SCE_IRQHandler
+ .text.CAN2_SCE_IRQHandler
+                0x0000000008001f40      0x144 ./Release/Core/src/BxCAN/can.o
+                0x0000000008001f40                CAN2_SCE_IRQHandler
+ .text.init_dual_cc_buf
+                0x0000000008002084       0x18 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+                0x0000000008002084                init_dual_cc_buf
+ .text.deinit_dual_cc_buf
+                0x000000000800209c       0x10 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+                0x000000000800209c                deinit_dual_cc_buf
+ .text.fill_dual_cc_buf
+                0x00000000080020ac      0x130 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+                0x00000000080020ac                fill_dual_cc_buf
+ .text.get_current_READ_buf_read_level
+                0x00000000080021dc       0x1c ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+                0x00000000080021dc                get_current_READ_buf_read_level
+ .text.get_current_WRITE_buf_fill_level
+                0x00000000080021f8       0x24 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+                0x00000000080021f8                get_current_WRITE_buf_fill_level
+ .text.pop_dual_cc_buf_item
+                0x000000000800221c       0xf8 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+                0x000000000800221c                pop_dual_cc_buf_item
+ .text.CDC_setInjectionMsg.constprop.0
+                0x0000000008002314      0x1d4 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .text.stopMessageInjection
+                0x00000000080024e8       0x24 ./Release/Core/src/BxCAN/can_cdc_player.o
+                0x00000000080024e8                stopMessageInjection
+ .text.CDC_can_inj_receive_data
+                0x000000000800250c       0x30 ./Release/Core/src/BxCAN/can_cdc_player.o
+                0x000000000800250c                CDC_can_inj_receive_data
+ .text.CDC_initMessageInjection
+                0x000000000800253c       0x64 ./Release/Core/src/BxCAN/can_cdc_player.o
+                0x000000000800253c                CDC_initMessageInjection
+ .text.TIM2_IRQHandler
+                0x00000000080025a0       0x98 ./Release/Core/src/BxCAN/can_cdc_player.o
+                0x00000000080025a0                TIM2_IRQHandler
+ .text.can_override_get_status
+                0x0000000008002638        0x8 ./Release/Core/src/BxCAN/can_override.o
+                0x0000000008002638                can_override_get_status
+ .text.can_override_get_dataptr
+                0x0000000008002640        0x8 ./Release/Core/src/BxCAN/can_override.o
+                0x0000000008002640                can_override_get_dataptr
+ .text.can_override_calibrate
+                0x0000000008002648      0x158 ./Release/Core/src/BxCAN/can_override.o
+                0x0000000008002648                can_override_calibrate
+ .text.can_override_proc_reverse_calibrate
+                0x00000000080027a0        0x4 ./Release/Core/src/BxCAN/can_override.o
+                0x00000000080027a0                can_override_proc_reverse_calibrate
+ .text.can_override_process_filters
+                0x00000000080027a4      0x660 ./Release/Core/src/BxCAN/can_override.o
+                0x00000000080027a4                can_override_process_filters
+ .text.can_receive_and_usb_transmit_msg
+                0x0000000008002e04       0x80 ./Release/Core/src/BxCAN/can_scanner.o
+                0x0000000008002e04                can_receive_and_usb_transmit_msg
+ .text.cmd_memchip_base_process
+                0x0000000008002e84       0xd4 ./Release/Core/src/Commands/cmd_memchip_base.o
+                0x0000000008002e84                cmd_memchip_base_process
+ .text.process_raw_cmd
+                0x0000000008002f58      0x170 ./Release/Core/src/Commands/cmd_raw.o
+                0x0000000008002f58                process_raw_cmd
+ .text.set_vehicle_value
+                0x00000000080030c8       0x64 ./Release/Core/src/Commands/cmd_set_vehicle_value.o
+                0x00000000080030c8                set_vehicle_value
+ .text.cmd_specific_process
+                0x000000000800312c      0x154 ./Release/Core/src/Commands/cmd_specific.o
+                0x000000000800312c                cmd_specific_process
+ .text.read_mem_data_and_usb_send
+                0x0000000008003280       0x7c ./Release/Core/src/Commands/cmd_spi_memchip_read.o
+                0x0000000008003280                read_mem_data_and_usb_send
+ .text.extract_address_from_cmd
+                0x00000000080032fc       0x68 ./Release/Core/src/Commands/common_cmd.o
+                0x00000000080032fc                extract_address_from_cmd
+ .text.extract_length_from_cmd
+                0x0000000008003364       0x24 ./Release/Core/src/Commands/common_cmd.o
+                0x0000000008003364                extract_length_from_cmd
+ .text.erase_sector
+                0x0000000008003388       0x68 ./Release/Core/src/Commands/common_cmd.o
+                0x0000000008003388                erase_sector
+ .text.assert_cmd_length
+                0x00000000080033f0        0xc ./Release/Core/src/Commands/common_cmd.o
+                0x00000000080033f0                assert_cmd_length
+ .text.user_cmd_set_device_mode
+                0x00000000080033fc       0x94 ./Release/Core/src/Commands/device_modes.o
+                0x00000000080033fc                user_cmd_set_device_mode
+ .text.el_get_current_cmd
+                0x0000000008003490        0x8 ./Release/Core/src/Commands/el_protocol.o
+                0x0000000008003490                el_get_current_cmd
+ .text.el_reset_state
+                0x0000000008003498       0x1c ./Release/Core/src/Commands/el_protocol.o
+                0x0000000008003498                el_reset_state
+ .text.fill_elp_buffer
+                0x00000000080034b4       0xd8 ./Release/Core/src/Commands/el_protocol.o
+                0x00000000080034b4                fill_elp_buffer
+ .text.find_and_parse_elp_cmd
+                0x000000000800358c      0x198 ./Release/Core/src/Commands/el_protocol.o
+                0x000000000800358c                find_and_parse_elp_cmd
+ .text.protocol_response
+                0x0000000008003724       0x3c ./Release/Core/src/Commands/user_cmd.o
+                0x0000000008003724                protocol_response
+ .text.process_protocol_cmd
+                0x0000000008003760       0x48 ./Release/Core/src/Commands/user_cmd.o
+                0x0000000008003760                process_protocol_cmd
+ .text.erase_sector_memchip.constprop.0
+                0x00000000080037a8      0x104 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .text.programm_memchip_long.constprop.0
+                0x00000000080038ac      0x29c ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .text.erase_chip_memchip
+                0x0000000008003b48       0x88 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003b48                erase_chip_memchip
+ .text.memchip_read
+                0x0000000008003bd0       0x70 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003bd0                memchip_read
+ .text.memchip_write
+                0x0000000008003c40        0x4 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003c40                memchip_write
+ .text.memchip_rewrite
+                0x0000000008003c44       0x20 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003c44                memchip_rewrite
+ .text.memchip_erase_block_within_address
+                0x0000000008003c64        0x4 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003c64                memchip_erase_block_within_address
+ .text.memchip_get_pending_length
+                0x0000000008003c68        0xc ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003c68                memchip_get_pending_length
+ .text.memchip_get_address
+                0x0000000008003c74        0xc ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003c74                memchip_get_address
+ .text.memchip_set_pending_data
+                0x0000000008003c80        0xc ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003c80                memchip_set_pending_data
+ .text.memchip_deduct_pending_data
+                0x0000000008003c8c       0x14 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003c8c                memchip_deduct_pending_data
+ .text.memchip_set_address
+                0x0000000008003ca0        0xc ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+                0x0000000008003ca0                memchip_set_address
+ .text.SPI_1xx_start
+                0x0000000008003cac       0xbc ./Release/Core/src/SPI/spi_1xx.o
+                0x0000000008003cac                SPI_1xx_start
+ .text.SPI_1xx_transmit_byte
+                0x0000000008003d68       0x48 ./Release/Core/src/SPI/spi_1xx.o
+                0x0000000008003d68                SPI_1xx_transmit_byte
+ .text.SPI_1xx_receive_byte
+                0x0000000008003db0       0x44 ./Release/Core/src/SPI/spi_1xx.o
+                0x0000000008003db0                SPI_1xx_receive_byte
+ .text.SPI_start_memchip_spi
+                0x0000000008003df4       0x20 ./Release/Core/src/SPI/spi.o
+                0x0000000008003df4                SPI_start_memchip_spi
+ .text.SPI_transmit_byte
+                0x0000000008003e14        0x4 ./Release/Core/src/SPI/spi.o
+                0x0000000008003e14                SPI_transmit_byte
+ .text.SPI_receive_byte
+                0x0000000008003e18        0x4 ./Release/Core/src/SPI/spi.o
+                0x0000000008003e18                SPI_receive_byte
+ .text.startBasicTimer
+                0x0000000008003e1c       0x44 ./Release/Core/src/TIM/tim.o
+                0x0000000008003e1c                startBasicTimer
+ .text.stopBasicTimer
+                0x0000000008003e60       0x14 ./Release/Core/src/TIM/tim.o
+                0x0000000008003e60                stopBasicTimer
+ .text.write_Fifo
+                0x0000000008003e74       0x80 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .text.USB_CDC_setTxBuffer
+                0x0000000008003ef4       0x90 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .text.USB_CDC_transferRXCallback_EP0
+                0x0000000008003f84       0xf0 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .text.USB_CDC_transferTXCallback
+                0x0000000008004074      0x2f0 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .text.USB_OTG_FS_init_pinout
+                0x0000000008004364       0x78 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x0000000008004364                USB_OTG_FS_init_pinout
+ .text.USB_OTG_FS_init_device
+                0x00000000080043dc      0x138 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x00000000080043dc                USB_OTG_FS_init_device
+ .text.OTG_FS_IRQHandler
+                0x0000000008004514      0x514 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x0000000008004514                OTG_FS_IRQHandler
+ .text.check_USB_device_status
+                0x0000000008004a28       0x14 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x0000000008004a28                check_USB_device_status
+ .text.USB_CDC_process_watchdog
+                0x0000000008004a3c       0x44 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x0000000008004a3c                USB_CDC_process_watchdog
+ .text.USB_CDC_send_data
+                0x0000000008004a80       0x90 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x0000000008004a80                USB_CDC_send_data
+ .text.USB_CDC_transferRXCallback_EP1
+                0x0000000008004b10       0x48 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x0000000008004b10                USB_CDC_transferRXCallback_EP1
+ .text.Reset_Handler
+                0x0000000008004b58       0x4c ./Release/Startup/startup_stm32f407vetx.o
+                0x0000000008004b58                Reset_Handler
+ .text.Default_Handler
+                0x0000000008004ba4        0x2 ./Release/Startup/startup_stm32f407vetx.o
+                0x0000000008004ba4                RTC_Alarm_IRQHandler
+                0x0000000008004ba4                HASH_RNG_IRQHandler
+                0x0000000008004ba4                EXTI2_IRQHandler
+                0x0000000008004ba4                TIM8_CC_IRQHandler
+                0x0000000008004ba4                DebugMon_Handler
+                0x0000000008004ba4                TIM1_CC_IRQHandler
+                0x0000000008004ba4                DMA2_Stream5_IRQHandler
+                0x0000000008004ba4                HardFault_Handler
+                0x0000000008004ba4                DMA1_Stream5_IRQHandler
+                0x0000000008004ba4                SysTick_Handler
+                0x0000000008004ba4                PVD_IRQHandler
+                0x0000000008004ba4                SDIO_IRQHandler
+                0x0000000008004ba4                TAMP_STAMP_IRQHandler
+                0x0000000008004ba4                PendSV_Handler
+                0x0000000008004ba4                NMI_Handler
+                0x0000000008004ba4                CAN2_RX1_IRQHandler
+                0x0000000008004ba4                EXTI3_IRQHandler
+                0x0000000008004ba4                TIM8_TRG_COM_TIM14_IRQHandler
+                0x0000000008004ba4                TIM8_UP_TIM13_IRQHandler
+                0x0000000008004ba4                I2C3_ER_IRQHandler
+                0x0000000008004ba4                EXTI0_IRQHandler
+                0x0000000008004ba4                I2C2_EV_IRQHandler
+                0x0000000008004ba4                DMA1_Stream2_IRQHandler
+                0x0000000008004ba4                FPU_IRQHandler
+                0x0000000008004ba4                OTG_HS_WKUP_IRQHandler
+                0x0000000008004ba4                UsageFault_Handler
+                0x0000000008004ba4                DMA2_Stream2_IRQHandler
+                0x0000000008004ba4                SPI1_IRQHandler
+                0x0000000008004ba4                TIM6_DAC_IRQHandler
+                0x0000000008004ba4                TIM1_BRK_TIM9_IRQHandler
+                0x0000000008004ba4                DCMI_IRQHandler
+                0x0000000008004ba4                DMA2_Stream3_IRQHandler
+                0x0000000008004ba4                USART6_IRQHandler
+                0x0000000008004ba4                USART3_IRQHandler
+                0x0000000008004ba4                CAN1_RX1_IRQHandler
+                0x0000000008004ba4                UART5_IRQHandler
+                0x0000000008004ba4                DMA2_Stream0_IRQHandler
+                0x0000000008004ba4                TIM4_IRQHandler
+                0x0000000008004ba4                I2C1_EV_IRQHandler
+                0x0000000008004ba4                DMA1_Stream6_IRQHandler
+                0x0000000008004ba4                DMA1_Stream1_IRQHandler
+                0x0000000008004ba4                UART4_IRQHandler
+                0x0000000008004ba4                TIM3_IRQHandler
+                0x0000000008004ba4                RCC_IRQHandler
+                0x0000000008004ba4                TIM8_BRK_TIM12_IRQHandler
+                0x0000000008004ba4                Default_Handler
+                0x0000000008004ba4                EXTI15_10_IRQHandler
+                0x0000000008004ba4                ADC_IRQHandler
+                0x0000000008004ba4                DMA1_Stream7_IRQHandler
+                0x0000000008004ba4                TIM7_IRQHandler
+                0x0000000008004ba4                TIM5_IRQHandler
+                0x0000000008004ba4                DMA2_Stream7_IRQHandler
+                0x0000000008004ba4                I2C3_EV_IRQHandler
+                0x0000000008004ba4                EXTI9_5_IRQHandler
+                0x0000000008004ba4                RTC_WKUP_IRQHandler
+                0x0000000008004ba4                ETH_WKUP_IRQHandler
+                0x0000000008004ba4                SPI2_IRQHandler
+                0x0000000008004ba4                OTG_HS_EP1_IN_IRQHandler
+                0x0000000008004ba4                MemManage_Handler
+                0x0000000008004ba4                DMA1_Stream0_IRQHandler
+                0x0000000008004ba4                SVC_Handler
+                0x0000000008004ba4                EXTI4_IRQHandler
+                0x0000000008004ba4                FSMC_IRQHandler
+                0x0000000008004ba4                ETH_IRQHandler
+                0x0000000008004ba4                OTG_HS_EP1_OUT_IRQHandler
+                0x0000000008004ba4                WWDG_IRQHandler
+                0x0000000008004ba4                OTG_FS_WKUP_IRQHandler
+                0x0000000008004ba4                TIM1_TRG_COM_TIM11_IRQHandler
+                0x0000000008004ba4                OTG_HS_IRQHandler
+                0x0000000008004ba4                EXTI1_IRQHandler
+                0x0000000008004ba4                USART2_IRQHandler
+                0x0000000008004ba4                I2C2_ER_IRQHandler
+                0x0000000008004ba4                DMA2_Stream1_IRQHandler
+                0x0000000008004ba4                FLASH_IRQHandler
+                0x0000000008004ba4                DMA2_Stream4_IRQHandler
+                0x0000000008004ba4                BusFault_Handler
+                0x0000000008004ba4                USART1_IRQHandler
+                0x0000000008004ba4                SPI3_IRQHandler
+                0x0000000008004ba4                DMA1_Stream4_IRQHandler
+                0x0000000008004ba4                I2C1_ER_IRQHandler
+                0x0000000008004ba4                DMA2_Stream6_IRQHandler
+                0x0000000008004ba4                DMA1_Stream3_IRQHandler
+ *(.glue_7)
+ .glue_7        0x0000000008004ba6        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x0000000008004ba6        0x0 linker stubs
+ *(.eh_frame)
+ *fill*         0x0000000008004ba6        0x2 
+ .eh_frame      0x0000000008004ba8        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+ *(.init)
+ .init          0x0000000008004ba8        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crti.o
+                0x0000000008004ba8                _init
+ .init          0x0000000008004bac        0x8 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
+ *(.fini)
+ .fini          0x0000000008004bb4        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crti.o
+                0x0000000008004bb4                _fini
+ .fini          0x0000000008004bb8        0x8 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
+                0x0000000008004bc0                . = ALIGN (0x4)
+                0x0000000008004bc0                _etext = .
+
+.vfp11_veneer   0x0000000008004bc0        0x0
+ .vfp11_veneer  0x0000000008004bc0        0x0 linker stubs
+
+.v4_bx          0x0000000008004bc0        0x0
+ .v4_bx         0x0000000008004bc0        0x0 linker stubs
+
+.iplt           0x0000000008004bc0        0x0
+ .iplt          0x0000000008004bc0        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+
+.rodata         0x0000000008004bc0      0x124
+                0x0000000008004bc0                . = ALIGN (0x4)
+ *(.rodata)
+ *(.rodata*)
+ .rodata.CSWTCH.1
+                0x0000000008004bc0       0x18 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+ .rodata.configurationDescriptor
+                0x0000000008004bd8       0x43 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *fill*         0x0000000008004c1b        0x1 
+ .rodata.configurationStringDescriptor
+                0x0000000008004c1c       0x16 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *fill*         0x0000000008004c32        0x2 
+ .rodata.deviceDescriptor
+                0x0000000008004c34       0x12 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *fill*         0x0000000008004c46        0x2 
+ .rodata.deviceQualifierDescriptor
+                0x0000000008004c48        0xa ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *fill*         0x0000000008004c52        0x2 
+ .rodata.languageStringDescriptor
+                0x0000000008004c54        0x4 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .rodata.manufactorStringDescriptor
+                0x0000000008004c58       0x26 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *fill*         0x0000000008004c7e        0x2 
+ .rodata.productStringDescriptor
+                0x0000000008004c80       0x2c ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .rodata.serialNumberStringDescriptor
+                0x0000000008004cac       0x1a ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *fill*         0x0000000008004cc6        0x2 
+ .rodata.stringInterface
+                0x0000000008004cc8       0x1c ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x0000000008004ce4                . = ALIGN (0x4)
+
+.rel.dyn        0x0000000008004ce4        0x0
+ .rel.iplt      0x0000000008004ce4        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+
+.ARM.extab      0x0000000008004ce4        0x0
+                0x0000000008004ce4                . = ALIGN (0x4)
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x0000000008004ce4                . = ALIGN (0x4)
+
+.ARM            0x0000000008004ce4        0x0
+                0x0000000008004ce4                . = ALIGN (0x4)
+                0x0000000008004ce4                __exidx_start = .
+ *(.ARM.exidx*)
+                0x0000000008004ce4                __exidx_end = .
+                0x0000000008004ce4                . = ALIGN (0x4)
+
+.preinit_array  0x0000000008004ce4        0x0
+                0x0000000008004ce4                . = ALIGN (0x4)
+                0x0000000008004ce4                PROVIDE (__preinit_array_start = .)
+ *(.preinit_array*)
+                0x0000000008004ce4                PROVIDE (__preinit_array_end = .)
+                0x0000000008004ce4                . = ALIGN (0x4)
+
+.init_array     0x0000000008004ce4        0x4
+                0x0000000008004ce4                . = ALIGN (0x4)
+                0x0000000008004ce4                PROVIDE (__init_array_start = .)
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array*)
+ .init_array    0x0000000008004ce4        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+                0x0000000008004ce8                PROVIDE (__init_array_end = .)
+                0x0000000008004ce8                . = ALIGN (0x4)
+
+.fini_array     0x0000000008004ce8        0x4
+                0x0000000008004ce8                . = ALIGN (0x4)
+                0x0000000008004ce8                PROVIDE (__fini_array_start = .)
+ *(SORT_BY_NAME(.fini_array.*))
+ *(.fini_array*)
+ .fini_array    0x0000000008004ce8        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+                0x0000000008004cec                PROVIDE (__fini_array_end = .)
+                0x0000000008004cec                . = ALIGN (0x4)
+                0x0000000008004cec                _sidata = LOADADDR (.data)
+
+.data           0x0000000020000000       0x38 load address 0x0000000008004cec
+                0x0000000020000000                . = ALIGN (0x4)
+                0x0000000020000000                _sdata = .
+ *(.data)
+ *(.data*)
+ .data.deviceSoftwareVersion
+                0x0000000020000000       0x10 ./Release/Core/src/device_model.o
+ .data.timeout.0
+                0x0000000020000010        0x4 ./Release/Core/src/main.o
+ .data.cmd_fll  0x0000000020000014        0x4 ./Release/Core/src/runtime.o
+ .data.hardwareVersion
+                0x0000000020000018       0x10 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+ .data.busy_response.1
+                0x0000000020000028        0x4 ./Release/Core/src/Commands/user_cmd.o
+ .data.erro_response.2
+                0x000000002000002c        0x4 ./Release/Core/src/Commands/user_cmd.o
+ .data.idle_response.0
+                0x0000000020000030        0x4 ./Release/Core/src/Commands/user_cmd.o
+ .data.ok___response.3
+                0x0000000020000034        0x4 ./Release/Core/src/Commands/user_cmd.o
+                0x0000000020000038                . = ALIGN (0x4)
+                0x0000000020000038                _edata = .
+
+.tm_clone_table
+                0x0000000020000038        0x0 load address 0x0000000008004d24
+ .tm_clone_table
+                0x0000000020000038        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+ .tm_clone_table
+                0x0000000020000038        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+
+.igot.plt       0x0000000020000038        0x0 load address 0x0000000008004d24
+ .igot.plt      0x0000000020000038        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+                0x0000000020000038                . = ALIGN (0x4)
+
+.bss            0x0000000020000038     0x9a04 load address 0x0000000008004d24
+                0x0000000020000038                _sbss = .
+                0x0000000020000038                __bss_start__ = _sbss
+ *(.bss)
+ .bss           0x0000000020000038       0x1c /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+ *(.bss*)
+ .bss.theDeviceModel
+                0x0000000020000054       0x23 ./Release/Core/src/device_model.o
+                0x0000000020000054                theDeviceModel
+ *fill*         0x0000000020000077        0x1 
+ .bss.secs      0x0000000020000078        0x4 ./Release/Core/src/main.o
+ .bss.the_ram_updater
+                0x000000002000007c        0x8 ./Release/Core/src/ram_updater.o
+ .bss.blink_switch
+                0x0000000020000084        0x1 ./Release/Core/src/runtime.o
+ .bss.blink_timeout
+                0x0000000020000085        0x1 ./Release/Core/src/runtime.o
+ *fill*         0x0000000020000086        0x2 
+ .bss.message_data_to_send.0
+                0x0000000020000088       0x18 ./Release/Core/src/runtime.o
+ .bss.message_data_to_send.1
+                0x00000000200000a0       0x18 ./Release/Core/src/runtime.o
+ .bss.theVehicle
+                0x00000000200000b8       0x28 ./Release/Core/src/vehicle_template.o
+ .bss.CAN_buffer
+                0x00000000200000e0     0x80a0 ./Release/Core/src/BxCAN/can_buffer.o
+                0x00000000200000e0                CAN_buffer
+ .bss.theCanInjectionStatus
+                0x0000000020008180       0x28 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .bss.theDualBuffer
+                0x00000000200081a8      0x314 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .bss.theOverrideStatus
+                0x00000000200084bc      0x118 ./Release/Core/src/BxCAN/can_override.o
+ .bss.spi_buf   0x00000000200085d4      0x200 ./Release/Core/src/Commands/cmd_spi_memchip_read.o
+ .bss.elp_cmd_buffer
+                0x00000000200087d4       0xc0 ./Release/Core/src/Commands/el_protocol.o
+ .bss.elp_cmd_buffer_index
+                0x0000000020008894        0x4 ./Release/Core/src/Commands/el_protocol.o
+ .bss.global_el_command
+                0x0000000020008898       0x9c ./Release/Core/src/Commands/el_protocol.o
+ .bss.status    0x0000000020008934        0xc ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .bss.EndPoint  0x0000000020008940       0x54 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+                0x0000000020008940                EndPoint
+ .bss.circBufferTx
+                0x0000000020008994     0x1000 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .bss.device_state
+                0x0000000020009994        0x4 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .bss.last_usb_frame_watchdog.0
+                0x0000000020009998        0x4 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .bss.lineCoding
+                0x000000002000999c        0x7 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *fill*         0x00000000200099a3        0x1 
+ .bss.readPtrTxCbuf
+                0x00000000200099a4        0x2 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *fill*         0x00000000200099a6        0x2 
+ .bss.rxBufferEp0
+                0x00000000200099a8        0x8 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .bss.rxBufferEp1
+                0x00000000200099b0       0x80 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .bss.setup_pkt_data
+                0x0000000020009a30        0x8 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .bss.writePtrTxCbuf
+                0x0000000020009a38        0x2 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ *(COMMON)
+                0x0000000020009a3c                . = ALIGN (0x4)
+ *fill*         0x0000000020009a3a        0x2 
+                0x0000000020009a3c                _ebss = .
+                0x0000000020009a3c                __bss_end__ = _ebss
+
+._user_heap_stack
+                0x0000000020009a3c      0x604 load address 0x0000000008004d24
+                0x0000000020009a40                . = ALIGN (0x8)
+ *fill*         0x0000000020009a3c        0x4 
+                [!provide]                        PROVIDE (end = .)
+                [!provide]                        PROVIDE (_end = .)
+                0x0000000020009c40                . = (. + _Min_Heap_Size)
+ *fill*         0x0000000020009a40      0x200 
+                0x000000002000a040                . = (. + _Min_Stack_Size)
+ *fill*         0x0000000020009c40      0x400 
+                0x000000002000a040                . = ALIGN (0x8)
+
+/DISCARD/
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.ARM.attributes
+                0x0000000000000000       0x2a
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x0000000000000000       0x1e /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crti.o
+ .ARM.attributes
+                0x000000000000001e       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+ .ARM.attributes
+                0x000000000000004c       0x2e ./Release/Core/src/device_model.o
+ .ARM.attributes
+                0x000000000000007a       0x2e ./Release/Core/src/main.o
+ .ARM.attributes
+                0x00000000000000a8       0x2e ./Release/Core/src/ram_updater.o
+ .ARM.attributes
+                0x00000000000000d6       0x2e ./Release/Core/src/runtime.o
+ .ARM.attributes
+                0x0000000000000104       0x2e ./Release/Core/src/stm32f407_clock.o
+ .ARM.attributes
+                0x0000000000000132       0x2e ./Release/Core/src/string_convertor.o
+ .ARM.attributes
+                0x0000000000000160       0x2e ./Release/Core/src/vehicle_template.o
+ .ARM.attributes
+                0x000000000000018e       0x2e ./Release/Core/src/watchdog.o
+ .ARM.attributes
+                0x00000000000001bc       0x2e ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+ .ARM.attributes
+                0x00000000000001ea       0x2e ./Release/Core/src/BxCAN/can_buffer.o
+ .ARM.attributes
+                0x0000000000000218       0x2e ./Release/Core/src/BxCAN/can.o
+ .ARM.attributes
+                0x0000000000000246       0x2e ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .ARM.attributes
+                0x0000000000000274       0x2e ./Release/Core/src/BxCAN/can_cdc_player.o
+ .ARM.attributes
+                0x00000000000002a2       0x2e ./Release/Core/src/BxCAN/can_override.o
+ .ARM.attributes
+                0x00000000000002d0       0x2e ./Release/Core/src/BxCAN/can_scanner.o
+ .ARM.attributes
+                0x00000000000002fe       0x2e ./Release/Core/src/Commands/cmd_memchip_base.o
+ .ARM.attributes
+                0x000000000000032c       0x2e ./Release/Core/src/Commands/cmd_raw.o
+ .ARM.attributes
+                0x000000000000035a       0x2e ./Release/Core/src/Commands/cmd_set_vehicle_value.o
+ .ARM.attributes
+                0x0000000000000388       0x2e ./Release/Core/src/Commands/cmd_specific.o
+ .ARM.attributes
+                0x00000000000003b6       0x2e ./Release/Core/src/Commands/cmd_spi_memchip_read.o
+ .ARM.attributes
+                0x00000000000003e4       0x2e ./Release/Core/src/Commands/common_cmd.o
+ .ARM.attributes
+                0x0000000000000412       0x2e ./Release/Core/src/Commands/device_modes.o
+ .ARM.attributes
+                0x0000000000000440       0x2e ./Release/Core/src/Commands/el_protocol.o
+ .ARM.attributes
+                0x000000000000046e       0x2e ./Release/Core/src/Commands/user_cmd.o
+ .ARM.attributes
+                0x000000000000049c       0x2e ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .ARM.attributes
+                0x00000000000004ca       0x2e ./Release/Core/src/SPI/spi_1xx.o
+ .ARM.attributes
+                0x00000000000004f8       0x2e ./Release/Core/src/SPI/spi.o
+ .ARM.attributes
+                0x0000000000000526       0x2e ./Release/Core/src/TIM/tim.o
+ .ARM.attributes
+                0x0000000000000554       0x2e ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .ARM.attributes
+                0x0000000000000582       0x21 ./Release/Startup/startup_stm32f407vetx.o
+ .ARM.attributes
+                0x00000000000005a3       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .ARM.attributes
+                0x00000000000005d1       0x1c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x00000000000005ed       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+ .ARM.attributes
+                0x000000000000061b       0x2e /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+ .ARM.attributes
+                0x0000000000000649       0x1e /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtn.o
+OUTPUT(./Release/407_template.elf elf32-littlearm)
+LOAD linker stubs
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc.a
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libm.a
+LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/libgcc.a
+
+.comment        0x0000000000000000       0x33
+ .comment       0x0000000000000000       0x33 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtbegin.o
+                                         0x34 (size before relaxing)
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/device_model.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/main.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/ram_updater.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/runtime.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/stm32f407_clock.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/string_convertor.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/vehicle_template.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/watchdog.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Board_models/F407/DEVICE_DEVBOARD_F407VET_A.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/BxCAN/can_buffer.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/BxCAN/can.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/BxCAN/can_cdc_player_buffer.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/BxCAN/can_cdc_player.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/BxCAN/can_override.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/BxCAN/can_scanner.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/cmd_memchip_base.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/cmd_raw.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/cmd_set_vehicle_value.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/cmd_specific.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/cmd_spi_memchip_read.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/common_cmd.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/device_modes.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/el_protocol.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Commands/user_cmd.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/Flash_memchip/flash_nor_mem_chip_spi.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/SPI/spi_1xx.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/SPI/spi.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/TIM/tim.o
+ .comment       0x0000000000000033       0x34 ./Release/Core/src/USB_CDC/stm32f105_usbdfs_cdc.o
+ .comment       0x0000000000000033       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .comment       0x0000000000000033       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+ .comment       0x0000000000000033       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m/nofp/crtend.o
+
+.debug_info     0x0000000000000000      0x277
+ .debug_info    0x0000000000000000      0x11a /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .debug_info    0x000000000000011a       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+ .debug_info    0x0000000000000140      0x137 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+
+.debug_abbrev   0x0000000000000000      0x194
+ .debug_abbrev  0x0000000000000000       0xcc /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .debug_abbrev  0x00000000000000cc       0x14 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+ .debug_abbrev  0x00000000000000e0       0xb4 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+
+.debug_loc      0x0000000000000000      0x2e6
+ .debug_loc     0x0000000000000000       0xba /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .debug_loc     0x00000000000000ba      0x22c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+
+.debug_aranges  0x0000000000000000       0x60
+ .debug_aranges
+                0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .debug_aranges
+                0x0000000000000020       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+ .debug_aranges
+                0x0000000000000040       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+
+.debug_line     0x0000000000000000      0x3b5
+ .debug_line    0x0000000000000000      0x138 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .debug_line    0x0000000000000138       0xbe /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+ .debug_line    0x00000000000001f6      0x1bf /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+
+.debug_str      0x0000000000000000      0x32d
+ .debug_str     0x0000000000000000      0x1cc /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+                                        0x205 (size before relaxing)
+ .debug_str     0x00000000000001cc       0xb3 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memcpy.o)
+ .debug_str     0x000000000000027f       0xae /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
+                                        0x1ba (size before relaxing)
+
+.debug_frame    0x0000000000000000       0x58
+ .debug_frame   0x0000000000000000       0x2c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-init.o)
+ .debug_frame   0x000000000000002c       0x2c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v7e-m/nofp/libc_nano.a(lib_a-memset.o)
