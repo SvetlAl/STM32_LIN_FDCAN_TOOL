@@ -8,8 +8,6 @@ https://www.youtube.com/watch?v=TV64RHSr5Tw&lc=
 Interface overview:
 https://youtu.be/wPPCQm3Kelo
 
-Now I'm fixing minor bugs and preparing CAN FD support.
-
 
 **Work explanation.**
 This firmware and interface template is designed to handle a CAN bus gateway installed in between two ECU's.
@@ -21,6 +19,9 @@ CAN-Scanner function allows to split a CAN network and display all the data alon
 CAN-injection function allows to make a CAN message trace and play it into network.
 
 ![Work_explanation](Docs/Work_explanation.png)
+
+**Custom filter function.**
+If gateway and calibrator function are enabled, 
 
 **Hardware requirements.**
 The hardware implementation is based on STM32 + 2 CAN trancievers + USB FS + SPI Memory chip (MX25L323 or similar).
