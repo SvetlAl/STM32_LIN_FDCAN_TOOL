@@ -21,7 +21,7 @@ CAN-injection function allows to make a CAN message trace and play it into netwo
 ![Work_explanation](Docs/Work_explanation.png)
 
 **Custom filter function.**
-If gateway and calibrator function are enabled, 
+If gateway and calibrator function are enabled, edit "can_override.c" file
 
 **Hardware requirements.**
 The hardware implementation is based on STM32 + 2 CAN trancievers + USB FS + SPI Memory chip (MX25L323 or similar).
