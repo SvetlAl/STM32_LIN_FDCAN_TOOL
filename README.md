@@ -1,5 +1,5 @@
-# STM32F105_205_2CAN_gateway_scanner_filter
-CAN bus Scanner/Gateway/filter/data_override/trace editor/multitool based on STM32, Qt. Works with Starline 2CAN, Sigma and similar
+# STM32F105 STM32F205 STM32F407 STM32H730
+LIN, FD-CAN bus Scanner/Gateway/filter/data_override/trace editor/multitool based on STM32, Qt. Works with multiple antitheft devices.
 
 **Current status.**
 Usage example here:
@@ -23,9 +23,9 @@ CAN-injection function allows to make a CAN message trace and play it into netwo
 ![Work_explanation](Docs/Work_explanation.png)
 
 **Hardware requirements.**
-The hardware implementation is based on STM32F105205 + 2 CAN trancievers + USB FS + SPI Memory chip (MX25L323 or similar).
+The hardware implementation is based on STM32 + 2 CAN trancievers + USB FS + SPI Memory chip (MX25L323 or similar).
 
-The code already has **6 hardware configuration**. Their pinout explanation and clocking can be found in Doc directory.
+The code already has **9 hardware configuration**. Their pinout explanation and clocking can be found in Boards_Docs directory.
 
 The bus terminators are optionally installed if needed.
 
@@ -35,7 +35,10 @@ The bus terminators are optionally installed if needed.
 **Firmware.**
 Optional bootloader is designed to load a bin image from 0x030000 of external memory chip and a bin image size from 0x03FFFC. The main application FLASH address is 0x8004000.
 
-Edit *device_model.h* CommentUncomment  the hardware preset and Environment (**MDK-ARM** or **GCC**).
+**project_settings.h**
+project_settings.h - is a main configuration file.
+Edit *project_settings.h* CommentUncomment  the hardware preset and Environment (**MDK-ARM** or **GCC**).
+For example, if you want to use STM32F407 devboard, uncomment #define DEVICE_DEVBOARD_F407VET_A and comment all other presets
 
 If **MDK_ARM**, open 105_template.uvprojx or 205_template.uvprojx.
 
@@ -54,6 +57,7 @@ make clean
 Implemented in Qt 6.50. The sources and compiled versions can be found in qt_interface folder.
 
 Android USB implementation is forked from https://github.com/VanThanBK/QtAndroid-UsbSerial
+![FD_CAN](Docs/fdcan.png)
 ![2 way Scanner](Docs/can_monitor.png)
 ![can_trace](Docs/can_trace.png)
 ![device_modes](Docs/device_modes.png)
